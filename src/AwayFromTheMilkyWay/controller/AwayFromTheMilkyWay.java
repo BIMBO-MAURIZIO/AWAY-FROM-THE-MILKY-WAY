@@ -28,7 +28,7 @@ public class AwayFromTheMilkyWay extends Application {
         //gamePane gioco = new gamePane();
         //gioco.setScenario(1);
         
-        Scene scene = new Scene(gioco, 1200, 720);
+        Scene scene = new Scene(gioco, 1280, 900);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);

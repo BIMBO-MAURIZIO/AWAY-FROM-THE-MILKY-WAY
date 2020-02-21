@@ -22,9 +22,9 @@ public class GameWindow extends BorderPane {
     public void composeWindow(){
         GamePane schermataGioco = new GamePane();
         schermataGioco.setScenario(1);
-        schermataGioco.setPrefSize(1200, 540);
+        schermataGioco.setPrefSize(1280, 720);
         PlayerDataPane schermataDati = new PlayerDataPane();
-        schermataDati.setPrefSize(1200, 180);
+        schermataDati.setPrefSize(1280, 180);
         schermataDati.populatePane();
         //root.setCenter(schermataGioco);
         this.setCenter(schermataGioco);
