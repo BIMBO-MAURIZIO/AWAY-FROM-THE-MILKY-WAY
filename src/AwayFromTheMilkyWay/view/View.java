@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class View implements IView{
     
     //metodo per switchare le finestre
-    private void changeCurrentWindow(Stage stage, String window, String title, int windowWidth, int windowHeight) throws IOException{
+  /*  private void changeCurrentWindow(Stage stage, String window, String title, int windowWidth, int windowHeight) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
         Scene scene = new Scene(root, windowWidth, windowHeight);
@@ -28,6 +28,6 @@ public class View implements IView{
         stage.show();
     
     
-    }
+    }*/
     
 }

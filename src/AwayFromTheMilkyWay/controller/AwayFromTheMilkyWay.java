@@ -5,6 +5,8 @@
  */
 package AwayFromTheMilkyWay.controller;
 
+import AwayFromTheMilkyWay.view.GameWindow;
+import AwayFromTheMilkyWay.view.GamePane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,20 +23,12 @@ public class AwayFromTheMilkyWay extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        GameWindow gioco = new GameWindow();
+        gioco.composeWindow();
+        //gamePane gioco = new gamePane();
+        //gioco.setScenario(1);
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(gioco, 1200, 720);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
