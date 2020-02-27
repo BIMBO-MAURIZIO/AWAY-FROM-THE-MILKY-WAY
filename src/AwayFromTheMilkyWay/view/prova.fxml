@@ -5,6 +5,6 @@
 
 <AnchorPane id="AnchorPane" fx:id="prova" prefHeight="400.0" prefWidth="600.0" styleClass="bodybg" stylesheets="@Back.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.ProvaController">
    <children>
-      <Button layoutX="300.0" layoutY="161.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="300.0" layoutY="161.0" mnemonicParsing="false" onAction="#openOptions" text="Button" />
    </children>
 </AnchorPane>

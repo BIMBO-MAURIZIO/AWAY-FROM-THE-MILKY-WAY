@@ -17,12 +17,20 @@ import javafx.stage.Stage;
  */
 public class View implements IView{
     
-        private Stage stage;
+    private Stage stage;
+    private static View instance;
+        
+        
     
-    public void newGameStage(){
-        
+    public View(){
         stage = new Stage();
-        
+    }
+      
+           
+    public static IView getInstance() {
+        if(instance == null)
+            instance = new View();
+        return instance;
     }
     
    

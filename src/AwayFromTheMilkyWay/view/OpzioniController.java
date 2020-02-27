@@ -5,7 +5,6 @@
  */
 package AwayFromTheMilkyWay.view;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -15,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author giorg
  */
-public class ProvaController implements Initializable {
+public class OpzioniController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -24,13 +23,5 @@ public class ProvaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    public void openOptions() throws IOException{
-        View view1 = new View();
-        view1.closeStage();
-        view1.newGameStage();
-        view1.changeCurrentWindow("opzioni.fxml");
-    
-    }
     
 }
