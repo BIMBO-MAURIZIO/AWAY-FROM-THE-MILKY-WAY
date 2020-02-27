@@ -15,5 +15,5 @@ import javafx.stage.Stage;
  * @author giorg
  */
 public interface IView {
-   // abstract void changeCurrentWindow(Stage stage, String window, String title, int windowWidth, int windowHeight) throws IOException;
+   abstract void changeCurrentWindow(String window) throws IOException;
 }

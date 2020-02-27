@@ -7,6 +7,8 @@ package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.GamePane;
+import AwayFromTheMilkyWay.view.View;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,17 +24,20 @@ import javafx.stage.Stage;
 public class AwayFromTheMilkyWay extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        GameWindow gioco = new GameWindow();
+    public void start(Stage primaryStage) throws IOException {
+        /*GameWindow gioco = new GameWindow();
         gioco.composeWindow();
-        //gamePane gioco = new gamePane();
-        //gioco.setScenario(1);
         
         Scene scene = new Scene(gioco, 1280, 900);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();*/
+        
+        View ogg = new View();
+        ogg.newGameStage();
+        ogg.changeCurrentWindow("prova.fxml");
+        
     }
 
     /**

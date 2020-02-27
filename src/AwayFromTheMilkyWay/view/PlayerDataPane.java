@@ -16,26 +16,34 @@ import javafx.scene.text.Font;
  */
 public class PlayerDataPane extends GridPane {
     int level;
+    int rimbalziEff;
+  
     
     public PlayerDataPane(){
         super();
     }//prova
     
     public void populatePane(){
+       
         
         
         Label rimbalziDesiderati = new Label("Rimbalzi Desiderati: ");
         rimbalziDesiderati.setPrefSize(427, 90);
+        
         Label nome  = new Label("nome: ");
         nome.setPrefSize(427, 90);
-        Font carattere = new Font("Batang",24);
-        nome.setFont(carattere);
+        //Font carattere = new Font("Arial",24);
+        //nome.setFont(carattere);
+        
         Label forza = new Label("forza: ");
         forza.setPrefSize(427, 90);
-        Label rimbalziEffettuati = new Label("rimbalzi effettuati: ");
+        
+        Label rimbalziEffettuati = new Label("rimbalzi effettuati: "+ rimbalziEff);
         rimbalziEffettuati.setPrefSize(427, 90);
+        
         Label numLivello = new Label("livello numero "+ level);
         numLivello.setPrefSize(426, 90);
+        
         Button opzioni = new Button("opzioni");
         opzioni.setPrefSize(426, 90);
         

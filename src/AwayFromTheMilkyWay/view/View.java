@@ -17,17 +17,28 @@ import javafx.stage.Stage;
  */
 public class View implements IView{
     
-    //metodo per switchare le finestre
-  /*  private void changeCurrentWindow(Stage stage, String window, String title, int windowWidth, int windowHeight) throws IOException{
+        private Stage stage;
+    
+    public void newGameStage(){
+        
+        stage = new Stage();
+        
+    }
+    
+   
+    
+    
+    @Override
+    public void changeCurrentWindow(String window) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
-        Scene scene = new Scene(root, windowWidth, windowHeight);
+        Scene scene = new Scene(root, 1280, 800);
     
-        stage.setTitle(title);
+        stage.setTitle("Away From the Milky Way");
         stage.setScene(scene);
         stage.show();
     
     
-    }*/
+    }
     
 }
