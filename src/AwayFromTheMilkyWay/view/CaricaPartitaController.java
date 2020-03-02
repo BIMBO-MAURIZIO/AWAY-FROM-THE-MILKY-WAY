@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author giorg
  */
-public class OpzioniController implements Initializable {
+public class CaricaPartitaController implements Initializable {
 
     /**
      * Initializes the controller class.

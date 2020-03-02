@@ -5,26 +5,17 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author giorg
  */
-public class MenuGuiController implements Initializable {
-
-    @FXML
-    private AnchorPane menuGui;
-    @FXML
-    private Button nuovaPartita;
-    @FXML
-    private Button opzioniPartita;
+public class SchermataInizialeController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -34,4 +25,16 @@ public class MenuGuiController implements Initializable {
         // TODO
     }    
     
+    public void nuovaPartita() throws IOException{
+        View.getInstance().changeCurrentWindow("nuovaPartita.fxml");
+    }
+    
+    
+    public void caricaPartita() throws IOException{
+        View.getInstance().changeCurrentWindow("caricaPartita.fxml");
+    }
+    
+    public void opzioni() throws IOException{
+        View.getInstance().changeCurrentWindow("opzioni.fxml");
+    }
 }

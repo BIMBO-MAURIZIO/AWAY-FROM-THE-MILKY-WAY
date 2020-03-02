@@ -16,4 +16,5 @@ import javafx.stage.Stage;
  */
 public interface IView {
    abstract void changeCurrentWindow(String window) throws IOException;
+   abstract void openGameWindow(int level) ;
 }

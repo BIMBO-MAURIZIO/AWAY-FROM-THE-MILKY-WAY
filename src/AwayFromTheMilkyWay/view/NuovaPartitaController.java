@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author giorg
  */
-public class ProvaController implements Initializable {
+public class NuovaPartitaController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -25,12 +25,12 @@ public class ProvaController implements Initializable {
         // TODO
     }    
     
-    public void openOptions() throws IOException{
-        View view1 = new View();
-        view1.closeStage();
-        view1.newGameStage();
-        view1.changeCurrentWindow("opzioni.fxml");
     
+    public void back() throws IOException{
+        View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
     }
     
+    public void iniziaPartita(){
+        View.getInstance().openGameWindow(1);
+    }
 }

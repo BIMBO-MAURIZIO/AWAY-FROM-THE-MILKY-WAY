@@ -19,6 +19,7 @@ public class View implements IView{
     
     private Stage stage;
     private static View instance;
+    private GameWindow game;
         
         
     
@@ -33,11 +34,21 @@ public class View implements IView{
         return instance;
     }
     
+    public void closeWindow(){
+        if(this.stage != null){
+            
+            this.stage.close();
+            this.stage = null;
+        }
+    
+    }
+    
    
     
     
     @Override
     public void changeCurrentWindow(String window) throws IOException{
+        
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
         Scene scene = new Scene(root, 1280, 800);
@@ -48,5 +59,20 @@ public class View implements IView{
     
     
     }
+    
+    @Override
+    public void openGameWindow(int level){
+        
+        game = new GameWindow();
+        game.composeWindow(level);
+        Scene scene = new Scene(game, 1280, 900);
+        
+        stage.setTitle("Away From the Milky Way");
+        stage.setScene(scene);
+        stage.show();
+    
+    }
+    
+  
     
 }

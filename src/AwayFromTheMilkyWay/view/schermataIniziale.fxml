@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.SchermataInizialeController">
+   <children>
+      <Button layoutX="185.0" layoutY="232.0" mnemonicParsing="false" onAction="#nuovaPartita" prefHeight="107.0" prefWidth="383.0" text="NUOVA PARTITA" />
+      <Button layoutX="185.0" layoutY="379.0" mnemonicParsing="false" onAction="#caricaPartita" prefHeight="107.0" prefWidth="383.0" text="CARICA PARTITA" />
+      <Button layoutX="185.0" layoutY="531.0" mnemonicParsing="false" onAction="#opzioni" prefHeight="107.0" prefWidth="383.0" text="OPZIONI" />
+      <Label layoutX="752.0" layoutY="62.0" prefHeight="71.0" prefWidth="527.0" text="AWAY FROM THE MILKY WAY" />
+   </children>
+</AnchorPane>

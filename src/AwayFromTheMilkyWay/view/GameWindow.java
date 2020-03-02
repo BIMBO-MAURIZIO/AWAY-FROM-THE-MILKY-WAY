@@ -19,9 +19,9 @@ public class GameWindow extends BorderPane {
         super();
     }
     
-    public void composeWindow(){
+    public void composeWindow(int level){
         GamePane schermataGioco = new GamePane();
-        schermataGioco.setScenario(1);
+        schermataGioco.setScenario(level);
         schermataGioco.setPrefSize(1280, 720);
         PlayerDataPane schermataDati = new PlayerDataPane();
         schermataDati.setPrefSize(1280, 180);
