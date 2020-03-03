@@ -4,15 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/View.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/MenuGuiController.java</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/controller/AwayFromTheMilkyWay.java</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/NuovaPartitaController.java</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/SchermataInizialeController.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/IView.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/ProvaController.java</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/controller/IControllerForView.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/PlayerDataPane.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/GameWindow.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/prova.fxml</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/Back.css</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/GamePane.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/opzioni.fxml</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/controller/ControllerForView.java</file>
         </group>
     </open-files>
 </project-private>

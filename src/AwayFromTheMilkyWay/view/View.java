@@ -73,6 +73,14 @@ public class View implements IView{
     
     }
     
+   
+    
+    @Override
+    public GameWindow getGameWindow(){
+        return this.game;
+    }
+    
+    
   
     
-}
+}//end class

@@ -5,15 +5,12 @@
  */
 package AwayFromTheMilkyWay.view;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 
 /**
  *
@@ -25,11 +22,14 @@ public class PlayerDataPane extends GridPane {
     int rimbDes;
     String name;
     int power;
-  
+    
+    Label nome, forza,rimbalziEffettuati,numLivello;
+    
+    Button opzioni;
     
     public PlayerDataPane(){
         super();
-    }//prova
+   }//prova
     
     public void populatePane(){
        
@@ -38,21 +38,23 @@ public class PlayerDataPane extends GridPane {
         Label rimbalziDesiderati = new Label("Rimbalzi Desiderati: "+ rimbDes);
         rimbalziDesiderati.setPrefSize(427, 90);
         
-        Label nome  = new Label("nome: " + name);
+        
+        
+        nome  = new Label("nome: " + name);
         nome.setPrefSize(427, 90);
         //Font carattere = new Font("Arial",24);
         //nome.setFont(carattere);
         
-        Label forza = new Label("forza: " + power);
+        forza = new Label("forza: " + power);
         forza.setPrefSize(427, 90);
         
-        Label rimbalziEffettuati = new Label("rimbalzi effettuati: "+ rimbalziEff);
+        rimbalziEffettuati = new Label("rimbalzi effettuati: "+ rimbalziEff);
         rimbalziEffettuati.setPrefSize(427, 90);
         
-        Label numLivello = new Label("livello numero "+ level);
+        numLivello = new Label("livello numero "+ level);
         numLivello.setPrefSize(426, 90);
         
-        Button opzioni = new Button("opzioni");
+        opzioni = new Button("opzioni");
         opzioni.setPrefSize(426, 90);
         
         opzioni.setOnAction(event -> {
@@ -73,5 +75,23 @@ public class PlayerDataPane extends GridPane {
         this.add(opzioni,2,1);
         
     }
+    
+    public void setName(String nm){
+        this.name = nm;
+        this.update();
+        //this.populatePane();
+          
+    }
+    
+    
+    public void update(){
+        nome.setText("nome: " + name);
+        rimbalziEffettuati.setText("rimbalzi effettuati: "+ rimbalziEff);
+        numLivello.setText("livello numero "+ level);
+        
+    }
+     
+   
+
     
 }

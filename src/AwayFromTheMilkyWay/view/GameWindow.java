@@ -15,6 +15,8 @@ import javafx.scene.layout.BorderPane;
  */
 public class GameWindow extends BorderPane {
     
+    PlayerDataPane schermataDati = new PlayerDataPane();
+    
     public GameWindow(){
         super();
     }
@@ -23,7 +25,8 @@ public class GameWindow extends BorderPane {
         GamePane schermataGioco = new GamePane();
         schermataGioco.setScenario(level);
         schermataGioco.setPrefSize(1280, 720);
-        PlayerDataPane schermataDati = new PlayerDataPane();
+        
+        
         schermataDati.setPrefSize(1280, 180);
         schermataDati.populatePane();
         //root.setCenter(schermataGioco);
@@ -36,6 +39,10 @@ public class GameWindow extends BorderPane {
       
         
         //devoaggiungere a questa scena la gamePane e la PlayerDataPane
+    }
+    
+   public void setName(String nm){
+       schermataDati.setName(nm) ;
     }
     
 }

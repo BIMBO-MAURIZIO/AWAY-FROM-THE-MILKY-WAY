@@ -5,10 +5,13 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -16,10 +19,12 @@ import javafx.fxml.Initializable;
  * @author giorg
  */
 public class NuovaPartitaController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+        
+    @FXML TextField textField;
+    String name;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -31,6 +36,15 @@ public class NuovaPartitaController implements Initializable {
     }
     
     public void iniziaPartita(){
+        
+        name = textField.getText();
         View.getInstance().openGameWindow(1);
+        System.out.println("Step 1:"+name );
+         System.out.println("Step 2:"+View.getInstance().getGameWindow().schermataDati.name);
+        ControllerForView.getInstance().setName(name);
+        System.out.println("Step 2:"+View.getInstance().getGameWindow().schermataDati.name);
     }
+    
+    
+      
 }
