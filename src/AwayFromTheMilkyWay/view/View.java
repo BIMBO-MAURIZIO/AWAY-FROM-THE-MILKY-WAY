@@ -5,6 +5,7 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.awt.Dimension;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -53,10 +54,13 @@ public class View implements IView{
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
         Scene scene = new Scene(root, 1280, 800);
+        ControllerForView.getInstance().startMovimento(scene, true);
     
         stage.setTitle("Away From the Milky Way");
         stage.setScene(scene);
         stage.show();
+        
+        
     
     
     }

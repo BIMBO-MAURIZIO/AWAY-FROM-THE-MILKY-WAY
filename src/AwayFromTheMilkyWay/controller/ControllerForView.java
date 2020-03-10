@@ -8,12 +8,9 @@ package AwayFromTheMilkyWay.controller;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
-import java.awt.event.MouseEvent;
-import static java.awt.event.MouseEvent.MOUSE_PRESSED;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -50,7 +47,7 @@ public class ControllerForView implements IControllerForView {
     
     
     //METODI PER IL MOVIMENTO
-    
+    @Override
     public void movimento(){
         GameWindow gameWindow = View.getInstance().getGameWindow();
         GamePane gamePane = gameWindow.getSchermataGioco();
@@ -66,21 +63,17 @@ public class ControllerForView implements IControllerForView {
     
     }
     
+    @Override
     public void move(){
         spaceshipX++;
         spaceship.setTranslateX(spaceshipX);
     }
     
+    @Override
     public void startMovimento(Scene scenaAttiva, boolean accensione){
-        scenaAttiva.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
+            movimento();
         });
-        
-        
-        
 
     }
     

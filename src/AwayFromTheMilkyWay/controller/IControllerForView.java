@@ -5,6 +5,8 @@
  */
 package AwayFromTheMilkyWay.controller;
 
+import javafx.scene.Scene;
+
 /**
  *
  * @author giorg
@@ -12,4 +14,7 @@ package AwayFromTheMilkyWay.controller;
 public interface IControllerForView {
     
     public void setName (String nome);
+    public void movimento();
+    public void move();
+    public void startMovimento(Scene scenaAttiva, boolean accensione);
 }
