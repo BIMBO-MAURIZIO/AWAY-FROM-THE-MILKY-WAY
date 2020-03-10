@@ -5,6 +5,7 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import java.awt.Dimension;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ public class View implements IView{
     private static View instance;
     private GameWindow game;
         
-        
+    final Dimension d = new Dimension(1280, 900);    
     
     public View(){
         stage = new Stage();
@@ -44,7 +45,7 @@ public class View implements IView{
     }
     
    
-    
+    //metodi per switchare le scene
     
     @Override
     public void changeCurrentWindow(String window) throws IOException{
@@ -68,12 +69,16 @@ public class View implements IView{
         Scene scene = new Scene(game, 1280, 900);
         
         stage.setTitle("Away From the Milky Way");
+        stage.setResizable(false);
         stage.setScene(scene);
+        //stage.setWidth(d.width);
+        //stage.setHeight(d.height);
         stage.show();
     
     }
     
    
+    //metodi per restituire oggetti relativi alla finestra
     
     @Override
     public GameWindow getGameWindow(){

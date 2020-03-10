@@ -5,21 +5,21 @@
  */
 package AwayFromTheMilkyWay.view;
 
-import javafx.scene.Scene;
+
 import javafx.scene.layout.BorderPane;
 
 
-/**
- *
- * @author giorg
- */
+
 public class GameWindow extends BorderPane {
     
     PlayerDataPane schermataDati = new PlayerDataPane();
     
+    
     public GameWindow(){
         super();
+        
     }
+    
     
     public void composeWindow(int level){
         GamePane schermataGioco = new GamePane();
@@ -29,20 +29,17 @@ public class GameWindow extends BorderPane {
         
         schermataDati.setPrefSize(1280, 180);
         schermataDati.populatePane();
-        //root.setCenter(schermataGioco);
+   
         this.setCenter(schermataGioco);
         this.setBottom(schermataDati);
-        /*this.getChildren().add(schermataGioco);
-        this.getChildren().add(schermataDati);*/
-        //Scene scene = new Scene(root, 1200, 720);
-        
-      
-        
-        //devoaggiungere a questa scena la gamePane e la PlayerDataPane
+       
     }
+    
     
    public void setName(String nm){
        schermataDati.setName(nm) ;
-    }
     
+   }
+    
+   
 }

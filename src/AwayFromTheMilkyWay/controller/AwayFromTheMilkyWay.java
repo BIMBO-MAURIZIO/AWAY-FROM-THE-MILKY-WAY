@@ -19,15 +19,7 @@ public class AwayFromTheMilkyWay extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        /*GameWindow gioco = new GameWindow();
-        gioco.composeWindow();
-        
-        Scene scene = new Scene(gioco, 1280, 900);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
-        
+       
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
        
         
