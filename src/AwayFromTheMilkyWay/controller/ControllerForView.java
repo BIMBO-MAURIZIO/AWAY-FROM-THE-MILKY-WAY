@@ -63,12 +63,12 @@ public class ControllerForView implements IControllerForView {
         
         spaceshipX = spaceship.getCenterX();
         spaceshipY = spaceship.getCenterY();
-        System.out.println("spaceshipX :"+spaceshipX);
-        System.out.println("spaceshipY :"+spaceshipY);
         double positionX;
         positionX = this.getMousePositionX();
         double positionY;
         positionY = this.getMousePositionY();
+        System.out.println("spaceshipX :"+positionX);
+        System.out.println("spaceshipY :"+positionY);
         
         /*position = this.getMousePosition(true);
         mousePositionX = position[0];
@@ -149,12 +149,12 @@ public class ControllerForView implements IControllerForView {
         
         mouseHandler = (MouseEvent event) -> {
               positioningY = event.getY();
-              System.out.println("positioning y: "+positioningX);
+              System.out.println("positioning y: "+positioningY);
         };
         return positioningY;
     }
     
-    
+    /*il programma sembra non entrare nei metodi getMousePosition in quanto le variabili positionX e positionY hanno sempre valore pari a 0*/
     
     
 }//end class sss
