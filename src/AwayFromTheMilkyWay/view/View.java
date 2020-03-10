@@ -54,7 +54,6 @@ public class View implements IView{
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
         Scene scene = new Scene(root, 1280, 800);
-        ControllerForView.getInstance().startMovimento(scene, true);
     
         stage.setTitle("Away From the Milky Way");
         stage.setScene(scene);
@@ -71,6 +70,7 @@ public class View implements IView{
         game = new GameWindow();
         game.composeWindow(level);
         Scene scene = new Scene(game, 1280, 900);
+        ControllerForView.getInstance().startMovimento(scene, true);
         
         stage.setTitle("Away From the Milky Way");
         stage.setResizable(false);
