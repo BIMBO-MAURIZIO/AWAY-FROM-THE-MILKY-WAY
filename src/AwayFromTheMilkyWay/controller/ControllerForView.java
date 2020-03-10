@@ -79,8 +79,6 @@ public class ControllerForView implements IControllerForView {
             });
         }else{}
           
-            
-    
     }
     
-}//end class
+}//end class sss
