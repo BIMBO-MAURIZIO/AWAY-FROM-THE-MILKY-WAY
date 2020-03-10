@@ -5,11 +5,9 @@
         <group>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/View.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/NuovaPartitaController.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/SchermataInizialeController.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/model/GameStatus.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/IView.java</file>
-            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/Spaceship.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/controller/IControllerForView.java</file>
+            <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/model/SpaceshipModel.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/PlayerDataPane.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/view/GameWindow.java</file>
             <file>file:/C:/Users/giorg/OneDrive/Desktop/PROGETTO/src/AwayFromTheMilkyWay/controller/ControllerForView.java</file>

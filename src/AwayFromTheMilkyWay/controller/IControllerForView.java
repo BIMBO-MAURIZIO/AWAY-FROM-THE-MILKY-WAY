@@ -17,4 +17,7 @@ public interface IControllerForView {
     public void movimento();
     public void move();
     public void startMovimento(Scene scenaAttiva, boolean accensione);
+    //public double[] getMousePosition(boolean accensione);
+    public double getMousePositionX();
+    public double getMousePositionY();
 }
