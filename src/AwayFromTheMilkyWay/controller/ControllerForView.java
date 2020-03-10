@@ -63,18 +63,24 @@ public class ControllerForView implements IControllerForView {
     
     }
     
+    
     @Override
     public void move(){
         spaceshipX++;
         spaceship.setTranslateX(spaceshipX);
     }
     
+    
     @Override
-    public void startMovimento(Scene scenaAttiva, boolean accensione){
-        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
-            movimento();
-        });
-
+    public void startMovimento(Scene scenaAttiva, boolean accensione) {
+        if(accensione){
+            scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
+                movimento();
+            });
+        }else{}
+          
+            
+    
     }
     
 }//end class
