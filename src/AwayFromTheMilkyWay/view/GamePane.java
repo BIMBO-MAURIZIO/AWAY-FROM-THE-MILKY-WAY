@@ -60,5 +60,9 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         }
         
         
+    }//end setScenario
+    
+    public Circle getSpaceship(){
+        return this.spaceship;
     }
 }

@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 public class GameWindow extends BorderPane {
     
     PlayerDataPane schermataDati = new PlayerDataPane();
-    
+    GamePane schermataGioco = new GamePane();
     
     public GameWindow(){
         super();
@@ -22,7 +22,7 @@ public class GameWindow extends BorderPane {
     
     
     public void composeWindow(int level){
-        GamePane schermataGioco = new GamePane();
+        schermataGioco = new GamePane();
         schermataGioco.setScenario(level);
         schermataGioco.setPrefSize(1280, 720);
         
@@ -39,6 +39,10 @@ public class GameWindow extends BorderPane {
    public void setName(String nm){
        schermataDati.setName(nm) ;
     
+   }
+   
+   public GamePane getSchermataGioco(){
+       return this.schermataGioco;
    }
     
    

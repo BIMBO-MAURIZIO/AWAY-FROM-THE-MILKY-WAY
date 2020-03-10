@@ -6,7 +6,6 @@
 package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
-import javafx.stage.Stage;
 
 
 

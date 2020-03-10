@@ -71,8 +71,6 @@ public class View implements IView{
         stage.setTitle("Away From the Milky Way");
         stage.setResizable(false);
         stage.setScene(scene);
-        //stage.setWidth(d.width);
-        //stage.setHeight(d.height);
         stage.show();
     
     }
