@@ -10,6 +10,8 @@ import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
@@ -22,6 +24,9 @@ import javafx.util.Duration;
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
     private double spaceshipX;
+    private double spaceshipY;
+    private double mousePositionX;
+    private double mousePositionY;
     Circle spaceship;
     
     public ControllerForView(){
@@ -54,20 +59,29 @@ public class ControllerForView implements IControllerForView {
         spaceship = gamePane.getSpaceship();
         
         spaceshipX = spaceship.getCenterX();
+        spaceshipY = spaceship.getCenterY();
+        
+        double[] position = new double[1];
+        position = this.getMousePosition(true);
+        mousePositionX = position[0];
+        mousePositionY = position[1];
+        
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
                 x -> move())
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    
+        
     }
     
     
     @Override
     public void move(){
-        spaceshipX++;
+        double cost = mousePositionX/mousePositionY;
+        spaceshipY++;
+        spaceshipX = cost+spaceshipX;
         spaceship.setTranslateX(spaceshipX);
+        spaceship.setTranslateY(spaceshipY);
     }
     
     
@@ -81,4 +95,17 @@ public class ControllerForView implements IControllerForView {
           
     }
     
+    public double[] getMousePosition(boolean accensione){
+        double[] position;
+        position = new double[1];
+        if(accensione){
+            
+            EventHandler<MouseEvent> mouseHandler = (MouseEvent event) -> {
+                position[0] = event.getX();
+                position[1] = event.getY();           
+            };
+            accensione = false;
+        }
+        return position;
+    }
 }//end class sss
