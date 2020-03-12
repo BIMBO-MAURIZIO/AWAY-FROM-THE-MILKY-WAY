@@ -27,10 +27,12 @@ public class ControllerForView implements IControllerForView {
     double positioningY;
     private double spaceshipX;
     private double spaceshipY;
+    private double startSpaceshipX;
+    private double startSpaceshipY;
     private double mousePositionX;
     private double mousePositionY;
     Circle spaceship;
-    EventHandler<MouseEvent> mouseHandler;
+    EventHandler<MouseEvent> handler;
     
     public ControllerForView(){
         
@@ -56,26 +58,19 @@ public class ControllerForView implements IControllerForView {
     
     //METODI PER IL MOVIMENTO
     @Override
-    public void movimento(){
+    public void movimento(Scene scena){
+        
+        scena.removeEventHandler(MouseEvent.MOUSE_PRESSED, handler);
         GameWindow gameWindow = View.getInstance().getGameWindow();
         GamePane gamePane = gameWindow.getSchermataGioco();
         spaceship = gamePane.getSpaceship();
-        
+        startSpaceshipX = spaceship.getCenterX();
+        startSpaceshipY = spaceship.getCenterY();
         spaceshipX = spaceship.getCenterX();
         spaceshipY = spaceship.getCenterY();
-        double positionX;
-        positionX = this.getMousePositionX();
-        double positionY;
-        positionY = this.getMousePositionY();
-        System.out.println("spaceshipX :"+positionX);
-        System.out.println("spaceshipY :"+positionY);
-        
-        /*position = this.getMousePosition(true);
-        mousePositionX = position[0];
-        mousePositionY = position[1];*/
-        
-        
-        
+        System.out.println("mouseX :"+mousePositionX);
+        System.out.println("mouseY :"+mousePositionY);
+     
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
                 x -> move())
@@ -84,77 +79,78 @@ public class ControllerForView implements IControllerForView {
         timeline.play();
     }
     
-    
+     
     @Override
     public void move(){
-        double cost = mousePositionX/mousePositionY;
-        spaceshipY++;
-        spaceshipX = cost+spaceshipX;
-        spaceship.setTranslateX(spaceshipX);
-        spaceship.setTranslateY(spaceshipY);
-        
-        /*spaceshipX++;
-        spaceshipY++;
-        spaceship.setTranslateY(spaceshipY);
-        spaceship.setTranslateX(spaceshipX);*/
-    }
-    
-    
-    @Override
-    public void startMovimento(Scene scenaAttiva, boolean accensione) {
-        if(accensione){
-            scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
-                movimento();
-            });
-            accensione = false;
-        }else{}
-          
-    }
-    
-    
-    /*@Override
-    public double[] getMousePosition(boolean accensione){
-        double[] position;
-        position = new double[1];
-        if(accensione){
+        if (mousePositionX > startSpaceshipX && mousePositionY > startSpaceshipY){
+            double cost = (mousePositionY-startSpaceshipY)/(mousePositionX-startSpaceshipX);
+            spaceshipY = ((spaceshipX+0.5)*cost);
             
-            EventHandler<MouseEvent> mouseHandler = (MouseEvent event) -> {
-                position[0] = event.getX();
-                position[1] = event.getY();
-                System.out.print("AAAAAAAAAAAAAAAAAAposition"+position[0]);
-               
-            };
-            accensione = false;
+            //spaceshipY = spaceshipY + cost;
+            spaceshipX = (spaceshipX + 0.5);
+            //System.out.println("x : "+spaceshipX);
+            //System.out.println("y : "+spaceshipY);
+            spaceship.setTranslateX(spaceshipX);
+            spaceship.setTranslateY(spaceshipY);
         }
-        return position;
+        
+        //if ()
+        
+    }
+    
+    
+   /* @Override
+    public void startMovimento(Scene scenaAttiva, boolean accensione) {
+        
+        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
+            mousePositionX = mouseEvent.getX();
+            mousePositionY = mouseEvent.getY();
+            movimento();
+             
+        });
+        accensione = false;
+        if(!accensione){
+        scenaAttiva.removeEventHandler(MouseEvent.MOUSE_PRESSED);
+        }
+          
     }*/
     
     @Override
-    public double getMousePositionX(){
-    
-        
-        
-        mouseHandler = (MouseEvent event) -> {
-            positioningX = event.getX();
-            System.out.println("positioning x: "+positioningX);
-            
+    public void startMovimento(Scene scenaAttiva) {
+       handler = new EventHandler<MouseEvent>() {  
+            public void handle(MouseEvent event) {  
+                mousePositionX = event.getX();
+                mousePositionY = event.getY();
+                movimento(scenaAttiva);
+                
+            }
         };
+        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
+        
+        
+    }
+    
+    
+    @Override
+    public double getMousePositionX(){
+        Scene scenaAttiva = View.getInstance().getScene();
+        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
+                positioningX = mouseEvent.getX();
+            });
         return positioningX;
     }
     
     
     @Override
     public double getMousePositionY(){
-    
-        
-        mouseHandler = (MouseEvent event) -> {
-              positioningY = event.getY();
-              System.out.println("positioning y: "+positioningY);
-        };
-        return positioningY;
+       Scene scenaAttiva = View.getInstance().getScene();
+       scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
+                positioningY = mouseEvent.getY();
+            });
+       return positioningY;
     }
     
-    /*il programma sembra non entrare nei metodi getMousePosition in quanto le variabili positionX e positionY hanno sempre valore pari a 0*/
+    
     
     
 }//end class sss

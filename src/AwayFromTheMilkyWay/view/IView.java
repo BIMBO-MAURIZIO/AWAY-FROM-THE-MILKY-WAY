@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
+import javafx.scene.Scene;
 
 
 
@@ -17,5 +18,5 @@ public interface IView {
    abstract void changeCurrentWindow(String window) throws IOException;
    abstract void openGameWindow(int level) ;
    public GameWindow getGameWindow();
-  
+   public Scene getScene();
 }

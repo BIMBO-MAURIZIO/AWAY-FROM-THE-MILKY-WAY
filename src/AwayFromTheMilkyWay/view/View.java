@@ -22,6 +22,7 @@ public class View implements IView{
     private Stage stage;
     private static View instance;
     private GameWindow game;
+    private Scene scene;
         
     final Dimension d = new Dimension(1280, 900);    
     
@@ -53,7 +54,7 @@ public class View implements IView{
         
         Parent root = FXMLLoader.load(getClass().getResource(window));
     
-        Scene scene = new Scene(root, 1280, 800);
+        scene = new Scene(root, 1280, 800);
     
         stage.setTitle("Away From the Milky Way");
         stage.setScene(scene);
@@ -70,7 +71,7 @@ public class View implements IView{
         game = new GameWindow();
         game.composeWindow(level);
         Scene scene = new Scene(game, 1280, 900);
-        ControllerForView.getInstance().startMovimento(scene, true);
+        ControllerForView.getInstance().startMovimento(scene);
         
         stage.setTitle("Away From the Milky Way");
         stage.setResizable(false);
@@ -88,6 +89,11 @@ public class View implements IView{
     }
     
     
+    
+    @Override
+    public Scene getScene(){
+        return this.scene;
+    }
   
     
 }//end class
