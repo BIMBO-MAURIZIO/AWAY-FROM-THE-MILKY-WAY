@@ -15,9 +15,7 @@ public interface IControllerForView {
     
     public void setName (String nome);
     public void movimento(Scene scena);
-    public void move();
+    public void move(double v);
     public void startMovimento(Scene scenaAttiva);
-    //public double[] getMousePosition(boolean accensione);
-    public double getMousePositionX();
-    public double getMousePositionY();
+    
 }

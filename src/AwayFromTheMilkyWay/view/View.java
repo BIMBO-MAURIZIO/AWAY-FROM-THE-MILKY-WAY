@@ -6,7 +6,6 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
-import java.awt.Dimension;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +23,7 @@ public class View implements IView{
     private GameWindow game;
     private Scene scene;
         
-    final Dimension d = new Dimension(1280, 900);    
+    
     
     public View(){
         stage = new Stage();
@@ -70,7 +69,7 @@ public class View implements IView{
         
         game = new GameWindow();
         game.composeWindow(level);
-        Scene scene = new Scene(game, 1280, 900);
+        scene = new Scene(game, 1280, 900);
         ControllerForView.getInstance().startMovimento(scene);
         
         stage.setTitle("Away From the Milky Way");

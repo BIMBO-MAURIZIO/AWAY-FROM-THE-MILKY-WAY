@@ -10,7 +10,6 @@ import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
@@ -33,6 +32,7 @@ public class ControllerForView implements IControllerForView {
     private double mousePositionY;
     Circle spaceship;
     EventHandler<MouseEvent> handler;
+    int t = 0;
     
     public ControllerForView(){
         
@@ -73,7 +73,7 @@ public class ControllerForView implements IControllerForView {
      
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> move())
+                x -> move(1))
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -81,20 +81,27 @@ public class ControllerForView implements IControllerForView {
     
      
     @Override
-    public void move(){
-        if (mousePositionX > startSpaceshipX && mousePositionY > startSpaceshipY){
+    public void move(double v){
+        double k = (mousePositionX-startSpaceshipX)/(mousePositionY-startSpaceshipY);
+        double vx = v;
+        double vy = v;
+        spaceshipX = startSpaceshipX + vx*t;
+        spaceshipY = startSpaceshipY + vy*t;
+        spaceship.setTranslateX(spaceshipX);
+        spaceship.setTranslateY(spaceshipY);
+        t++;
+       /* if (mousePositionX > startSpaceshipX && mousePositionY > startSpaceshipY){
             double cost = (mousePositionY-startSpaceshipY)/(mousePositionX-startSpaceshipX);
-            spaceshipY = ((spaceshipX+0.5)*cost);
+            spaceshipY = (spaceshipX+1)*cost; 
+            spaceshipX = spaceshipX + 1;
             
-            //spaceshipY = spaceshipY + cost;
-            spaceshipX = (spaceshipX + 0.5);
-            //System.out.println("x : "+spaceshipX);
-            //System.out.println("y : "+spaceshipY);
+            
+            System.out.println("x : "+spaceshipX);
+            System.out.println("y : "+spaceshipY);
             spaceship.setTranslateX(spaceshipX);
             spaceship.setTranslateY(spaceshipY);
-        }
-        
-        //if ()
+        }*/
+       
         
     }
     
@@ -129,28 +136,5 @@ public class ControllerForView implements IControllerForView {
         
         
     }
-    
-    
-    @Override
-    public double getMousePositionX(){
-        Scene scenaAttiva = View.getInstance().getScene();
-        scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
-                positioningX = mouseEvent.getX();
-            });
-        return positioningX;
-    }
-    
-    
-    @Override
-    public double getMousePositionY(){
-       Scene scenaAttiva = View.getInstance().getScene();
-       scenaAttiva.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent mouseEvent) -> {
-                positioningY = mouseEvent.getY();
-            });
-       return positioningY;
-    }
-    
-    
-    
-    
+     
 }//end class sss
