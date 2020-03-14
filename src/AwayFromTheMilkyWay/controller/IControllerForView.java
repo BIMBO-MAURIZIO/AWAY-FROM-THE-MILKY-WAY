@@ -14,8 +14,8 @@ import javafx.scene.Scene;
 public interface IControllerForView {
     
     public void setName (String nome);
-    public void movimento(Scene scena);
+    public void movimento();
     public void move(double v);
-    public void startMovimento(Scene scenaAttiva);
+    public void startMovimento();
     
 }

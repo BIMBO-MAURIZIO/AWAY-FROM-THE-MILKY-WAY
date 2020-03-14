@@ -70,7 +70,7 @@ public class View implements IView{
         game = new GameWindow();
         game.composeWindow(level);
         scene = new Scene(game, 1280, 900);
-        ControllerForView.getInstance().startMovimento(scene);
+        ControllerForView.getInstance().startMovimento();
         
         stage.setTitle("Away From the Milky Way");
         stage.setResizable(false);
@@ -88,11 +88,11 @@ public class View implements IView{
     }
     
     
-    
     @Override
     public Scene getScene(){
         return this.scene;
     }
   
+    
     
 }//end class
