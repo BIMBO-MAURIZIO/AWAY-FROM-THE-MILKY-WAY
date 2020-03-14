@@ -8,6 +8,7 @@ package AwayFromTheMilkyWay.controller;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
+import java.util.Vector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -33,6 +34,11 @@ public class ControllerForView implements IControllerForView {
     Circle spaceship;
     EventHandler<MouseEvent> handler;
     int t = 0;
+    double x;
+    double y;
+    double magnitude;
+    double xstab;
+    double ystab;
     
     public ControllerForView(){
         
@@ -68,8 +74,15 @@ public class ControllerForView implements IControllerForView {
         startSpaceshipY = spaceship.getCenterY();
         spaceshipX = spaceship.getCenterX();
         spaceshipY = spaceship.getCenterY();
+        x = mousePositionX-startSpaceshipX;
+        y = mousePositionY-startSpaceshipY;
+        magnitude = Math.sqrt(x*x+ y*y);
+        xstab = x / magnitude;
+        ystab = y / magnitude;
         System.out.println("mouseX :"+mousePositionX);
         System.out.println("mouseY :"+mousePositionY);
+        System.out.println("spaceshipX :"+spaceshipX);
+        System.out.println("spaceshipY :"+spaceshipY);
      
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
@@ -82,26 +95,28 @@ public class ControllerForView implements IControllerForView {
      
     @Override
     public void move(double v){
-        double k = (mousePositionX-startSpaceshipX)/(mousePositionY-startSpaceshipY);
-        double vx = v;
+        /*double k = (mousePositionX-startSpaceshipX)/(mousePositionY-startSpaceshipY);
+        double vx = v*k;
         double vy = v;
-        spaceshipX = startSpaceshipX + vx*t;
-        spaceshipY = startSpaceshipY + vy*t;
+        spaceshipX = k;//vx*t;
+        spaceshipY = 1;//vy*t;
+        spaceship.setTranslateX(spaceshipX);
+        spaceship.setTranslateY(spaceshipY);
+        System.out.println("x : "+spaceshipX);
+        System.out.println("y : "+spaceshipY);
+        t++;*/
+        
+       
+        spaceshipX = xstab * t;
+        spaceshipY = ystab * t;
         spaceship.setTranslateX(spaceshipX);
         spaceship.setTranslateY(spaceshipY);
         t++;
-       /* if (mousePositionX > startSpaceshipX && mousePositionY > startSpaceshipY){
-            double cost = (mousePositionY-startSpaceshipY)/(mousePositionX-startSpaceshipX);
-            spaceshipY = (spaceshipX+1)*cost; 
-            spaceshipX = spaceshipX + 1;
-            
-            
-            System.out.println("x : "+spaceshipX);
-            System.out.println("y : "+spaceshipY);
-            spaceship.setTranslateX(spaceshipX);
-            spaceship.setTranslateY(spaceshipY);
-        }*/
+        
+        
        
+        
+      
         
     }
     
