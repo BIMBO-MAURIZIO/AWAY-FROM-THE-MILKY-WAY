@@ -13,9 +13,12 @@ import javafx.scene.shape.Circle;
  */
 public class SpaceshipModel extends Circle{
     
-    public SpaceshipModel(double x, double y, double radius ) {
-        
+    
+    public SpaceshipModel(double x, double y, double radius ) {       
         super(x,y,radius);
+              
     }
+    
+    
 
 }

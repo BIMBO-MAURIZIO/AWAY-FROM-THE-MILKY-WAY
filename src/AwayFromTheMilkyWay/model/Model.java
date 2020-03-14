@@ -13,6 +13,7 @@ public class Model implements IModel {
     
     private GameStatus gameStatus;
     private static Model instance;
+    private SpaceshipModel spaceship;
 
 
     public Model(){
@@ -38,6 +39,12 @@ public class Model implements IModel {
     public void incrementaRimbalziEffettuati() {
         this.gameStatus.rimbEffettuati ++;
     
+    }
+    
+    
+    @Override
+    public SpaceshipModel getSpaceship(){
+        return this.spaceship;
     }
     
     

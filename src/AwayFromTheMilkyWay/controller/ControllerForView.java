@@ -104,8 +104,9 @@ public class ControllerForView implements IControllerForView {
      
     @Override
     public void move(double v){
-        variableSpaceshipX = spaceship.getCenterX();
-        variableSpaceshipY = spaceship.getCenterY();
+        variableSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+        variableSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+        
         
         if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT){
             
@@ -114,8 +115,9 @@ public class ControllerForView implements IControllerForView {
             spaceshipY = ystab * t;
             spaceship.setTranslateX(spaceshipX);
             spaceship.setTranslateY(spaceshipY);
-            System.out.println("X :" + variableSpaceshipX);
-            System.out.println("Y :" + variableSpaceshipY);
+            ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
+            ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
+            
             t++;
         
         }else { 

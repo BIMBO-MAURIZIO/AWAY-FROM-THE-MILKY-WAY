@@ -13,5 +13,6 @@ public interface IModel {
     
     public void incrementaRimbalziEffettuati();
     public int getRimbalziEffettuati();
+    public SpaceshipModel getSpaceship();
     
 }//end class
