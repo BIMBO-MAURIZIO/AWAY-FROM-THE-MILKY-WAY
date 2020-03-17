@@ -1,2 +1,4 @@
-SpaceshipX = 100
-SpaceshipY = 100
+SpaceshipX
+100
+SpaceshipY
+100

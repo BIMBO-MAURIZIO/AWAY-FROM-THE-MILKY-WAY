@@ -17,5 +17,7 @@ public interface IControllerForView {
     public void movimento();
     public void move(double v);
     public void startMovimento();
+     public double getSpaceshipCenterX();
+     public double getSpaceshipCenterY();
     
 }

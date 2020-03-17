@@ -5,6 +5,8 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import AwayFromTheMilkyWay.utils.Utils;
+import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +21,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
     private Circle spaceship;  
     private Circle planet1;  
     private Circle planet2;  
+   
     
     
     public GamePane(){//avevo intenzione di mettere qui la dipendenza dal livello così da cambiare lo scenario in base al livello automaticamente
@@ -27,7 +30,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
     }
         
     
-    public void setScenario(int levelNumber) {
+    public void setScenario(int levelNumber) throws IOException {
         Image image = new Image("AwayFromTheMilkyWay/configuration/media/images/spazio2.jpg");
         ImageView imageView = new ImageView(image);
         this.getChildren().add(imageView);
@@ -35,7 +38,9 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         
         switch(levelNumber){
             
-            case 1 :  spaceship = new Circle(100,100,50);//x, y , raggio   
+            case 1 :  spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
+                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipY")),
+                                             50);//x, y , raggio   
                       planet1 = new Circle(1000,500,60);
                       planet2 = new Circle(600,600,100);
                       spaceship.setFill(javafx.scene.paint.Color.RED);
@@ -65,4 +70,5 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
     public Circle getSpaceship(){
         return this.spaceship;
     }
-}
+    
+}   

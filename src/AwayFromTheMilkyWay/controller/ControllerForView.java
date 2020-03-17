@@ -50,7 +50,7 @@ public class ControllerForView implements IControllerForView {
     
     private final int WINLENGTH = 1280;
     private final int WINHEIGHT = 720;
-    private final int SPACESHIPRADIUS = 20;
+    private final int SPACESHIPRADIUS = 50;
     
     public ControllerForView(){
         
@@ -71,6 +71,34 @@ public class ControllerForView implements IControllerForView {
         schermataGioco.setName(nome);
     
     }
+    
+    
+    @Override
+    public double getSpaceshipCenterX(){
+        GamePane gp = View.getInstance().getGameWindow().getSchermataGioco();
+        return gp.getSpaceship().getCenterX();
+    }
+    
+    @Override
+    public double getSpaceshipCenterY(){
+        GamePane gp = View.getInstance().getGameWindow().getSchermataGioco();
+        return gp.getSpaceship().getCenterY();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

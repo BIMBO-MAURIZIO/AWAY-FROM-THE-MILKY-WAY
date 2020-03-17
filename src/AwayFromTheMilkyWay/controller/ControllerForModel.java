@@ -30,6 +30,8 @@ public class ControllerForModel implements IControllerForModel {
         return instance;
     }
     
+    
+    
    @Override
     public void setSpaceshipCenterX (double x){
         spaceship = Model.getInstance().getSpaceship();

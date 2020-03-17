@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 
+import java.io.IOException;
 import javafx.scene.layout.BorderPane;
 
 
@@ -21,7 +22,7 @@ public class GameWindow extends BorderPane {
     }
     
     
-    public void composeWindow(int level){
+    public void composeWindow(int level) throws IOException{
         schermataGioco = new GamePane();
         schermataGioco.setScenario(level);
         schermataGioco.setPrefSize(1280, 720);

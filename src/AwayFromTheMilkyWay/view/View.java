@@ -92,7 +92,9 @@ public class View implements IView{
     public Scene getScene(){
         return this.scene;
     }
-  
+    
+   
+ 
     
     
 }//end class

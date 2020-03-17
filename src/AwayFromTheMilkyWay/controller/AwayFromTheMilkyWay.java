@@ -6,7 +6,7 @@
 package AwayFromTheMilkyWay.controller;
 
 
-import AwayFromTheMilkyWay.utils.ReadFile;
+import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.View;
 import java.io.IOException;
 import javafx.application.Application;
@@ -22,7 +22,11 @@ public class AwayFromTheMilkyWay extends Application {
     public void start(Stage primaryStage) throws IOException {
        
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
-      
+        String prova = "";
+        prova = Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX");
+       int g = Integer.parseInt(prova);
+        System.out.println(prova);
+       
         
         
     }
