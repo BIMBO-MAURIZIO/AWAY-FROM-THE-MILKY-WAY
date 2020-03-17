@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.controller;
 
 
+import AwayFromTheMilkyWay.utils.ReadFile;
 import AwayFromTheMilkyWay.view.View;
 import java.io.IOException;
 import javafx.application.Application;
@@ -21,7 +22,8 @@ public class AwayFromTheMilkyWay extends Application {
     public void start(Stage primaryStage) throws IOException {
        
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
-       
+      
+        
         
     }
 

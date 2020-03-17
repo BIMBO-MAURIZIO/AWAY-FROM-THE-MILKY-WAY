@@ -28,7 +28,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         
     
     public void setScenario(int levelNumber) {
-        Image image = new Image("AwayFromTheMilkyWay/media/images/spazio2.jpg");
+        Image image = new Image("AwayFromTheMilkyWay/configuration/media/images/spazio2.jpg");
         ImageView imageView = new ImageView(image);
         this.getChildren().add(imageView);
        // this.setBackground(new Background(new BackgroundFill(RED,CornerRadii.EMPTY,Insets.EMPTY)));
