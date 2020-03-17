@@ -7,6 +7,8 @@ package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -67,15 +69,19 @@ public class View implements IView{
     @Override
     public void openGameWindow(int level){
         
-        game = new GameWindow();
-        game.composeWindow(level);
-        scene = new Scene(game, 1280, 900);
-        ControllerForView.getInstance().startMovimento();
-        
-        stage.setTitle("Away From the Milky Way");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        try {//il try catch va chiamato perche il metodo game.composegamewindow ha la clausola throws IOexeption
+            game = new GameWindow();
+            game.composeWindow(level);
+            scene = new Scene(game, 1280, 900);
+            ControllerForView.getInstance().startMovimento();
+            
+            stage.setTitle("Away From the Milky Way");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
     }
     
