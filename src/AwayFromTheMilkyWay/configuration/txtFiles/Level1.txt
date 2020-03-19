@@ -6,5 +6,5 @@ planet1X
 1000
 planet1Y
 500
-planetRadius
+planet1Radius
 60

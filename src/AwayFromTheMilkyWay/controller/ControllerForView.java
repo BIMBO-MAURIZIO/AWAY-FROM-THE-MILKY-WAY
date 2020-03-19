@@ -5,6 +5,7 @@
  */
 package AwayFromTheMilkyWay.controller;
 
+import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
@@ -34,6 +35,10 @@ public class ControllerForView implements IControllerForView {
     
     
     
+     GameWindow gameWindow = View.getInstance().getGameWindow();
+     GamePane gamePane = gameWindow.getSchermataGioco();
+     Circle cir = gamePane.getPlanet1();
+    
     
     
     
@@ -48,7 +53,6 @@ public class ControllerForView implements IControllerForView {
     double variableSpaceshipY;
     Timeline timeline;
     
-   
     
     //costanti
     
@@ -118,6 +122,7 @@ public class ControllerForView implements IControllerForView {
         startSpaceshipX = spaceship.getCenterX();
         startSpaceshipY = spaceship.getCenterY();
         
+        
         x = mousePositionX-startSpaceshipX;
         y = mousePositionY-startSpaceshipY;
         magnitude = Math.sqrt(x*x+ y*y);
@@ -145,17 +150,39 @@ public class ControllerForView implements IControllerForView {
         if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT
             && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){//condizioni per mantenere la navicella dentro ai bordi
             
+            double dx = cir.getCenterX() - variableSpaceshipX;
+            double dy = cir.getCenterY() - variableSpaceshipY;
+            double distNum = Math.sqrt(dx*dx+ dy*dy);
             
-            if(variableSpaceshipX + SPACESHIPRADIUS )
+            if(distNum > SPACESHIPRADIUS+cir.getRadius() ){
+                System.out.println("entro nelif");
+                spaceshipX = xstab * t;
+                spaceshipY = ystab * t;
+                spaceship.setTranslateX(spaceshipX);
+                spaceship.setTranslateY(spaceshipY);
+                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
+                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
             
-            spaceshipX = xstab * t;
-            spaceshipY = ystab * t;
-            spaceship.setTranslateX(spaceshipX);
-            spaceship.setTranslateY(spaceshipY);
-            ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
-            ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
+                t++;
+            }else{
+                //System.out.println("entro nell else");
+                t=0;
+                double dxNorm = dx / distNum;
+                double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
+                double tgx = -dyNorm;
+                double tgy = dxNorm;
+                System.out.println("x: "+tgx);
+                System.out.println("y: "+tgy);
+                spaceshipX = tgx * t;
+                spaceshipY = tgy * t;  
+                spaceship.setTranslateX(spaceshipX);
+                spaceship.setTranslateY(spaceshipY);
+                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
+                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
+                
+                t++;
             
-            t++;
+            }
         
         }else { 
             timeline.stop();
