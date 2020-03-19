@@ -33,6 +33,10 @@ public class ControllerForView implements IControllerForView {
     EventHandler<MouseEvent> handler;
     
     
+    
+    
+    
+    
     //variabili per il movimento
     int t = 0;
     double x;
@@ -139,8 +143,10 @@ public class ControllerForView implements IControllerForView {
         
         
         if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT
-            && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){
+            && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){//condizioni per mantenere la navicella dentro ai bordi
             
+            
+            if(variableSpaceshipX + SPACESHIPRADIUS )
             
             spaceshipX = xstab * t;
             spaceshipY = ystab * t;

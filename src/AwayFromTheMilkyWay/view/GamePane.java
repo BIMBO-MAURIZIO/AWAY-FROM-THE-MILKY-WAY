@@ -41,6 +41,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
             case 1 :  spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipY")),
                                              50);//x, y , raggio   
+            
                       planet1 = new Circle(1000,500,60);
                       planet2 = new Circle(600,600,100);
                       spaceship.setFill(javafx.scene.paint.Color.RED);
