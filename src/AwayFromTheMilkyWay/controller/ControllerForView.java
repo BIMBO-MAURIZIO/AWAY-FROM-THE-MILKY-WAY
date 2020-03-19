@@ -119,6 +119,8 @@ public class ControllerForView implements IControllerForView {
         magnitude = Math.sqrt(x*x+ y*y);
         xstab = x / magnitude;
         ystab = y / magnitude;
+        
+        
 
      
         timeline = new Timeline(new KeyFrame(
@@ -136,7 +138,8 @@ public class ControllerForView implements IControllerForView {
         variableSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
         
         
-        if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT){
+        if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT
+            && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){
             
             
             spaceshipX = xstab * t;

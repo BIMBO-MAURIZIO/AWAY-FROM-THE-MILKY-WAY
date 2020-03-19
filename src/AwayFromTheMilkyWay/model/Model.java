@@ -5,6 +5,8 @@
  */
 package AwayFromTheMilkyWay.model;
 
+import AwayFromTheMilkyWay.controller.ControllerForView;
+
 /**
  *
  * @author giorg
@@ -13,11 +15,11 @@ public class Model implements IModel {
     
     private GameStatus gameStatus;
     private static Model instance;
-    private SpaceshipModel spaceship;
+        private SpaceshipModel spaceship ;
 
 
     public Model(){
-        
+        spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),20);
     }
       
            
@@ -26,6 +28,10 @@ public class Model implements IModel {
             instance = new Model();
         return instance;
     }
+    
+    
+    
+    
     
     
     
