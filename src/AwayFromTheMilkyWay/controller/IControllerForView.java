@@ -16,8 +16,9 @@ public interface IControllerForView {
     public void setName (String nome);
     public void movimento();
     public void move(double v);
+    public void move2(double dx, double dy);
     public void startMovimento();
-     public double getSpaceshipCenterX();
-     public double getSpaceshipCenterY();
+    public double getSpaceshipCenterX();
+    public double getSpaceshipCenterY();
     
 }

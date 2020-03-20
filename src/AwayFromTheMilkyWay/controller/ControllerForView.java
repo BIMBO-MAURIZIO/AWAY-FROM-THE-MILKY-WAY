@@ -52,6 +52,7 @@ public class ControllerForView implements IControllerForView {
     double variableSpaceshipX;
     double variableSpaceshipY;
     Timeline timeline;
+    Timeline timeline2;
     
     
     //costanti
@@ -154,35 +155,44 @@ public class ControllerForView implements IControllerForView {
             double dy = cir.getCenterY() - variableSpaceshipY;
             double distNum = Math.sqrt(dx*dx+ dy*dy);
             
-            if(distNum > SPACESHIPRADIUS+cir.getRadius() ){
-                System.out.println("entro nelif");
+            if(distNum >= SPACESHIPRADIUS+cir.getRadius() ){
                 spaceshipX = xstab * t;
                 spaceshipY = ystab * t;
                 spaceship.setTranslateX(spaceshipX);
                 spaceship.setTranslateY(spaceshipY);
                 ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
                 ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
-            
+
                 t++;
             }else{
-                //System.out.println("entro nell else");
-                t=0;
-                double dxNorm = dx / distNum;
+                t=1;
+                spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
+                spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
+                timeline.stop();
+                timeline2 = new Timeline(new KeyFrame(
+                Duration.seconds(0.025), // ogni quanto va chiamata la funzione
+                x -> move2(dx,dy))
+                );
+                timeline2.setCycleCount(Timeline.INDEFINITE);
+                timeline2.play();
+                /*double dxNorm = dx / distNum;
                 double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
                 double tgx = -dyNorm;
                 double tgy = dxNorm;
-                System.out.println("x: "+tgx);
-                System.out.println("y: "+tgy);
+
+               
                 spaceshipX = tgx * t;
-                spaceshipY = tgy * t;  
+                spaceshipY = tgy * t;
                 spaceship.setTranslateX(spaceshipX);
                 spaceship.setTranslateY(spaceshipY);
                 ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
                 ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
                 
-                t++;
+                t++;*/
+                
+                }
             
-            }
+            
         
         }else { 
             timeline.stop();
@@ -191,6 +201,28 @@ public class ControllerForView implements IControllerForView {
   
     }
     
+    
+    
+    @Override
+    public void move2(double dx, double dy){
+        System.out.println("entro");
+        double distNum = Math.sqrt(dx*dx+ dy*dy);
+        double dxNorm = dx / distNum;
+                double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
+                double tgx = dyNorm;
+                double tgy = -dxNorm;
+
+                System.out.println("centro della navicella X : "+ spaceship.getCenterX());
+                spaceshipX = tgx * t;
+                spaceshipY = tgy * t;
+                System.out.println("spx e sp y :"+spaceshipX+" "+spaceshipY);
+                spaceship.setTranslateX(spaceshipX);
+                spaceship.setTranslateY(spaceshipY);
+                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
+                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
+                
+                t++;
+    }
     
    
     
