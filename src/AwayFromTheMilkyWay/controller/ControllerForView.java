@@ -26,6 +26,8 @@ public class ControllerForView implements IControllerForView {
     double positioningY;
     private double spaceshipX;
     private double spaceshipY;
+    private double spaceshipX2;
+    private double spaceshipY2;
     private double startSpaceshipX;
     private double startSpaceshipY;
     private double mousePositionX;
@@ -43,7 +45,7 @@ public class ControllerForView implements IControllerForView {
     
     
     //variabili per il movimento
-    int t = 0;
+    int t = 2;
     double x;
     double y;
     double magnitude;
@@ -156,18 +158,22 @@ public class ControllerForView implements IControllerForView {
             double distNum = Math.sqrt(dx*dx+ dy*dy);
             
             if(distNum >= SPACESHIPRADIUS+cir.getRadius() ){
-                spaceshipX = xstab * t;
+                spaceshipX = xstab * t;//posso considerare queste come le velocità.
                 spaceshipY = ystab * t;
+                //velocità = xstab *t/ 0,025 pixel al secondo
                 spaceship.setTranslateX(spaceshipX);
                 spaceship.setTranslateY(spaceshipY);
+                
                 ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
                 ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
-
-                t++;
-            }else{
-                t=1;
                 spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
                 spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
+
+                //t++;
+            }else{
+                
+                t=1;
+                System.out.println("centro x e y nell'else : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
                 timeline.stop();
                 timeline2 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
@@ -205,23 +211,41 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void move2(double dx, double dy){
-        System.out.println("entro");
+        System.out.println("centro x e y nel move2 : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
         double distNum = Math.sqrt(dx*dx+ dy*dy);
         double dxNorm = dx / distNum;
-                double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
-                double tgx = dyNorm;
-                double tgy = -dxNorm;
+        double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
+        double tgx = -dyNorm;
+        double tgy = dxNorm;
+        double[][] BCMatrix = new double[2][2]; //matrice del cambiamento di base
+        double determinant = (dxNorm*tgy)-(dyNorm*tgx);
+        /*BCMatrix[0][0]= tgy/determinant;
+        BCMatrix[0][1]= -dyNorm/determinant;
+        BCMatrix[1][0]= -tgx/determinant;
+        BCMatrix[1][1]= dxNorm/determinant;*/
+        BCMatrix[0][0]= tgy/determinant;
+        BCMatrix[1][0]= -dyNorm/determinant;
+        BCMatrix[0][1]= -tgx/determinant;
+        BCMatrix[1][1]= dxNorm/determinant;
+        
+        
+      
+        
+        //il problema è il seguente: se colpisco il pianeta sulla sua parte alta allora davanti a spaceshipX dovrebbe esserci un più.
+        //se lo colpisco sulla parte bassa dovrebbe esserci un meno.
+        spaceshipX2 = -(spaceshipX * BCMatrix[0][0]+ spaceshipY * BCMatrix[1][0]);
+        spaceshipY2 = (spaceshipX * BCMatrix[0][1]+ spaceshipY * BCMatrix[1][1]);
+        System.out.println("spaceshipx e spaceshipy : "+spaceshipX2+" ; "+spaceshipY2);
+        System.out.println("spx e sp y :"+spaceshipX2+" "+spaceshipY2);
+        spaceship.setTranslateX(spaceshipX2);
+        spaceship.setTranslateY(spaceshipY2);
+        ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX2);
+        ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY2);
+        spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
+        spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
 
-                System.out.println("centro della navicella X : "+ spaceship.getCenterX());
-                spaceshipX = tgx * t;
-                spaceshipY = tgy * t;
-                System.out.println("spx e sp y :"+spaceshipX+" "+spaceshipY);
-                spaceship.setTranslateX(spaceshipX);
-                spaceship.setTranslateY(spaceshipY);
-                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
-                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
                 
-                t++;
+                //t++;
     }
     
    
