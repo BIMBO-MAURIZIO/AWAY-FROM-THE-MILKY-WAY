@@ -19,5 +19,6 @@ public interface IView {
    abstract void openGameWindow(int level) ;
    public GameWindow getGameWindow();
    public Scene getScene();
+   public void pause();
    
 }

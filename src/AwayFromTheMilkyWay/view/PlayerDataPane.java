@@ -58,11 +58,9 @@ public class PlayerDataPane extends GridPane {
         opzioni.setPrefSize(426, 90);
         
         opzioni.setOnAction(event -> {
-            try {
-                View.getInstance().changeCurrentWindow("opzioni.fxml");
-            } catch (IOException ex) {
-                Logger.getLogger(PlayerDataPane.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+        View.getInstance().pause();
+           
         });
         
         

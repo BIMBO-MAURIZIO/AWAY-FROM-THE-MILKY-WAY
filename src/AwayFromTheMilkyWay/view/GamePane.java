@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 /**
@@ -21,7 +22,8 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
     private Circle spaceship;  
     private Circle planet1;  
     private Circle planet2;  
-   
+    Image mercurio = new Image("AwayFromTheMilkyWay/configuration/media/images/mercurio.png");
+    Image giove = new Image("AwayFromTheMilkyWay/configuration/media/images/giove.png");
     
     
     public GamePane(){//avevo intenzione di mettere qui la dipendenza dal livello così da cambiare lo scenario in base al livello automaticamente
@@ -45,10 +47,12 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                       planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Radius")));
+                      planet1.setFill(new ImagePattern(mercurio));
                       planet2 = new Circle(600,600,100);
+                      planet2.setFill(new ImagePattern(giove));
                       spaceship.setFill(javafx.scene.paint.Color.RED);
-                      planet1.setFill(javafx.scene.paint.Color.IVORY);
-                      planet2.setFill(javafx.scene.paint.Color.OLIVE);
+                      //planet1.setFill(javafx.scene.paint.Color.IVORY);
+                      //planet2.setFill(javafx.scene.paint.Color.OLIVE);
                       this.getChildren().addAll(spaceship,planet1,planet2);
                       
                 

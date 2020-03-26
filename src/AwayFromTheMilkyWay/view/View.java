@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -82,6 +83,26 @@ public class View implements IView{
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
+    }
+    
+    
+    @Override
+    public void pause(){
+        ControllerForView.getInstance().pauseAnimations();
+        Stage pauseStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("opzioni.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        scene = new Scene(root, 800, 400);
+        
+        pauseStage.setScene(scene);
+        pauseStage.setResizable(false);
+        pauseStage.show();
     
     }
     

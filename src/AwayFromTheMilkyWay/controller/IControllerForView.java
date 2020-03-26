@@ -20,5 +20,7 @@ public interface IControllerForView {
     public void startMovimento();
     public double getSpaceshipCenterX();
     public double getSpaceshipCenterY();
+    public void pauseAnimations();
+    public void playAnimations();
     
 }
