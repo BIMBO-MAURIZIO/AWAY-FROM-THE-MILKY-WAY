@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -25,6 +26,7 @@ public class View implements IView{
     private static View instance;
     private GameWindow game;
     private Scene scene;
+    Stage pauseStage;
         
     
     
@@ -90,19 +92,23 @@ public class View implements IView{
     @Override
     public void pause(){
         ControllerForView.getInstance().pauseAnimations();
-        Stage pauseStage = new Stage();
+        pauseStage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("opzioni.fxml"));
+            root = FXMLLoader.load(getClass().getResource("opzioniPausa.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-        scene = new Scene(root, 800, 400);
+        scene = new Scene(root, 1280, 800);
         
         pauseStage.setScene(scene);
         pauseStage.setResizable(false);
+        pauseStage.setTitle("Opzioni");
+        pauseStage.initStyle(StageStyle.UNDECORATED);
+        stage.hide();
         pauseStage.show();
+        
     
     }
     
@@ -112,6 +118,18 @@ public class View implements IView{
     @Override
     public GameWindow getGameWindow(){
         return this.game;
+    }
+    
+    
+    @Override
+    public Stage getPauseStage(){
+        return this.pauseStage;
+    }
+    
+    
+    @Override
+    public Stage getMainStage(){
+        return this.stage;
     }
     
     

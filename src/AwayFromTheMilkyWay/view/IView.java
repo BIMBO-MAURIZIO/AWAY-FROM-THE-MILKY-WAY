@@ -7,6 +7,7 @@ package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 
@@ -20,5 +21,7 @@ public interface IView {
    public GameWindow getGameWindow();
    public Scene getScene();
    public void pause();
+   public Stage getPauseStage();
+   public Stage getMainStage();
    
 }
