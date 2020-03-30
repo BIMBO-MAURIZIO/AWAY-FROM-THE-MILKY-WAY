@@ -9,11 +9,14 @@ import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.View;
+import java.util.Vector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 /**
@@ -34,6 +37,7 @@ public class ControllerForView implements IControllerForView {
     private double mousePositionY;
     Circle spaceship;
     EventHandler<MouseEvent> handler;
+    Point2D NrotatedNormal;
     
     
     
@@ -132,6 +136,7 @@ public class ControllerForView implements IControllerForView {
         magnitude = Math.sqrt(x*x+ y*y);
         xstab = x / magnitude;
         ystab = y / magnitude;
+        System.out.println("angolo: "+Math.toDegrees(Math.atan2(ystab, xstab)));
         
         
 
@@ -177,15 +182,32 @@ public class ControllerForView implements IControllerForView {
             }else{
                 
                 t=1;
-                System.out.println("centro x e y nell'else : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
+                double dxNorm = -dx / distNum;
+                double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
+        
+        
+                double tgx = -dyNorm;
+                double tgy = dxNorm;
+        
+                double num = dxNorm * spaceshipX + dyNorm * spaceshipY;
+                double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(spaceshipX*spaceshipX + spaceshipY*spaceshipY));
+                double cosA = num/den;
+                System.out.println("coseno: "+cosA);
+                double A = Math.toDegrees(Math.acos(cosA));
+                System.out.println("angolo: "+A);
+                
+                Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(spaceshipX, spaceshipY); 
+                double rad = Math.sqrt((rN.getX()*rN.getX())+(rN.getY()*rN.getY()));
+                NrotatedNormal = new Point2D(rN.getX()/rad, rN.getY()/rad);
                 timeline.stop();
                 timeline2 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> move2(dx,dy))
+                x -> move2(/*dx,dy*/))
                 );
                 timeline2.setCycleCount(Timeline.INDEFINITE);
                 timeline2.play();
-        
+                
+                
                 }
         
         }else { 
@@ -198,20 +220,34 @@ public class ControllerForView implements IControllerForView {
     
     
     @Override
-    public void move2(double dx, double dy){
+    public void move2(/*double dx, double dy*/){
         System.out.println("centro x e y nel move2 : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
-        double distNum = Math.sqrt(dx*dx+ dy*dy);
-        double dxNorm = dx / distNum;
-        double dyNorm = dy / distNum;//direzioni della retta che unisce i due centri
+        /*double distNum = Math.sqrt(dx*dx+ dy*dy);
+        double dxNorm = -dx / distNum;
+        double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
         
-        System.out.println("dx e dy : "+dxNorm+" ; "+dyNorm);
+        //System.out.println("dx e dy : "+dxNorm+" ; "+dyNorm);
         
         
         double tgx = -dyNorm;
         double tgy = dxNorm;
-        System.out.println("tgx e tgy : "+tgx+" ; "+tgy);
         
-        double[][] BCMatrix = new double[2][2]; //matrice del cambiamento di base
+        double num = dxNorm * spaceshipX + dyNorm * spaceshipY;
+        double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(spaceshipX*spaceshipX + spaceshipY*spaceshipY));
+        double cosA = num/den;
+        System.out.println("coseno: "+cosA);
+        double A = Math.toDegrees(Math.acos(cosA));
+        System.out.println("angolo: "+A);*/
+        
+       
+       //Point2D rotatedNormal = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(spaceshipX, spaceshipY); 
+       
+       spaceshipX2 = NrotatedNormal.getX()*t;
+       spaceshipY2 = NrotatedNormal.getY()*t;
+        
+        //System.out.println("tgx e tgy : "+tgx+" ; "+tgy);
+        
+        /*double[][] BCMatrix = new double[2][2]; //matrice del cambiamento di base
         double determinant = (dxNorm*tgy)-(dyNorm*tgx);
       
         BCMatrix[0][0]= tgy/determinant;
@@ -224,10 +260,9 @@ public class ControllerForView implements IControllerForView {
         
        
         spaceshipX2 = (spaceshipX * BCMatrix[0][0]+ spaceshipY * BCMatrix[1][0]);
-        spaceshipY2 = (spaceshipX * BCMatrix[0][1]+ spaceshipY * BCMatrix[1][1]);
+        spaceshipY2 = (spaceshipX * BCMatrix[0][1]+ spaceshipY * BCMatrix[1][1]);*/
         
-        System.out.println("spaceshipx e spaceshipy : "+spaceshipX2+" ; "+spaceshipY2);
-        System.out.println("sp2x e sp2y :"+spaceshipX2+" "+spaceshipY2);
+        System.out.println("spaceshipx2 e spaceshipy2 : "+spaceshipX2+" ; "+spaceshipY2);
         spaceship.setTranslateX(spaceshipX2);
         spaceship.setTranslateY(spaceshipY2);
         ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX2);
@@ -243,8 +278,8 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void startMovimento() {
-       GameWindow gameWindow = View.getInstance().getGameWindow();
-       GamePane gamePane = gameWindow.getSchermataGioco();
+       gameWindow = View.getInstance().getGameWindow();
+       gamePane = gameWindow.getSchermataGioco();
        handler = new EventHandler<MouseEvent>() {  
             public void handle(MouseEvent event) {  
                 mousePositionX = event.getX();

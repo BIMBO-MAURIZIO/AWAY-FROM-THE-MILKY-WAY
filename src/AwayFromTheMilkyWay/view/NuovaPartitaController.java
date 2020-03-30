@@ -39,10 +39,8 @@ public class NuovaPartitaController implements Initializable {
         
         name = textField.getText();
         View.getInstance().openGameWindow(1);
-        System.out.println("Step 1:"+name );
-         System.out.println("Step 2:"+View.getInstance().getGameWindow().schermataDati.name);
         ControllerForView.getInstance().setName(name);
-        System.out.println("Step 2:"+View.getInstance().getGameWindow().schermataDati.name);
+        
     }
     
     
