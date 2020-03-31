@@ -169,7 +169,7 @@ public class ControllerForView implements IControllerForView {
                 spaceshipX = xstab * t;//posso considerare queste come le velocità.
                 spaceshipY = ystab * t;
                 //velocità = xstab *t/ 0,025 pixel al secondo
-                System.out.println("vx e vy : "+spaceshipX +" ; "+spaceshipY);
+                //System.out.println("vx e vy : "+spaceshipX +" ; "+spaceshipY);
                 spaceship.setTranslateX(spaceshipX);
                 spaceship.setTranslateY(spaceshipY);
                 
@@ -192,13 +192,25 @@ public class ControllerForView implements IControllerForView {
                 double num = dxNorm * spaceshipX + dyNorm * spaceshipY;
                 double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(spaceshipX*spaceshipX + spaceshipY*spaceshipY));
                 double cosA = num/den;
-                System.out.println("coseno: "+cosA);
+                //System.out.println("coseno: "+cosA);
                 double A = Math.toDegrees(Math.acos(cosA));
                 System.out.println("angolo: "+A);
+                System.out.println("spaceshipX : "+ spaceshipX );
+                System.out.println("spaceshipY : "+ spaceshipY );
+                System.out.println("ceterx spaceship :"+ spaceship.getCenterX());
+                System.out.println("cetery spaceship :"+ spaceship.getCenterY());
+      
                 
-                Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(spaceshipX, spaceshipY); 
-                double rad = Math.sqrt((rN.getX()*rN.getX())+(rN.getY()*rN.getY()));
-                NrotatedNormal = new Point2D(rN.getX()/rad, rN.getY()/rad);
+                Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY); 
+                double diffX = rN.getX()- spaceship.getCenterX();
+                double diffY = rN.getY()- spaceship.getCenterY();
+                //double rad = Math.sqrt((rN.getX()*rN.getX())+(rN.getY()*rN.getY()));
+                //NrotatedNormal = new Point2D(rN.getX()/rad, rN.getY()/rad);
+                double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
+                NrotatedNormal = new Point2D(diffX/rad, diffY/rad);
+                System.out.println("rotatedX : "+NrotatedNormal.getX());
+                System.out.println("rotatedY : "+NrotatedNormal.getY());
+                
                 timeline.stop();
                 timeline2 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
@@ -221,7 +233,7 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void move2(/*double dx, double dy*/){
-        System.out.println("centro x e y nel move2 : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
+        //System.out.println("centro x e y nel move2 : "+spaceship.getCenterX()+" ; "+spaceship.getCenterY());
         /*double distNum = Math.sqrt(dx*dx+ dy*dy);
         double dxNorm = -dx / distNum;
         double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri

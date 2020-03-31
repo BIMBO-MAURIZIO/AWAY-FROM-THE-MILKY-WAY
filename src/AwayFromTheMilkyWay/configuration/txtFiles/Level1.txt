@@ -1,5 +1,5 @@
 SpaceshipX
-100
+600
 SpaceshipY
 100
 planet1X
