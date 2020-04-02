@@ -55,6 +55,7 @@ public class ControllerForView implements IControllerForView {
     double magnitude;
     double xstab;
     double ystab;
+    Point2D shipSpeed;
     double variableSpaceshipX;
     double variableSpaceshipY;
     Timeline timeline;
@@ -136,7 +137,7 @@ public class ControllerForView implements IControllerForView {
         magnitude = Math.sqrt(x*x+ y*y);
         xstab = x / magnitude;
         ystab = y / magnitude;
-        System.out.println("angolo: "+Math.toDegrees(Math.atan2(ystab, xstab)));
+        //System.out.println("angolo: "+Math.toDegrees(Math.atan2(ystab, xstab)));
         
         
 
@@ -166,15 +167,16 @@ public class ControllerForView implements IControllerForView {
             double distNum = Math.sqrt(dx*dx+ dy*dy);
             
             if(distNum >= SPACESHIPRADIUS+cir.getRadius() ){
-                spaceshipX = xstab * t;//posso considerare queste come le velocità.
-                spaceshipY = ystab * t;
+                shipSpeed = new Point2D(xstab *t,ystab*t);
+                //spaceshipX = xstab * t;//posso considerare queste come le velocità.
+                //spaceshipY = ystab * t;
                 //velocità = xstab *t/ 0,025 pixel al secondo
                 //System.out.println("vx e vy : "+spaceshipX +" ; "+spaceshipY);
-                spaceship.setTranslateX(spaceshipX);
-                spaceship.setTranslateY(spaceshipY);
+                spaceship.setTranslateX(shipSpeed.getX()/*spaceshipX*/);
+                spaceship.setTranslateY(shipSpeed.getY()/*spaceshipY*/);
                 
-                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+spaceshipX);
-                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+spaceshipY);
+                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+/*spaceshipX*/shipSpeed.getX());
+                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+/*spaceshipY*/shipSpeed.getY());
                 spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
                 spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
 
@@ -184,23 +186,29 @@ public class ControllerForView implements IControllerForView {
                 t=1;
                 double dxNorm = -dx / distNum;
                 double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
-        
+                Point2D normal = new Point2D(dxNorm,dyNorm);
         
                 double tgx = -dyNorm;
                 double tgy = dxNorm;
+                
+                Point2D center = new Point2D(spaceship.getCenterX(),spaceship.getCenterY());
         
-                double num = dxNorm * spaceshipX + dyNorm * spaceshipY;
-                double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(spaceshipX*spaceshipX + spaceshipY*spaceshipY));
-                double cosA = num/den;
+                //double num = dxNorm * shipSpeed.getX()/*spaceshipX*/ + dyNorm * shipSpeed.getY()/*spaceshipY*/;
+                //double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(shipSpeed.getX()*shipSpeed.getX()+shipSpeed.getY()*shipSpeed.getY()/*spaceshipX*spaceshipX + spaceshipY*spaceshipY*/));
+                //double cosA = num/den;
                 //System.out.println("coseno: "+cosA);
-                double A = Math.toDegrees(Math.acos(cosA));
+                //double A = Math.toDegrees(Math.acos(cosA));
+                
+                
+                double A = center.angle(shipSpeed,normal);
+                
                 System.out.println("angolo: "+A);
                 System.out.println("spaceshipX : "+ spaceshipX );
                 System.out.println("spaceshipY : "+ spaceshipY );
                 System.out.println("ceterx spaceship :"+ spaceship.getCenterX());
                 System.out.println("cetery spaceship :"+ spaceship.getCenterY());
       
-                
+                //DA RICORDARE CHE SE VOGLIAMO UTILIZZARE QUESTO METODO PER TUTTE LE ROTAZIONI è NECESSARIO METTERE AL POSOTO DI startSpaceshipX e startspaShipY DEI RIFERIMENTI ALLA POSIZIONE DI PARTENZA DELL 'ASTRONAVE DOPO L'ULTIMO RIMBALZO.
                 Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY); 
                 double diffX = rN.getX()- spaceship.getCenterX();
                 double diffY = rN.getY()- spaceship.getCenterY();
