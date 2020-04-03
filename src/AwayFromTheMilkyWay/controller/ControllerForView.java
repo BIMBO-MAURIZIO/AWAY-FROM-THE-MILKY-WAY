@@ -171,7 +171,7 @@ public class ControllerForView implements IControllerForView {
                 //spaceshipX = xstab * t;//posso considerare queste come le velocità.
                 //spaceshipY = ystab * t;
                 //velocità = xstab *t/ 0,025 pixel al secondo
-                //System.out.println("vx e vy : "+spaceshipX +" ; "+spaceshipY);
+                System.out.println("vx e vy : "+shipSpeed.getX() +" ; "+shipSpeed.getY());
                 spaceship.setTranslateX(shipSpeed.getX()/*spaceshipX*/);
                 spaceship.setTranslateY(shipSpeed.getY()/*spaceshipY*/);
                 
@@ -192,6 +192,31 @@ public class ControllerForView implements IControllerForView {
                 double tgy = dxNorm;
                 
                 Point2D center = new Point2D(spaceship.getCenterX(),spaceship.getCenterY());
+                Point2D vect1 = new Point2D(center.getX() - startSpaceshipX, center.getY() - startSpaceshipY);
+                Point2D Nvect1 = vect1.normalize();/*unisce il centro dell'astro quando va a sbattere al centro iniziale*/
+                Point2D vect2 = new Point2D(cir.getCenterX() - startSpaceshipX, cir.getCenterY() - startSpaceshipY);
+                Point2D Nvect2 = vect2.normalize();/*unisce il piantea e l'astronave nella sua posizione iniziale*/
+                
+                double A = normal.angle(shipSpeed);
+                double B = vect1.angle(vect2);
+                System.out.println("angolo B : "+ B);
+                //System.out.println("componenti vettori normalizzati: "+Nvect1.toString()+Nvect2.toString());
+                int g ;
+                Point2D s;
+                s = new Rotate(-B,0,0).transform(Nvect2.getX(), Nvect2.getY());
+                System.out.println("Nvect1 . "+Nvect1.toString());
+                System.out.println("vettore s: "+s.toString());
+                System.out.println("Nvect2 : "+Nvect2.toString());
+                System.out.println(truncate(s.getX())+" = "+ truncate(Nvect1.getX())+ " && "+truncate(s.getY())+" = "+truncate(Nvect1.getY()));
+                if(startSpaceshipX!= cir.getCenterX() || startSpaceshipY != cir.getCenterY()){
+                    if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY()))
+                        A=-A;
+                }//else if((s.getX()) == (Nvect2.getX()) && (s.getY()) == (Nvect2.getY()))
+                   //     A=-A;
+                
+                
+                
+                
         
                 //double num = dxNorm * shipSpeed.getX()/*spaceshipX*/ + dyNorm * shipSpeed.getY()/*spaceshipY*/;
                 //double den = (Math.sqrt(dxNorm*dxNorm + dyNorm*dyNorm))*(Math.sqrt(shipSpeed.getX()*shipSpeed.getX()+shipSpeed.getY()*shipSpeed.getY()/*spaceshipX*spaceshipX + spaceshipY*spaceshipY*/));
@@ -200,7 +225,7 @@ public class ControllerForView implements IControllerForView {
                 //double A = Math.toDegrees(Math.acos(cosA));
                 
                 
-                double A = center.angle(shipSpeed,normal);
+               
                 
                 System.out.println("angolo: "+A);
                 System.out.println("spaceshipX : "+ spaceshipX );
@@ -323,4 +348,17 @@ public class ControllerForView implements IControllerForView {
         this.timeline.play();
     }
      
+        
+    @Override
+        public double truncate(double a){
+            double b = a*10000000;
+            double c = Math.floor(b);
+            double d = c/10000000;
+            return d;
+        }
+        
+        
+        
+        
+        
 }//end class sss

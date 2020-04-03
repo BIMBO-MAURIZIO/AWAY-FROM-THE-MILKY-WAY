@@ -22,5 +22,6 @@ public interface IControllerForView {
     public double getSpaceshipCenterY();
     public void pauseAnimations();
     public void playAnimations();
+    public double truncate(double a);
     
 }

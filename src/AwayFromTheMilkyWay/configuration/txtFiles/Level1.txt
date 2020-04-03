@@ -1,7 +1,7 @@
 SpaceshipX
-100
+400
 SpaceshipY
-100
+600
 planet1X
 400
 planet1Y
