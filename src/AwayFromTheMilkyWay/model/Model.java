@@ -15,11 +15,13 @@ public class Model implements IModel {
     
     private GameStatus gameStatus;
     private static Model instance;
-        private SpaceshipModel spaceship ;
+    private SpaceshipModel spaceship ;
+    private int BounceMade;
 
 
     public Model(){
         spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),20);
+        BounceMade = 0;
     }
       
            

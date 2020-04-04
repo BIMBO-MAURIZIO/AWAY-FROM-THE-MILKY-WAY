@@ -185,7 +185,7 @@ public class ControllerForView implements IControllerForView {
 
                 
             }else{
-                rebounce(dx,dy,distNum);
+                bounce(dx,dy,distNum);
                 
                 }
         
@@ -201,7 +201,7 @@ public class ControllerForView implements IControllerForView {
     
     
     @Override 
-    public void rebounce(double dx,double dy,double distNum){
+    public void bounce(double dx,double dy,double distNum){
         //a.stop();
         timeline.stop();
         double dxNorm = -dx / distNum;
