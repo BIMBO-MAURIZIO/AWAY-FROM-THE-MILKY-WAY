@@ -16,12 +16,13 @@ public class Model implements IModel {
     private GameStatus gameStatus;
     private static Model instance;
     private SpaceshipModel spaceship ;
-    private int BounceMade;
+    
 
 
     public Model(){
         spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),20);
-        BounceMade = 0;
+        gameStatus = new GameStatus();
+        
     }
       
            
@@ -48,7 +49,7 @@ public class Model implements IModel {
     
     @Override
     public void incrementaRimbalziEffettuati() {
-        this.gameStatus.rimbEffettuati ++;
+        this.gameStatus.rimbEffettuati++;
     
     }
     
@@ -58,5 +59,7 @@ public class Model implements IModel {
         return this.spaceship;
     }
     
+    
+ 
     
 }//end class

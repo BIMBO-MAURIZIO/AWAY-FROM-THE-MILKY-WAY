@@ -5,9 +5,11 @@
  */
 package AwayFromTheMilkyWay.controller;
 
+import AwayFromTheMilkyWay.model.Model;
 import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
+import AwayFromTheMilkyWay.view.PlayerDataPane;
 import AwayFromTheMilkyWay.view.View;
 import java.util.Vector;
 import javafx.animation.AnimationTimer;
@@ -185,8 +187,12 @@ public class ControllerForView implements IControllerForView {
 
                 
             }else{
+                //trovatorpoblema: entra nell'else due  volte. capire perchè.
+                timeline.stop();
+                System.out.println("entro nell'else");
                 bounce(dx,dy,distNum);
-                
+                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
                 }
         
         }else { 
@@ -203,7 +209,12 @@ public class ControllerForView implements IControllerForView {
     @Override 
     public void bounce(double dx,double dy,double distNum){
         //a.stop();
-        timeline.stop();
+        //timeline.stop();
+        Model.getInstance().incrementaRimbalziEffettuati();
+        System.out.println(Model.getInstance().getRimbalziEffettuati());
+        PlayerDataPane p = View.getInstance().getGameWindow().getPDP();
+        p.setRimbalziEff(Model.getInstance().getRimbalziEffettuati());
+        
         double dxNorm = -dx / distNum;
         double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
         Point2D normal = new Point2D(dxNorm,dyNorm);
@@ -223,7 +234,7 @@ public class ControllerForView implements IControllerForView {
         double A = normal.angle(shipSpeed);
         double B = vect1.angle(vect2);
         Point2D s = new Rotate(-B,0,0).transform(Nvect2.getX(), Nvect2.getY());
-        if(startSpaceshipX!= cir.getCenterX() || startSpaceshipY != cir.getCenterY())
+        //if(startSpaceshipX != cir.getCenterX() || startSpaceshipY != cir.getCenterY())
             if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY()))
                 A=-A;
                 
@@ -236,16 +247,19 @@ public class ControllerForView implements IControllerForView {
         double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
         NrotatedNormal = new Point2D(diffX/rad, diffY/rad);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),1));
-                
-        spaceship.setTranslateX(NrotatedNormal.getX());
-        spaceship.setTranslateY(NrotatedNormal.getY());
+        
+        for(int i=0;i<3;i++){
+            spaceship.setTranslateX(NrotatedNormal.getX());
+            spaceship.setTranslateY(NrotatedNormal.getY());
+           
         ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+NrotatedNormal.getX());
         ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+NrotatedNormal.getY());
         spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
         spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
-
+        }
         timeline.getKeyFrames().set(0,kf);
-                
+        
+        System.out.println("intervallo");        
 
         timeline.play();
                 
@@ -280,13 +294,15 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void pauseAnimations(){
-        this.timeline.pause();
+        if(this.timeline != null)
+            this.timeline.pause();
         //this.a.stop();
     }
     
     @Override
         public void playAnimations(){
-        this.timeline.play();
+            if(this.timeline != null)
+                this.timeline.play();
         //this.a.start();
     }
      

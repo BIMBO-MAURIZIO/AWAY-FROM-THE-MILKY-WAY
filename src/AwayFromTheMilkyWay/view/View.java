@@ -9,9 +9,12 @@ import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -77,10 +80,16 @@ public class View implements IView{
             game.composeWindow(level);
             scene = new Scene(game, 1280, 900);
             ControllerForView.getInstance().startMovimento();
+            scene.setOnKeyPressed((KeyEvent ke) -> {
+                if(ke.getCode() == KeyCode.ESCAPE)
+                    View.getInstance().pause();
+            });
             
             stage.setTitle("Away From the Milky Way");
-            stage.setResizable(false);
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(1280);
+            stage.setHeight(950);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,6 +100,7 @@ public class View implements IView{
     
     @Override
     public void pause(){
+        
         ControllerForView.getInstance().pauseAnimations();
         pauseStage = new Stage();
         Parent root = null;
@@ -119,6 +129,8 @@ public class View implements IView{
     public GameWindow getGameWindow(){
         return this.game;
     }
+    
+    
     
     
     @Override

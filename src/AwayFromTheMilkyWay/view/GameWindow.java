@@ -46,5 +46,7 @@ public class GameWindow extends BorderPane {
        return this.schermataGioco;
    }
     
-   
+   public PlayerDataPane getPDP(){
+       return this.schermataDati;
+   }
 }

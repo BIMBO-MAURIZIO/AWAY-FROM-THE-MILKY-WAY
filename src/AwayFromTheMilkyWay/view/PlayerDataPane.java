@@ -81,6 +81,11 @@ public class PlayerDataPane extends GridPane {
           
     }
     
+    public void setRimbalziEff(int rimb){
+        this.rimbalziEff = rimb;
+        this.update();
+    }
+    
     
     public void update(){
         nome.setText("nome: " + name);

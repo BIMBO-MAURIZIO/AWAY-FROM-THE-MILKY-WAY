@@ -8,7 +8,10 @@ package AwayFromTheMilkyWay.view;
 import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -29,7 +32,17 @@ public class OpzioniPausaController implements Initializable {
     public void back(){
         View.getInstance().getPauseStage().close();
         View.getInstance().getMainStage().show();
+       
         ControllerForView.getInstance().playAnimations();
     
     }
+    
+    @FXML
+    private void keyPressed(KeyEvent keyEvent){
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
+    }
+    
+    
 }
