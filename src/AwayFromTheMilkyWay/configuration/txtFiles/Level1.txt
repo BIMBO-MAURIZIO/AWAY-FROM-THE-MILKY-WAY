@@ -1,10 +1,16 @@
 SpaceshipX
 100
 SpaceshipY
-300
+600
 planet1X
 400
 planet1Y
 300
 planet1Radius
 60
+planet2X
+900
+planet2Y
+600
+planet2Radius
+90

@@ -10,10 +10,14 @@ package AwayFromTheMilkyWay.model;
  * @author giorg
  */
 public class GameStatus {
-    int rimbEffettuati = 0;
-    int livello = 1;
+    int rimbEffettuati ;
+    int livello ;
     int rimbDesiderati;
     String nome;
-    
+     public GameStatus(){
+         this.livello = 1;
+         this.rimbEffettuati = 0;
+         
+     }
      
 }

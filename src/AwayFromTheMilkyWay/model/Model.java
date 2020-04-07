@@ -6,6 +6,8 @@
 package AwayFromTheMilkyWay.model;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import java.io.IOException;
+import javafx.scene.shape.Circle;
 
 /**
  *
@@ -16,6 +18,7 @@ public class Model implements IModel {
     private GameStatus gameStatus;
     private static Model instance;
     private SpaceshipModel spaceship ;
+    private Planets pianeti = new Planets();
     
 
 
@@ -33,12 +36,16 @@ public class Model implements IModel {
     }
     
     
+    @Override
+    public Circle[] scanPlanets(int level) throws IOException{
+        return pianeti.scanning(level);
+    }
     
     
     
     
     
-
+    //metodi getter di GameStatus
     
     @Override
     public int getRimbalziEffettuati() {
@@ -53,6 +60,13 @@ public class Model implements IModel {
     
     }
     
+    @Override
+    public int getCurrentLevel(){
+        return this.gameStatus.livello;
+    
+    }
+    
+    //getter di spaceship model
     
     @Override
     public SpaceshipModel getSpaceship(){

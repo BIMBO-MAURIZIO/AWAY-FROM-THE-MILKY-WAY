@@ -24,5 +24,6 @@ public interface IControllerForView {
     public void pauseAnimations();
     public void playAnimations();
     public double truncate(double a);
+    public void Configuration();
     
 }

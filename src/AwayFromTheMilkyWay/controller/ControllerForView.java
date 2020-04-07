@@ -6,13 +6,13 @@
 package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
-import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.GamePane;
 import AwayFromTheMilkyWay.view.GameWindow;
 import AwayFromTheMilkyWay.view.PlayerDataPane;
 import AwayFromTheMilkyWay.view.View;
-import java.util.Vector;
-import javafx.animation.AnimationTimer;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -28,25 +28,27 @@ import javafx.util.Duration;
  */
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
-    double positioningX;
-    double positioningY;
-    private double spaceshipX;
-    private double spaceshipY;
-    private double spaceshipX2;
-    private double spaceshipY2;
+    //double positioningX;
+    //double positioningY;
     private double startSpaceshipX;
     private double startSpaceshipY;
     private double mousePositionX;
     private double mousePositionY;
-    Circle spaceship;
-    EventHandler<MouseEvent> handler;
-    Point2D NrotatedNormal;
+    private Circle spaceship;
+    private EventHandler<MouseEvent> handler;
+    private Point2D NrotatedNormal;
+    private Circle cir1;
+    private Circle cir2;
+    private Circle cir3;
+    private Circle cir4;
+    private Circle[] a = new Circle[4];
+    private Circle varCir;
     
     
     
-     GameWindow gameWindow = View.getInstance().getGameWindow();
-     GamePane gamePane = gameWindow.getSchermataGioco();
-     Circle cir = gamePane.getPlanet1();
+     private GameWindow gameWindow;
+     private GamePane gamePane ;
+     //Circle cir = gamePane.getPlanet1();
     
     
     
@@ -62,8 +64,10 @@ public class ControllerForView implements IControllerForView {
     double variableSpaceshipX;
     double variableSpaceshipY;
     Timeline timeline;
-    Timeline timeline2;
-    AnimationTimer a;
+    //AnimationTimer a;
+    
+    
+    
     
     
     
@@ -128,8 +132,10 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void movimento(){
         
-        GameWindow gameWindow = View.getInstance().getGameWindow();
-        GamePane gamePane = gameWindow.getSchermataGioco();
+        this.Configuration();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
+        
+        gameWindow = View.getInstance().getGameWindow();
+        gamePane = gameWindow.getSchermataGioco();
         gamePane.removeEventHandler(MouseEvent.MOUSE_PRESSED, handler);
         
         spaceship = gamePane.getSpaceship();
@@ -153,8 +159,8 @@ public class ControllerForView implements IControllerForView {
         a.start();*/
         
         timeline = new Timeline(new KeyFrame(
-                Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> move(xstab,ystab,2))
+                Duration.seconds(0.070), // ogni quanto va chiamata la funzione
+                x -> move(xstab,ystab,3))
                 
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -170,12 +176,74 @@ public class ControllerForView implements IControllerForView {
         
         if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT
             && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){//condizioni per mantenere la navicella dentro ai bordi
+            double dx,dy,distNum;
             
-            double dx = variableSpaceshipX - cir.getCenterX();
-            double dy =  variableSpaceshipY - cir.getCenterY();
-            double distNum = Math.sqrt(dx*dx+ dy*dy);
             
-            if(distNum >= SPACESHIPRADIUS+cir.getRadius() ){
+            
+            
+            
+           
+            
+            
+            if(cir1 != null && Math.sqrt((variableSpaceshipX - cir1.getCenterX())*(variableSpaceshipX - cir1.getCenterX())+(variableSpaceshipY - cir1.getCenterY())*(variableSpaceshipY - cir1.getCenterY()))<= SPACESHIPRADIUS+cir1.getRadius() ){
+                varCir = cir1;
+                double dx1 = variableSpaceshipX - cir1.getCenterX();
+                double dy1 =  variableSpaceshipY - cir1.getCenterY();
+                double distNum1 = Math.sqrt(dx1*dx1+ dy1*dy1);
+                dx = dx1;
+                dy = dy1;
+                distNum = distNum1;
+                
+                timeline.stop();
+                bounce(dx,dy,distNum);
+                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+
+            }else if (cir2 != null && Math.sqrt((variableSpaceshipX - cir2.getCenterX())*(variableSpaceshipX - cir2.getCenterX())+(variableSpaceshipY - cir2.getCenterY())*(variableSpaceshipY - cir2.getCenterY()))<= SPACESHIPRADIUS+cir2.getRadius() ){
+                varCir = cir2;
+                double dx2 = variableSpaceshipX - cir2.getCenterX();
+                double dy2 =  variableSpaceshipY - cir2.getCenterY();
+                double distNum2 = Math.sqrt(dx2*dx2+ dy2*dy2);
+                dx = dx2;
+                dy = dy2;
+                distNum = distNum2;
+                
+                timeline.stop();
+                bounce(dx,dy,distNum);
+                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+            
+            }else if(cir3 != null && Math.sqrt((variableSpaceshipX - cir3.getCenterX())*(variableSpaceshipX - cir3.getCenterX())+(variableSpaceshipY - cir3.getCenterY())*(variableSpaceshipY - cir3.getCenterY()))<= SPACESHIPRADIUS+cir3.getRadius() ){
+                varCir = cir3;
+                double dx3 = variableSpaceshipX - cir3.getCenterX();
+                double dy3 =  variableSpaceshipY - cir3.getCenterY();
+                double distNum3 = Math.sqrt(dx3*dx3+ dy3*dy3);
+                dx = dx3;
+                dy = dy3;
+                distNum = distNum3;
+                
+                timeline.stop();
+                bounce(dx,dy,distNum);
+                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+            
+            }else if(cir4 != null && Math.sqrt((variableSpaceshipX - cir4.getCenterX())*(variableSpaceshipX - cir4.getCenterX())+(variableSpaceshipY - cir4.getCenterY())*(variableSpaceshipY - cir4.getCenterY()))<= SPACESHIPRADIUS+cir4.getRadius() ){ 
+                varCir = cir4;
+                
+                double dx4 = variableSpaceshipX - cir4.getCenterX();
+                double dy4 =  variableSpaceshipY - cir4.getCenterY();
+                double distNum4 = Math.sqrt(dx4*dx4+ dy4*dy4);
+                dx = dx4;
+                dy =  dy4;
+                distNum = distNum4;
+                
+                timeline.stop();
+                bounce(dx,dy,distNum);
+                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+            }else{
+                
+                
                 shipSpeed = new Point2D(vx *v,vy*v);
                 spaceship.setTranslateX(shipSpeed.getX()/*spaceshipX*/);
                 spaceship.setTranslateY(shipSpeed.getY()/*spaceshipY*/);
@@ -184,15 +252,6 @@ public class ControllerForView implements IControllerForView {
                 ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+/*spaceshipY*/shipSpeed.getY());
                 spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
                 spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
-
-                
-            }else{
-                //trovatorpoblema: entra nell'else due  volte. capire perchè.
-                timeline.stop();
-                System.out.println("entro nell'else");
-                bounce(dx,dy,distNum);
-                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
-                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
                 }
         
         }else { 
@@ -228,7 +287,7 @@ public class ControllerForView implements IControllerForView {
         Point2D center = new Point2D(spaceship.getCenterX(),spaceship.getCenterY());
         Point2D vect1 = new Point2D(center.getX() - startSpaceshipX, center.getY() - startSpaceshipY);
         Point2D Nvect1 = vect1.normalize();/*unisce il centro dell'astro quando va a sbattere al centro iniziale*/
-        Point2D vect2 = new Point2D(cir.getCenterX() - startSpaceshipX, cir.getCenterY() - startSpaceshipY);
+        Point2D vect2 = new Point2D(varCir.getCenterX() - startSpaceshipX, varCir.getCenterY() - startSpaceshipY);
         Point2D Nvect2 = vect2.normalize();/*unisce il piantea e l'astronave nella sua posizione iniziale*/
                 
         double A = normal.angle(shipSpeed);
@@ -300,20 +359,38 @@ public class ControllerForView implements IControllerForView {
     }
     
     @Override
-        public void playAnimations(){
-            if(this.timeline != null)
-                this.timeline.play();
-        //this.a.start();
+    public void playAnimations(){
+        if(this.timeline != null)
+            this.timeline.play();
+    //this.a.start();
     }
      
         
     @Override
-        public double truncate(double a){
-            double b = a*10000000;
-            double c = Math.floor(b);
-            double d = c/10000000;
-            return d;
+    public double truncate(double a){
+        double b = a*10000000;
+        double c = Math.floor(b);
+        double d = c/10000000;
+        return d;
+    }
+    
+    @Override
+    public void Configuration(){
+        int y = Model.getInstance().getCurrentLevel();
+        try {
+            a[0] = Model.getInstance().scanPlanets(y)[0];
+            a[1] = Model.getInstance().scanPlanets(y)[1];
+            a[2] = Model.getInstance().scanPlanets(y)[2];
+            a[3] = Model.getInstance().scanPlanets(y)[3];
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
         }
+       cir1 = a[0];
+       cir2 = a[1];
+       cir3 = a[2];
+       cir4 =a[3];
+        
+    }
         
         
         

@@ -5,6 +5,9 @@
  */
 package AwayFromTheMilkyWay.model;
 
+import java.io.IOException;
+import javafx.scene.shape.Circle;
+
 /**
  *
  * @author giorg
@@ -14,5 +17,7 @@ public interface IModel {
     public void incrementaRimbalziEffettuati();
     public int getRimbalziEffettuati();
     public SpaceshipModel getSpaceship();
+    public Circle[] scanPlanets(int level) throws IOException;
+    public int getCurrentLevel();
     
 }//end class

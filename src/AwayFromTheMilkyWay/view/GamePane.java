@@ -48,7 +48,9 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Radius")));
                       planet1.setFill(new ImagePattern(mercurio));
-                      planet2 = new Circle(600,600,100);
+                      planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2X")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Y")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Radius")));
                       planet2.setFill(new ImagePattern(giove));
                       spaceship.setFill(javafx.scene.paint.Color.RED);
                       //planet1.setFill(javafx.scene.paint.Color.IVORY);
