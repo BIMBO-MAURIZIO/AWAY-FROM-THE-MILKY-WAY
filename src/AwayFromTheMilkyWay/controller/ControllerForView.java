@@ -159,7 +159,7 @@ public class ControllerForView implements IControllerForView {
         a.start();*/
         
         timeline = new Timeline(new KeyFrame(
-                Duration.seconds(0.070), // ogni quanto va chiamata la funzione
+                Duration.seconds(0.025), // ogni quanto va chiamata la funzione
                 x -> move(xstab,ystab,3))
                 
         );
@@ -196,8 +196,8 @@ public class ControllerForView implements IControllerForView {
                 
                 timeline.stop();
                 bounce(dx,dy,distNum);
-                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
-                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+                startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
 
             }else if (cir2 != null && Math.sqrt((variableSpaceshipX - cir2.getCenterX())*(variableSpaceshipX - cir2.getCenterX())+(variableSpaceshipY - cir2.getCenterY())*(variableSpaceshipY - cir2.getCenterY()))<= SPACESHIPRADIUS+cir2.getRadius() ){
                 varCir = cir2;
@@ -210,8 +210,8 @@ public class ControllerForView implements IControllerForView {
                 
                 timeline.stop();
                 bounce(dx,dy,distNum);
-                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
-                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+                startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
             
             }else if(cir3 != null && Math.sqrt((variableSpaceshipX - cir3.getCenterX())*(variableSpaceshipX - cir3.getCenterX())+(variableSpaceshipY - cir3.getCenterY())*(variableSpaceshipY - cir3.getCenterY()))<= SPACESHIPRADIUS+cir3.getRadius() ){
                 varCir = cir3;
@@ -224,8 +224,8 @@ public class ControllerForView implements IControllerForView {
                 
                 timeline.stop();
                 bounce(dx,dy,distNum);
-                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
-                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+                startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
             
             }else if(cir4 != null && Math.sqrt((variableSpaceshipX - cir4.getCenterX())*(variableSpaceshipX - cir4.getCenterX())+(variableSpaceshipY - cir4.getCenterY())*(variableSpaceshipY - cir4.getCenterY()))<= SPACESHIPRADIUS+cir4.getRadius() ){ 
                 varCir = cir4;
@@ -239,8 +239,8 @@ public class ControllerForView implements IControllerForView {
                 
                 timeline.stop();
                 bounce(dx,dy,distNum);
-                //startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
-                //startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
+                startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
+                startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
             }else{
                 
                 
