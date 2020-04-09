@@ -54,7 +54,7 @@ public class ControllerForView implements IControllerForView {
     
     
     //variabili per il movimento
-    int t = 2;
+    double t = 0;
     double x;
     double y;
     double magnitude;
@@ -148,6 +148,7 @@ public class ControllerForView implements IControllerForView {
         magnitude = Math.sqrt(x*x+ y*y);
         xstab = x / magnitude;
         ystab = y / magnitude;
+        t = 1.00;
         /*
         a = new AnimationTimer(){
             @Override
@@ -243,15 +244,21 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
             }else{
                 
+                shipSpeed = new Point2D(vx * v,vy * v);
+             
+                double trX = shipSpeed.getX()*t;
+                double trY = shipSpeed.getY()*t;
                 
-                shipSpeed = new Point2D(vx *v,vy*v);
-                spaceship.setTranslateX(shipSpeed.getX()/*spaceshipX*/);
-                spaceship.setTranslateY(shipSpeed.getY()/*spaceshipY*/);
                 
-                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+/*spaceshipX*/shipSpeed.getX());
-                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+/*spaceshipY*/shipSpeed.getY());
+                
+                ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+trX);
+                ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+trY);
                 spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
                 spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
+                if (t > 0)
+                    t = t-0.001;
+                else
+                    timeline.stop();
                 }
         
         }else { 
@@ -305,20 +312,21 @@ public class ControllerForView implements IControllerForView {
         double diffY = rN.getY()- spaceship.getCenterY();
         double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
         NrotatedNormal = new Point2D(diffX/rad, diffY/rad);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),1));
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),3));
         
         for(int i=0;i<3;i++){
-            spaceship.setTranslateX(NrotatedNormal.getX());
-            spaceship.setTranslateY(NrotatedNormal.getY());
-           
-        ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+NrotatedNormal.getX());
-        ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+NrotatedNormal.getY());
-        spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
-        spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
+            spaceship.setTranslateX(NrotatedNormal.getX()*t);
+            spaceship.setTranslateY(NrotatedNormal.getY()*t);
+            if (t > 0)
+                    t = t-0.001;
+            else
+                    timeline.stop();    
+            ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+(NrotatedNormal.getX()*t));
+            ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+(NrotatedNormal.getY()*t));
+            spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
+            spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
         }
-        timeline.getKeyFrames().set(0,kf);
-        
-        System.out.println("intervallo");        
+        timeline.getKeyFrames().set(0,kf);      
 
         timeline.play();
                 
