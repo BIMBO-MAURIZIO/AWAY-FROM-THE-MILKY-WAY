@@ -6,16 +6,17 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,6 +31,7 @@ public class View implements IView{
     private GameWindow game;
     private Scene scene;
     Stage pauseStage;
+    private MediaPlayer mp;
         
     
     
@@ -91,6 +93,10 @@ public class View implements IView{
             stage.setWidth(1280);
             stage.setHeight(950);
             stage.show();
+            String path = "src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3";
+            Media m = new Media(new File(path).toURI().toString());
+            //mp = new MediaPlayer(m);
+            //mp.play();
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }

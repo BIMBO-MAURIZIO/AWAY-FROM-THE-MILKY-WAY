@@ -55,6 +55,7 @@ public class ControllerForView implements IControllerForView {
     
     //variabili per il movimento
     double t = 0;
+    double tDim;
     double x;
     double y;
     double magnitude;
@@ -75,8 +76,8 @@ public class ControllerForView implements IControllerForView {
     //costanti
     
     private final int WINLENGTH = 1280;
-    private final int WINHEIGHT = 720;
-    private final int SPACESHIPRADIUS = 50;
+    private final int WINHEIGHT = 717;//sottraiamo 3 da 720 perhè il rendering non riesce a seguire la logica
+    private final int SPACESHIPRADIUS = 45;
     
     public ControllerForView(){
         
@@ -161,7 +162,7 @@ public class ControllerForView implements IControllerForView {
         
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> move(xstab,ystab,3))
+                x -> move(xstab,ystab,4))
                 
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -175,16 +176,11 @@ public class ControllerForView implements IControllerForView {
         variableSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
         
         
-        if (variableSpaceshipX + SPACESHIPRADIUS <= WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS <= WINHEIGHT
-            && variableSpaceshipX - SPACESHIPRADIUS >= 0 && variableSpaceshipY - SPACESHIPRADIUS >= 0 ){//condizioni per mantenere la navicella dentro ai bordi
+        if (variableSpaceshipX + SPACESHIPRADIUS < WINLENGTH && variableSpaceshipY + SPACESHIPRADIUS < WINHEIGHT
+            && variableSpaceshipX - SPACESHIPRADIUS > 2 && variableSpaceshipY - SPACESHIPRADIUS > 2 ){//condizioni per mantenere la navicella dentro ai bordi
             double dx,dy,distNum;
             
-            
-            
-            
-            
-           
-            
+
             
             if(cir1 != null && Math.sqrt((variableSpaceshipX - cir1.getCenterX())*(variableSpaceshipX - cir1.getCenterX())+(variableSpaceshipY - cir1.getCenterY())*(variableSpaceshipY - cir1.getCenterY()))<= SPACESHIPRADIUS+cir1.getRadius() ){
                 varCir = cir1;
@@ -242,27 +238,29 @@ public class ControllerForView implements IControllerForView {
                 bounce(dx,dy,distNum);
                 startSpaceshipX = ControllerForModel.getInstance().getSpaceshipCenterX();
                 startSpaceshipY = ControllerForModel.getInstance().getSpaceshipCenterY();
-            }else{
+            }else{//caso in cui non ci sono collisioni
                 
                 shipSpeed = new Point2D(vx * v,vy * v);
              
                 double trX = shipSpeed.getX()*t;
                 double trY = shipSpeed.getY()*t;
                 
-                
+                spaceship.setTranslateX(trX);
+                spaceship.setTranslateY(trY);
                 
                 ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+trX);
                 ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+trY);
                 spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
                 spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
-                if (t > 0)
+                
+                if (t > 0.01)
                     t = t-0.001;
                 else
                     timeline.stop();
                 }
         
         }else { 
-            
+            System.out.println("centri astronave : "+spaceship.getCenterX()+" "+spaceship.getCenterY() );
             timeline.stop();
             System.out.print("FUORI");
         }
@@ -278,6 +276,7 @@ public class ControllerForView implements IControllerForView {
         //timeline.stop();
         Model.getInstance().incrementaRimbalziEffettuati();
         System.out.println(Model.getInstance().getRimbalziEffettuati());
+        System.out.println("coordinate astronave : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
         PlayerDataPane p = View.getInstance().getGameWindow().getPDP();
         p.setRimbalziEff(Model.getInstance().getRimbalziEffettuati());
         
@@ -296,28 +295,31 @@ public class ControllerForView implements IControllerForView {
         Point2D Nvect1 = vect1.normalize();/*unisce il centro dell'astro quando va a sbattere al centro iniziale*/
         Point2D vect2 = new Point2D(varCir.getCenterX() - startSpaceshipX, varCir.getCenterY() - startSpaceshipY);
         Point2D Nvect2 = vect2.normalize();/*unisce il piantea e l'astronave nella sua posizione iniziale*/
-                
+        System.out.println("vettore 1 :"+Nvect1.toString());
+        //System.out.println("vettore 2 :"+vect2.toString());
         double A = normal.angle(shipSpeed);
         double B = vect1.angle(vect2);
         Point2D s = new Rotate(-B,0,0).transform(Nvect2.getX(), Nvect2.getY());
+        System.out.println("vettore2 ruotato : "+ Nvect2.toString());
         //if(startSpaceshipX != cir.getCenterX() || startSpaceshipY != cir.getCenterY())
             if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY()))
                 A=-A;
                 
                
                 
-        //DA RICORDARE CHE SE VOGLIAMO UTILIZZARE QUESTO METODO PER TUTTE LE ROTAZIONI è NECESSARIO METTERE AL POSOTO DI startSpaceshipX e startspaShipY DEI RIFERIMENTI ALLA POSIZIONE DI PARTENZA DELL 'ASTRONAVE DOPO L'ULTIMO RIMBALZO.
+        System.out.println("angolo A : "+ A);
         Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY); 
         double diffX = rN.getX()- spaceship.getCenterX();
         double diffY = rN.getY()- spaceship.getCenterY();
         double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
         NrotatedNormal = new Point2D(diffX/rad, diffY/rad);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),3));
+        System.out.println("NrotatedNormal : "+NrotatedNormal.toString());
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),4));
         
-        for(int i=0;i<3;i++){
+        for(int i=0;i<10;i++){//avvia la traslazione
             spaceship.setTranslateX(NrotatedNormal.getX()*t);
             spaceship.setTranslateY(NrotatedNormal.getY()*t);
-            if (t > 0)
+            if (t > 0.01)
                     t = t-0.001;
             else
                     timeline.stop();    
@@ -326,6 +328,8 @@ public class ControllerForView implements IControllerForView {
             spaceship.setCenterX(ControllerForModel.getInstance().getSpaceshipCenterX());
             spaceship.setCenterY(ControllerForModel.getInstance().getSpaceshipCenterY());
         }
+        System.out.println("coordinate astronave dopo il for : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
+        
         timeline.getKeyFrames().set(0,kf);      
 
         timeline.play();

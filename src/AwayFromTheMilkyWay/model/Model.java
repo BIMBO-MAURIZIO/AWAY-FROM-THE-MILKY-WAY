@@ -23,7 +23,7 @@ public class Model implements IModel {
 
 
     public Model(){
-        spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),20);
+        spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),45);
         gameStatus = new GameStatus();
         
     }

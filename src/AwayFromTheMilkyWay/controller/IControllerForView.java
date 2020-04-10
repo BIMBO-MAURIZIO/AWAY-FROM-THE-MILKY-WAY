@@ -5,7 +5,6 @@
  */
 package AwayFromTheMilkyWay.controller;
 
-import javafx.scene.Scene;
 
 /**
  *
