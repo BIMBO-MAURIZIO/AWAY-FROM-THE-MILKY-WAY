@@ -8,6 +8,7 @@ package AwayFromTheMilkyWay.view;
 import AwayFromTheMilkyWay.controller.ControllerForView;
 import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
@@ -16,6 +17,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
@@ -84,27 +89,23 @@ public class View implements IView{
         try {//il try catch va chiamato perche il metodo game.composegamewindow ha la clausola throws IOexeption
             game = new GameWindow();
             game.composeWindow(level);
-            } catch (IOException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            scene = new Scene(game, 1280, 900);
-            ControllerForView.getInstance().setDirection();
-            scene.setOnKeyPressed((KeyEvent ke) -> {
-                if(ke.getCode() == KeyCode.ESCAPE)
+        } catch (IOException ex) {
+        Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        scene = new Scene(game, 1280, 900);
+        ControllerForView.getInstance().setDirection();
+        scene.setOnKeyPressed((KeyEvent ke) -> {
+           if(ke.getCode() == KeyCode.ESCAPE)
                     View.getInstance().pause();
             });
             
-            stage.setTitle("Away From the Milky Way");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setWidth(1280);
-            stage.setHeight(930);
-            stage.show();
-            Resources.Music.SOUNDTRACK.play();
-            //String path = "src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3";
-            //Media m = new Media(new File(path).toURI().toString());
-            //mp = new MediaPlayer(m);
-            //mp.play();
+        stage.setTitle("Away From the Milky Way");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setWidth(1280);
+        stage.setHeight(930);
+        stage.show();
+        Resources.Music.SOUNDTRACK.play();
         
     
     }
@@ -176,15 +177,13 @@ public class View implements IView{
     
     @Override//sostituire questo metodo nella ControllerForView invece che quella struttura riondante usata sin ora
     public Circle getSpaceship(){
-        GamePane gm = this.game.schermataGioco;
-        return gm.getSpaceship();
+        return this.game.schermataGioco.getSpaceship();
                 
     }
     
     @Override
     public Circle getMilkyWay(){
-        GamePane gm = this.game.schermataGioco;
-        return gm.getMilkyWay();
+        return this.game.schermataGioco.getMilkyWay();
     }
     
     
@@ -235,6 +234,23 @@ public class View implements IView{
         
         t.play();
 
+    }
+    
+    @Override
+    public void finishAlert(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Cosa voui fare?");
+            ButtonType buttonTypeOne = new ButtonType("One");
+            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == buttonTypeOne){
+   
+            } 
     }
     
  

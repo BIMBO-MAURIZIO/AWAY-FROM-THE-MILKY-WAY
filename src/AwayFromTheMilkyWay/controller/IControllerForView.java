@@ -27,5 +27,6 @@ public interface IControllerForView {
     public void playAnimations();
     public double truncate(double a);
     public void Configuration();
+     public void restartLevel(int level);
     
 }

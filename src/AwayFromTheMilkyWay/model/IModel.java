@@ -16,7 +16,7 @@ public interface IModel {
     
     public void incrementaRimbalziEffettuati();
     public int getRimbalziEffettuati();
-    public SpaceshipModel getSpaceship();
+    public Circle getSpaceship();
     public Circle[] scanPlanets(int level) throws IOException;
     public int getCurrentLevel();
     public MilkyWayModel getMilkyWay();

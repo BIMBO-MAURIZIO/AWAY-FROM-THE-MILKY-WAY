@@ -15,5 +15,8 @@ public interface IControllerForModel {
    public void setSpaceshipCenterY (double y);
    public double getSpaceshipCenterX ();
    public double getSpaceshipCenterY ();
+   public double getMWCenterX();
+   public double getMWCenterY();
+   public double getMWRadius();
    
 }

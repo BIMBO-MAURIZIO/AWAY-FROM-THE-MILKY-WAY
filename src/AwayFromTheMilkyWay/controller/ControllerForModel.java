@@ -7,6 +7,8 @@ package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
 import AwayFromTheMilkyWay.model.SpaceshipModel;
+import AwayFromTheMilkyWay.view.View;
+import javafx.scene.shape.Circle;
 
 /**
  *
@@ -17,7 +19,7 @@ public class ControllerForModel implements IControllerForModel {
     
     
     
-    SpaceshipModel spaceship ;
+    Circle spaceship ;
     
     public ControllerForModel(){
         
@@ -34,33 +36,45 @@ public class ControllerForModel implements IControllerForModel {
     
    @Override
     public void setSpaceshipCenterX (double x){
-        spaceship = Model.getInstance().getSpaceship();
-        spaceship.setCenterX(x);
+        Model.getInstance().getSpaceship().setCenterX(x);
     
     }
-    
-    
-    
+
     @Override
     public void setSpaceshipCenterY (double y){
-        spaceship = Model.getInstance().getSpaceship();
-        spaceship.setCenterY(y);
+        Model.getInstance().getSpaceship().setCenterY(y);
     
     }
     
     @Override
-    public double getSpaceshipCenterX (){
-        spaceship = Model.getInstance().getSpaceship();
-        return spaceship.getCenterX();
+    public double getSpaceshipCenterX (){ //centro dell'astronave nella view
+        return View.getInstance().getSpaceship().getCenterX();
         
     }
     
     @Override
     public double getSpaceshipCenterY (){
-        spaceship = Model.getInstance().getSpaceship();
-        return spaceship.getCenterY();
+        return View.getInstance().getSpaceship().getCenterY();
         
     }
+    
+    
+    
+     @Override
+    public double getMWCenterX(){
+        return View.getInstance().getMilkyWay().getCenterX();
+    }
+    
+    @Override
+    public double getMWCenterY(){
+        return View.getInstance().getMilkyWay().getCenterY();
+    }
+    
+    @Override
+    public double getMWRadius(){
+        return View.getInstance().getMilkyWay().getRadius();
+    }
+    
     
     
     

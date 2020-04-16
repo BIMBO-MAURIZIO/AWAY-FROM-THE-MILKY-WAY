@@ -49,7 +49,7 @@ public class NuovaPartitaController implements Initializable {
     public void iniziaPartita(){
         name = textField.getText();
         if(name.isEmpty()){
-            
+    
             errorAlert.setHeaderText("Input non valido!");
             errorAlert.setContentText("Inserisci il nome!");
             errorAlert.showAndWait();

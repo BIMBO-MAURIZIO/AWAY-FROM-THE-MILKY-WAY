@@ -143,7 +143,6 @@ public class PlayerDataPane extends GridPane {
     
     public void startPB(){
         pb.setProgress(0);
-        int i = 0;
         t = new Timeline(new KeyFrame(
                 Duration.seconds(0.1), // ogni quanto va chiamata la funzione
                 x -> setPB((pb.getProgress()+0.1)%1)

@@ -109,6 +109,7 @@ public class Resources {
             URL url = this.getClass().getResource(fileSrc);
             media = new AudioClip(url.toString());
             this.soundEnabled = true;
+            
         }
         
         public void play()

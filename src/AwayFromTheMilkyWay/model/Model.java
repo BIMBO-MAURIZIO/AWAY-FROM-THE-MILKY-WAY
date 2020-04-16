@@ -5,7 +5,7 @@
  */
 package AwayFromTheMilkyWay.model;
 
-import AwayFromTheMilkyWay.controller.ControllerForView;
+import AwayFromTheMilkyWay.controller.ControllerForModel;
 import java.io.IOException;
 import javafx.scene.shape.Circle;
 
@@ -27,8 +27,8 @@ public class Model implements IModel {
         //DOMANDA: ma è necessario che esistano le classi SpaceshipModel e MilkyWayModel? questi non potrebber essere semplici cerchi?
         //DOMANDA: secondo me metodi sotto dovrebbero venire dal ControllerForModel. Infatti i controller dovrebbero poter prendere info da dove gli pare, ma il model
         //dovrebbe richiamare solo il controllerForModel e la View solo il ControllerForView. Quindi da riveder di cambiare questi metodi.
-        spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),45);
-        milkyWay = new MilkyWayModel(ControllerForView.getInstance().getMWCenterX(),ControllerForView.getInstance().getMWCenterY(),ControllerForView.getInstance().getMWRadius());
+        spaceship = new SpaceshipModel(ControllerForModel.getInstance().getSpaceshipCenterX(),ControllerForModel.getInstance().getSpaceshipCenterY(),45);
+        milkyWay = new MilkyWayModel(ControllerForModel.getInstance().getMWCenterX(),ControllerForModel.getInstance().getMWCenterY(),ControllerForModel.getInstance().getMWRadius());
         gameStatus = new GameStatus();
         
     }
@@ -74,7 +74,7 @@ public class Model implements IModel {
     //getter di spaceship model
     
     @Override
-    public SpaceshipModel getSpaceship(){
+    public Circle getSpaceship(){
         return this.spaceship;
     }
     
