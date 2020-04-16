@@ -18,12 +18,17 @@ public class Model implements IModel {
     private GameStatus gameStatus;
     private static Model instance;
     private SpaceshipModel spaceship ;
+    private MilkyWayModel milkyWay;
     private Planets pianeti = new Planets();
     
 
 
     public Model(){
+        //DOMANDA: ma è necessario che esistano le classi SpaceshipModel e MilkyWayModel? questi non potrebber essere semplici cerchi?
+        //DOMANDA: secondo me metodi sotto dovrebbero venire dal ControllerForModel. Infatti i controller dovrebbero poter prendere info da dove gli pare, ma il model
+        //dovrebbe richiamare solo il controllerForModel e la View solo il ControllerForView. Quindi da riveder di cambiare questi metodi.
         spaceship = new SpaceshipModel(ControllerForView.getInstance().getSpaceshipCenterX(),ControllerForView.getInstance().getSpaceshipCenterY(),45);
+        milkyWay = new MilkyWayModel(ControllerForView.getInstance().getMWCenterX(),ControllerForView.getInstance().getMWCenterY(),ControllerForView.getInstance().getMWRadius());
         gameStatus = new GameStatus();
         
     }
@@ -74,6 +79,9 @@ public class Model implements IModel {
     }
     
     
- 
+    @Override
+    public MilkyWayModel getMilkyWay(){
+        return this.milkyWay;
+    }
     
 }//end class

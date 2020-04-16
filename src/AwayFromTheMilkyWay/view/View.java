@@ -6,19 +6,23 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
-import java.io.File;
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+
 
 /**
  *
@@ -31,7 +35,7 @@ public class View implements IView{
     private GameWindow game;
     private Scene scene;
     Stage pauseStage;
-    private MediaPlayer mp;
+    //private MediaPlayer mp;
         
     
     
@@ -80,8 +84,11 @@ public class View implements IView{
         try {//il try catch va chiamato perche il metodo game.composegamewindow ha la clausola throws IOexeption
             game = new GameWindow();
             game.composeWindow(level);
+            } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            }
             scene = new Scene(game, 1280, 900);
-            ControllerForView.getInstance().startMovimento();
+            ControllerForView.getInstance().setDirection();
             scene.setOnKeyPressed((KeyEvent ke) -> {
                 if(ke.getCode() == KeyCode.ESCAPE)
                     View.getInstance().pause();
@@ -91,15 +98,14 @@ public class View implements IView{
             stage.setScene(scene);
             stage.setResizable(false);
             stage.setWidth(1280);
-            stage.setHeight(950);
+            stage.setHeight(930);
             stage.show();
-            String path = "src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3";
-            Media m = new Media(new File(path).toURI().toString());
+            Resources.Music.SOUNDTRACK.play();
+            //String path = "src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3";
+            //Media m = new Media(new File(path).toURI().toString());
             //mp = new MediaPlayer(m);
             //mp.play();
-        } catch (IOException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     
     }
     
@@ -156,7 +162,81 @@ public class View implements IView{
         return this.scene;
     }
     
-   
+    @Override
+    public GamePane getGamePane(){
+        return this.game.getSchermataGioco();
+    }
+    
+    
+    @Override
+    public PlayerDataPane getDataPane(){
+        return this.game.getPDP();
+    }
+    
+    
+    @Override//sostituire questo metodo nella ControllerForView invece che quella struttura riondante usata sin ora
+    public Circle getSpaceship(){
+        GamePane gm = this.game.schermataGioco;
+        return gm.getSpaceship();
+                
+    }
+    
+    @Override
+    public Circle getMilkyWay(){
+        GamePane gm = this.game.schermataGioco;
+        return gm.getMilkyWay();
+    }
+    
+    
+    
+    
+    @Override
+    public void explosion(){
+        GamePane gm = this.game.schermataGioco;
+        Timeline t = new Timeline();
+        t.setCycleCount(1);
+        
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP1.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(80),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP2.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(160),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP3.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(240),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP4.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(320),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP5.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(400),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP6.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(480),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP7.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(560),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP8.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(640),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP9.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(720),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP10.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(800),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP11.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(880),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP12.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(960),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP13.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1040),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP14.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1120),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP15.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1200),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP16.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1280),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP17.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1360),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP18.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1440),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP19.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1520),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP20.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1600),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP21.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1680),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP22.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1780),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP23.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1860),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP24.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(1920),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP25.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2000),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP26.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2080),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP27.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2160),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP28.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2240),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP29.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2320),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP30.getImage());})); 
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2400),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP31.getImage());})); 
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2480),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP32.getImage());})); 
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2560),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP33.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2640),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP34.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2720),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP35.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(2800),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP36.getImage());}));
+        
+        t.play();
+
+    }
+    
  
     
     

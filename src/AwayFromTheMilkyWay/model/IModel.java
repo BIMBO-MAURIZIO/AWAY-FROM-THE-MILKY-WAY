@@ -19,5 +19,6 @@ public interface IModel {
     public SpaceshipModel getSpaceship();
     public Circle[] scanPlanets(int level) throws IOException;
     public int getCurrentLevel();
+    public MilkyWayModel getMilkyWay();
     
 }//end class

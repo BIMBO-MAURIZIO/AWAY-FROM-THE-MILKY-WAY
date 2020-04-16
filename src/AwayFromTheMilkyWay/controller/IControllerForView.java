@@ -13,13 +13,16 @@ package AwayFromTheMilkyWay.controller;
 public interface IControllerForView {
     
     public void setName (String nome);
-    public void movimento();
+    public void movimento(double v);
     public void move(double vx,double vy,double v);
-    public void bounce(double dx,double dy,double distNum);
-    //public void move2();
-    public void startMovimento();
+    public void bounce(double dx,double dy,double distNum,double v);
+    public void setDirection();
+    public void setPower();
     public double getSpaceshipCenterX();
     public double getSpaceshipCenterY();
+    public double getMWCenterX();
+    public double getMWCenterY();
+    public double getMWRadius();
     public void pauseAnimations();
     public void playAnimations();
     public double truncate(double a);

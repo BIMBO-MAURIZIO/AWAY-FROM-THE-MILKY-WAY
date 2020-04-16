@@ -7,6 +7,7 @@ package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
 import javafx.scene.Scene;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 
@@ -23,6 +24,11 @@ public interface IView {
    public void pause();
    public Stage getPauseStage();
    public Stage getMainStage();
+   public Circle getMilkyWay();
+   public void explosion();
+   public Circle getSpaceship();
+   public GamePane getGamePane();
+   public PlayerDataPane getDataPane();
    
    
 }
