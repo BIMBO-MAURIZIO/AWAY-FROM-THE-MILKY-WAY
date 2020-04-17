@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,9 +40,7 @@ public class View implements IView{
     private static View instance;
     private GameWindow game;
     private Scene scene;
-    Stage pauseStage;
-    //private MediaPlayer mp;
-        
+    Stage pauseStage,alertStage;
     
     
     public View(){
@@ -76,6 +75,9 @@ public class View implements IView{
     
         stage.setTitle("Away From the Milky Way");
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setWidth(1280);
+        stage.setHeight(835);
         stage.show();
         
         
@@ -103,7 +105,7 @@ public class View implements IView{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setWidth(1280);
-        stage.setHeight(930);
+        stage.setHeight(935);
         stage.show();
         Resources.Music.SOUNDTRACK.play();
         
@@ -195,7 +197,7 @@ public class View implements IView{
         Timeline t = new Timeline();
         t.setCycleCount(1);
         
-        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP1.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP1.getImage());;}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(80),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP2.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(160),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP3.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(240),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP4.getImage());}));
@@ -233,10 +235,11 @@ public class View implements IView{
         t.getKeyFrames().add(new KeyFrame(Duration.millis(2800),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP36.getImage());}));
         
         t.play();
-
+       
     }
     
-    @Override
+   
+    /*@Override
     public void finishAlert(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle(null);
@@ -246,13 +249,46 @@ public class View implements IView{
             ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
 
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
-
-            Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == buttonTypeOne){
-   
+            Platform.runLater(alert::show);
+        try {
+            alert.wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            ButtonType result = alert.getResult();
+                if (result == buttonTypeOne){
+                    
             } 
+    }*/
+    
+    @Override
+    public void createAlert(String window){
+        
+        getDataPane().disableButton();
+        alertStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(window));
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        scene = new Scene(root, 320, 240);
+        
+        alertStage.setScene(scene);
+        alertStage.setResizable(false);
+        alertStage.setTitle("Away From The Milky Way");
+        alertStage.initStyle(StageStyle.UNDECORATED);
+        //stage.hide();
+        alertStage.show();
+        
     }
     
+    
+    @Override
+    public Stage getAlertStage(){
+        return this.alertStage;
+    }
  
     
     

@@ -84,4 +84,9 @@ public class Model implements IModel {
         return this.milkyWay;
     }
     
+    @Override
+    public void increaseLevel(){
+        this.gameStatus.increaseLevel();
+    }
+    
 }//end class

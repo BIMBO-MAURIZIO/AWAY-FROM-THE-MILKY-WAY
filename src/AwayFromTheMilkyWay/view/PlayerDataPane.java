@@ -7,6 +7,7 @@ package AwayFromTheMilkyWay.view;
 
 
 import AwayFromTheMilkyWay.utils.Resources;
+import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -159,6 +160,15 @@ public class PlayerDataPane extends GridPane {
     
     public double getProgressPB(){
         return pb.getProgress();
+    }
+    
+    public void disableButton(){
+        this.opzioni.setDisable(true);
+    }
+    
+    
+    public void enableButton(){
+        this.opzioni.setDisable(false);
     }
     
     

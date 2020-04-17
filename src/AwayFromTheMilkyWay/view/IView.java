@@ -29,7 +29,9 @@ public interface IView {
    public Circle getSpaceship();
    public GamePane getGamePane();
    public PlayerDataPane getDataPane();
-   public void finishAlert();
+   public void createAlert(String window);
+   public Stage getAlertStage();
+
    
    
 }

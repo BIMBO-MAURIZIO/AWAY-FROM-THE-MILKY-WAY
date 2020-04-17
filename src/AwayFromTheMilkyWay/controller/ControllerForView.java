@@ -113,6 +113,11 @@ public class ControllerForView implements IControllerForView {
         return Model.getInstance().getMilkyWay().getRadius();
     }
     
+    @Override
+    public int getCurrentLevel(){
+        return Model.getInstance().getCurrentLevel();
+    }
+    
     
     
     
@@ -243,6 +248,8 @@ public class ControllerForView implements IControllerForView {
             }else if(Math.sqrt((variableSpaceshipX - milkyWay.getCenterX())*(variableSpaceshipX - milkyWay.getCenterX())+(variableSpaceshipY - milkyWay.getCenterY())*(variableSpaceshipY - milkyWay.getCenterY())) < milkyWay.getRadius()){ //caso di vittoria del gioco   
                   //la condizione nell'if impne che appena la distanza fra i due cerchi è minore del raggio della via lattea il giocatore ha vinto
                 timeline.stop();
+                Resources.Music.SOUNDTRACK.stop();
+                View.getInstance().createAlert("levelComplete.fxml");
             
             
             }else{//caso in cui non ci sono collisioni
@@ -270,8 +277,9 @@ public class ControllerForView implements IControllerForView {
             System.out.println("centri astronave : "+spaceship.getCenterX()+" "+spaceship.getCenterY() );
             timeline.stop();
             //View.getInstance().explosion();
-            restartLevel(Model.getInstance().getCurrentLevel());
-            
+            Resources.Music.SOUNDTRACK.stop();
+            View.getInstance().createAlert("restartLevel.fxml");
+            //View.getInstance().finishAlert();
         }
   
     }
@@ -396,7 +404,7 @@ public class ControllerForView implements IControllerForView {
             public void handle(MouseEvent event) {
                 View.getInstance().getDataPane().stopPB();
                 System.out.println("velocità :"+ View.getInstance().getDataPane().getProgressPB());
-                movimento((View.getInstance().getDataPane().getProgressPB()*4/1)+2);
+                movimento((View.getInstance().getDataPane().getProgressPB()*3/1)+2);
             }
         };
        
@@ -449,11 +457,22 @@ public class ControllerForView implements IControllerForView {
     
 
     @Override    
-    public void restartLevel(int level){
+    public void restartLevel(){
         
-        View.getInstance().openGameWindow(level);
-  
+        View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
+        Resources.Music.SOUNDTRACK.play();
     }    
+    
+    @Override    
+    public void nextLevel(int livelloCorrente){
+        if(livelloCorrente != 8){
+            View.getInstance().openGameWindow(livelloCorrente+1);
+            Resources.Music.SOUNDTRACK.play();
+            Model.getInstance().increaseLevel();
+        }else{
+            //TO-DO
+        }
+    }   
         
         
         

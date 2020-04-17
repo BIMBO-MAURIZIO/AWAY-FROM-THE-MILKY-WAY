@@ -20,5 +20,6 @@ public interface IModel {
     public Circle[] scanPlanets(int level) throws IOException;
     public int getCurrentLevel();
     public MilkyWayModel getMilkyWay();
+    public void increaseLevel();
     
 }//end class

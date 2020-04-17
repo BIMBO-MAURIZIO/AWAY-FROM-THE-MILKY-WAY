@@ -23,9 +23,8 @@ public class Planets {
     public Planets(){}
     
     public Circle[] scanning(int level) throws IOException{
-        switch(level){
-            
-            case 1 :  pl1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1X")),
+       if(level == 1){
+                      pl1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Radius")));
                       
@@ -39,21 +38,26 @@ public class Planets {
                       a[2] = null;
                       a[3] = null;
                       return a;
-            case 2 :
+                      
+       }else if(level == 2){           
+            pl1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1X")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Y")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Radius")));
+                      
+                      pl2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2X")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Y")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Radius")));
                 
-            case 3 :
+                
+                      a[0] = pl1;
+                      a[1] = pl2;
+                      a[2] = null;
+                      a[3] = null;
+                      return a;
+       }   
+            
         
-            case 4 :
-        
-            case 5 :
-        
-            case 6 :        
-        
-            case 7 :    
-        
-            case 8 :    
-        }
-        return a;
+       return a;
     }
     
 }

@@ -23,10 +23,12 @@ public interface IControllerForView {
     public double getMWCenterX();
     public double getMWCenterY();
     public double getMWRadius();
+    public int getCurrentLevel();
     public void pauseAnimations();
     public void playAnimations();
     public double truncate(double a);
     public void Configuration();
-     public void restartLevel(int level);
+    public void restartLevel();
+    public void nextLevel(int livelloCorrente);
     
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="AwayFromTheMilkyWay.view.LevelCompleteController">
+   <children>
+      <Label layoutX="71.0" layoutY="28.0" prefHeight="45.0" prefWidth="182.0" text="                      SUPER!" />
+      <Button layoutX="86.0" layoutY="120.0" mnemonicParsing="false" onAction="#nextLevel" prefHeight="54.0" prefWidth="158.0" text="Vai al prossimo livello" />
+   </children>
+</AnchorPane>

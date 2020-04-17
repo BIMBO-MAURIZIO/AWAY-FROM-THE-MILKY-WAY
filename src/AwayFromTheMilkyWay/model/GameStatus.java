@@ -18,6 +18,10 @@ public class GameStatus {
          this.livello = 1;
          this.rimbEffettuati = 0;
          
-     }
+    }
      
+     
+    public void increaseLevel(){
+         this.livello++;
+    }
 }

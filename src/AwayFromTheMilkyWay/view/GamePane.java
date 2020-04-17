@@ -34,9 +34,9 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         this.getChildren().add(imageView);
        // this.setBackground(new Background(new BackgroundFill(RED,CornerRadii.EMPTY,Insets.EMPTY)));
         
-        switch(levelNumber){
+        if(levelNumber == 1){
             
-            case 1 :  spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
+              spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
             
@@ -54,22 +54,30 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayRadius")));
                       milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
                       this.getChildren().addAll(spaceship,planet1,planet2,milkyWay);
+                
+        }else if(levelNumber == 2){   
+                    spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "SpaceshipX")),
+                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "SpaceshipY")),
+                                             45);//x, y , raggio   
+            
+                      planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1X")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Y")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Radius")));
+                      planet1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
+                      planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2X")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Y")),
+                                           Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Radius")));
+                      planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                      spaceship.setFill(javafx.scene.paint.Color.RED);
+                      milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayX")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayY")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayRadius")));
+                      milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
+                      this.getChildren().addAll(spaceship,planet1,planet2,milkyWay);
+            }
                       
-                
-            case 2 :
-                
-            case 3 :
+            
         
-            case 4 :
-        
-            case 5 :
-        
-            case 6 :        
-        
-            case 7 :    
-        
-            case 8 :    
-        }
         
         
     }//end setScenario
