@@ -137,7 +137,7 @@ public class Resources {
              
         private boolean musicEnabled;
         private MediaPlayer audioMedia;
-        private final static double MUSIC_VOLUME = 0.10;
+        private final static double MUSIC_VOLUME = 0.01;
         Music(String fileSrc){
         
             URL url = this.getClass().getResource(fileSrc);

@@ -10,20 +10,12 @@ import AwayFromTheMilkyWay.utils.Resources;
 import AwayFromTheMilkyWay.view.PlayerDataPane;
 import AwayFromTheMilkyWay.view.View;
 import java.io.IOException;
-import java.util.Optional;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -38,7 +30,7 @@ public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
     private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY;
     private Circle spaceship,milkyWay,cir1,cir2,cir3,cir4,varCir;
-    private EventHandler<MouseEvent> handler,handler2,handler3;
+    private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
     private Circle[] a;
     Line line;
@@ -148,7 +140,7 @@ public class ControllerForView implements IControllerForView {
         
         Configuration();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
         View.getInstance().getGamePane().getChildren().remove(line);
-        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler2);
+        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
         System.out.println("velocità2 :"+v);
         spaceship = View.getInstance().getSpaceship();
         milkyWay = View.getInstance().getMilkyWay();
@@ -378,21 +370,33 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void setDirection() {
         
-        handler3 = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
+        handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
                 View.getInstance().getGamePane().getChildren().remove(line);
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
-                line = new Line(View.getInstance().getSpaceship().getCenterX(),View.getInstance().getSpaceship().getCenterY(),varMousePositionX,varMousePositionY);
-                View.getInstance().getGamePane().getChildren().add(line);
-
-                //System.out.println(mousePositionX  +" AAAAAAA "+mousePositionY);
+                if(varMousePositionX<=1280 && varMousePositionY<= 718){
+                    line = new Line(View.getInstance().getSpaceship().getCenterX(),View.getInstance().getSpaceship().getCenterY(),varMousePositionX,varMousePositionY);
+                    View.getInstance().getGamePane().getChildren().add(line);
+                }
+                //System.out.println(varMousePositionX  +" AAAAAAA "+varMousePositionY);
             }
         };
-        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_MOVED, handler3);
-         
+        
+        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_MOVED, handler);
+        
+        
+        handler2 = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
+            public void handle(MouseEvent event) { 
+                View.getInstance().getGamePane().getChildren().remove(line);
+
+            }
+        };
+        
+        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_EXITED, handler2);
        
-        handler = new EventHandler<MouseEvent>() {  
+        
+        handler3 = new EventHandler<MouseEvent>() {  
             public void handle(MouseEvent event) {  
                 mousePositionX = event.getX();
                 mousePositionY = event.getY();
@@ -401,17 +405,18 @@ public class ControllerForView implements IControllerForView {
             }
         };
        
-        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler);    
+        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler3);    
     }
     
     
     @Override
     public void setPower(){
-        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler);
-        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_MOVED, handler3);
+        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler3);
+        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_EXITED, handler2);
+        View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_MOVED, handler);
 
         
-        handler2 = new EventHandler<MouseEvent>() {  
+        handler4 = new EventHandler<MouseEvent>() {  
             public void handle(MouseEvent event) {
                 View.getInstance().getDataPane().stopPB();
                 System.out.println("velocità :"+ View.getInstance().getDataPane().getProgressPB());
@@ -420,7 +425,7 @@ public class ControllerForView implements IControllerForView {
         };
        
        
-        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler2);    
+        View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler4);    
     }
     
     

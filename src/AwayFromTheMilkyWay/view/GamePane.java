@@ -32,7 +32,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         //Image image = new Image("AwayFromTheMilkyWay/configuration/media/images/spazio2.jpg");
         ImageView imageView = new ImageView(Resources.GeneralImages.SPAZIO.getImage());
         this.getChildren().add(imageView);
-       // this.setBackground(new Background(new BackgroundFill(RED,CornerRadii.EMPTY,Insets.EMPTY)));
+      
         
         if(levelNumber == 1){
             

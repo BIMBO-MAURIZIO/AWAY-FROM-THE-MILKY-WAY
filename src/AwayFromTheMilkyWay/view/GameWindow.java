@@ -22,10 +22,12 @@ public class GameWindow extends BorderPane {
         schermataGioco = new GamePane();
         schermataGioco.setScenario(level);
         schermataGioco.setPrefSize(1280, 720);
-        
+       
         
         schermataDati.setPrefSize(1280, 180);
         schermataDati.populatePane();
+        schermataDati.fillGrid();
+        schermataDati.adaptToLevel(level);
    
         this.setCenter(schermataGioco);
         this.setBottom(schermataDati);

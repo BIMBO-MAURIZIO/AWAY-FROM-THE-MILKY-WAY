@@ -20,3 +20,5 @@ milkyWayY
 650
 milkyWayRadius
 70
+rimbalziDes
+2

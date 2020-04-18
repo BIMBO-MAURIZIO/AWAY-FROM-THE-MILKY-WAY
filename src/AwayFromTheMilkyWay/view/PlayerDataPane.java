@@ -7,6 +7,7 @@ package AwayFromTheMilkyWay.view;
 
 
 import AwayFromTheMilkyWay.utils.Resources;
+import AwayFromTheMilkyWay.utils.Utils;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -32,7 +32,7 @@ import javafx.util.Duration;
  * @author giorg
  */
 public class PlayerDataPane extends GridPane {
-    int level, rimbalziEff,rimbDes,power;
+    int level, rimbalziEff,rimbalziDes,power;
     private String name;
     private ProgressBar pb;
     private Timeline t ;
@@ -52,11 +52,9 @@ public class PlayerDataPane extends GridPane {
     
     //metodi per popolare la PDP
     public void populatePane(){
-       
+
         
-      
-        
-        rimbalziDesiderati = new Label("Rimbalzi Desiderati: "+ rimbDes);
+        rimbalziDesiderati = new Label("Rimbalzi Desiderati: "+ rimbalziDes);
         rimbalziDesiderati.setPrefSize(427, 90);
         rimbalziDesiderati.setAlignment(Pos.CENTER);
         
@@ -116,6 +114,11 @@ public class PlayerDataPane extends GridPane {
         //this.setGridLinesVisible(true);
         
         
+      
+    }
+    
+    
+    public void fillGrid(){
         Image image = Resources.GeneralImages.GRID.getImage();
         BackgroundSize backgroundSize = new BackgroundSize(1280, 180, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
@@ -125,17 +128,36 @@ public class PlayerDataPane extends GridPane {
     }
     
     
+    public void adaptToLevel(int level) throws IOException{
+        if(level == 1){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "rimbalziDes")));
+            setLevel(level);
+        }else if(level == 2){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "rimbalziDes")));
+            setLevel(level);
+        }
+    }
     
     
     //metodi per operare sulla PDP
     public void setName(String nm){
         this.name = nm;
-        this.update();
+        update();
+    }
+    
+    public void setRimbDes(int n){
+        this.rimbalziDes = n;
+        update();
     }
     
     public void setRimbalziEff(int rimb){
         this.rimbalziEff = rimb;
-        this.update();
+        update();
+    }
+    
+    public void setLevel(int l){
+        this.level = l;
+        update();
     }
     
     public void setPB(double progress){
@@ -177,6 +199,7 @@ public class PlayerDataPane extends GridPane {
     
     public void update(){
         nome.setText("nome: " + name);
+        rimbalziDesiderati.setText("rimbalzi desiderati: "+ rimbalziDes);
         rimbalziEffettuati.setText("rimbalzi effettuati: "+ rimbalziEff);
         numLivello.setText("livello numero "+ level);
         
