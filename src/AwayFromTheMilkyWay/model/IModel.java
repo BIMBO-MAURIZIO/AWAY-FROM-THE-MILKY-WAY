@@ -21,5 +21,7 @@ public interface IModel {
     public int getCurrentLevel();
     public MilkyWayModel getMilkyWay();
     public void increaseLevel();
+     public void decreaseLevel();
+     public void setLevel(int n);
     
 }//end class

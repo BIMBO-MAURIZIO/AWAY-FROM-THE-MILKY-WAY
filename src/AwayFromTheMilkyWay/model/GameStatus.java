@@ -24,4 +24,12 @@ public class GameStatus {
     public void increaseLevel(){
          this.livello++;
     }
+    
+    public void decreaseLevel(){
+        this.livello = this.livello - 1;
+    }
+    
+    public void setLevel(int n){
+        this.livello = n;
+    }
 }

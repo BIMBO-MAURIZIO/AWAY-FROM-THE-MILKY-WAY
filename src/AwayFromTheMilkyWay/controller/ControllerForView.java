@@ -11,6 +11,9 @@ import AwayFromTheMilkyWay.view.PlayerDataPane;
 import AwayFromTheMilkyWay.view.View;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
@@ -116,6 +119,12 @@ public class ControllerForView implements IControllerForView {
     @Override
     public int getCurrentLevel(){
         return Model.getInstance().getCurrentLevel();
+    }
+    
+    
+    @Override
+    public void setCurrentLevel(int level){
+        Model.getInstance().setLevel(level);
     }
     
     
@@ -250,7 +259,7 @@ public class ControllerForView implements IControllerForView {
                 timeline.stop();
                 Resources.Music.SOUNDTRACK.stop();
                 View.getInstance().createAlert("levelComplete.fxml");
-            
+                Resources.SoundEffects.VICTORY.play();
             
             }else{//caso in cui non ci sono collisioni
                 
@@ -276,9 +285,11 @@ public class ControllerForView implements IControllerForView {
         }else { 
             System.out.println("centri astronave : "+spaceship.getCenterX()+" "+spaceship.getCenterY() );
             timeline.stop();
-            //View.getInstance().explosion();
-            Resources.Music.SOUNDTRACK.stop();
-            View.getInstance().createAlert("restartLevel.fxml");
+            View.getInstance().explosion();
+            
+            //Resources.Music.SOUNDTRACK.stop();
+            //View.getInstance().createAlert("restartLevel.fxml");
+            //Resources.SoundEffects.DEFEAT.play();
             //View.getInstance().finishAlert();
         }
   

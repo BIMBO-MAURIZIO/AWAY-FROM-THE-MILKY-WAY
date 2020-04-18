@@ -35,6 +35,8 @@ public class RestartLevelController implements Initializable {
         View.getInstance().getAlertStage().close();
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
         View.getInstance().getDataPane().enableButton();
+        ControllerForView.getInstance().setCurrentLevel(1);//ogni qualvolta l'utente cliccherà exit e poi nuova partita dovrà ripartire da livello 1
+        
     }
     
 }

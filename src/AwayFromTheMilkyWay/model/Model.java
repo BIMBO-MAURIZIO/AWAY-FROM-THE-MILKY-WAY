@@ -89,4 +89,14 @@ public class Model implements IModel {
         this.gameStatus.increaseLevel();
     }
     
+    @Override
+    public void decreaseLevel(){
+        this.gameStatus.decreaseLevel();
+    }
+    
+    @Override
+    public void setLevel(int n){
+        this.gameStatus.setLevel(n);
+    }
+    
 }//end class

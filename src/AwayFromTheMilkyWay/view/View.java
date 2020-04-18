@@ -8,20 +8,15 @@ package AwayFromTheMilkyWay.view;
 import AwayFromTheMilkyWay.controller.ControllerForView;
 import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
@@ -197,7 +192,7 @@ public class View implements IView{
         Timeline t = new Timeline();
         t.setCycleCount(1);
         
-        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP1.getImage());;}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP1.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(80),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP2.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(160),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP3.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(240),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP4.getImage());}));
@@ -234,8 +229,17 @@ public class View implements IView{
         t.getKeyFrames().add(new KeyFrame(Duration.millis(2720),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP35.getImage());}));
         t.getKeyFrames().add(new KeyFrame(Duration.millis(2800),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Explosion.EXP36.getImage());}));
         
+        
+        t.setOnFinished((ActionEvent e) -> {
+            Resources.Music.SOUNDTRACK.stop();
+            View.getInstance().createAlert("restartLevel.fxml");
+            Resources.SoundEffects.DEFEAT.play();
+        });
+        
+        Resources.SoundEffects.EXPLOSION.play();
         t.play();
-       
+ 
+        
     }
     
    

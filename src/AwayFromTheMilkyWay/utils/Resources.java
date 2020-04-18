@@ -98,11 +98,15 @@ public class Resources {
     
     public enum SoundEffects{
         
-        PLANETHIT("media/sounds/impattoPianeti.mp3");
+        PLANETHIT("media/sounds/impattoPianeti.mp3"),
+        VICTORY("media/sounds/vittoria.mp3"),
+        DEFEAT("media/sounds/sconfitta.mp3"),
+        EXPLOSION("media/sounds/esplosione.mp3");
         
         
         private boolean soundEnabled;
         private AudioClip media;
+        private final static double MUSIC_VOLUME = 0.10;
         
         SoundEffects(String fileSrc)
         {
@@ -115,6 +119,7 @@ public class Resources {
         public void play()
         {
             if(this.soundEnabled)
+                media.setVolume(MUSIC_VOLUME);
                 media.play();
         }
         

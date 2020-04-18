@@ -30,5 +30,6 @@ public interface IControllerForView {
     public void Configuration();
     public void restartLevel();
     public void nextLevel(int livelloCorrente);
+     public void setCurrentLevel(int level);
     
 }
