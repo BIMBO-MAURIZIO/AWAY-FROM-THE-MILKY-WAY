@@ -248,11 +248,30 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
             }else if(Math.sqrt((variableSpaceshipX - milkyWay.getCenterX())*(variableSpaceshipX - milkyWay.getCenterX())+(variableSpaceshipY - milkyWay.getCenterY())*(variableSpaceshipY - milkyWay.getCenterY())) < milkyWay.getRadius()){ //caso di vittoria del gioco   
                   //la condizione nell'if impne che appena la distanza fra i due cerchi è minore del raggio della via lattea il giocatore ha vinto
-                timeline.stop();
-                Resources.Music.SOUNDTRACK.stop();
-                View.getInstance().createAlert("levelComplete.fxml");
-                Resources.SoundEffects.VICTORY.play();
-            
+                
+                double differenceX = milkyWay.getCenterX()-variableSpaceshipX;
+                double differenceY = milkyWay.getCenterY()-variableSpaceshipY;
+                double diagonal = Math.sqrt((differenceX+differenceX)+(differenceY*differenceY));
+                double NdifferenceX = differenceX/diagonal;
+                double NdifferenceY = differenceY/diagonal;
+                
+                if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){//fino a quando l'astronave non si è allineata con il centro della milkyway
+                    spaceship.setTranslateX(NdifferenceX);
+                    spaceship.setTranslateY(NdifferenceY);
+                
+                    ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+NdifferenceX);
+                    ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+NdifferenceY);
+                    spaceship.setCenterX(Model.getInstance().getSpaceship().getCenterX());
+                    spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());    
+                }else{
+                    
+                    timeline.stop();
+                    double u = milkyWay.getCenterX() - variableSpaceshipX;
+                    
+                    double j = milkyWay.getCenterY() - variableSpaceshipY;
+                    System.out.println("coordinate AAAA"+u+" : "+j);
+                    View.getInstance().backwash();  
+                }
             }else{//caso in cui non ci sono collisioni
                 
                 shipSpeed = new Point2D(vx * v,vy * v);
@@ -279,10 +298,6 @@ public class ControllerForView implements IControllerForView {
             timeline.stop();
             View.getInstance().explosion();
             
-            //Resources.Music.SOUNDTRACK.stop();
-            //View.getInstance().createAlert("restartLevel.fxml");
-            //Resources.SoundEffects.DEFEAT.play();
-            //View.getInstance().finishAlert();
         }
   
     }
@@ -372,7 +387,8 @@ public class ControllerForView implements IControllerForView {
         
         handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
-                View.getInstance().getGamePane().getChildren().remove(line);
+                if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
+                    View.getInstance().getGamePane().getChildren().remove(line);
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
                 if(varMousePositionX<=1280 && varMousePositionY<= 718){

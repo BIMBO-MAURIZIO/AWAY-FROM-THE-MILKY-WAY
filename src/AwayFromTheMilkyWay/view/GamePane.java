@@ -48,7 +48,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Radius")));
                       planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
-                      spaceship.setFill(javafx.scene.paint.Color.RED);
+                      spaceship.setFill(new ImagePattern(Resources.GeneralImages.CIRCLE.getImage()));
                       milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayY")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayRadius")));
@@ -68,7 +68,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Radius")));
                       planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
-                      spaceship.setFill(javafx.scene.paint.Color.RED);
+                      spaceship.setFill(new ImagePattern(Resources.GeneralImages.CIRCLE.getImage()));
                       milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayY")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayRadius")));

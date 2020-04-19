@@ -249,27 +249,26 @@ public class View implements IView{
     }
     
    
-    /*@Override
-    public void finishAlert(){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle(null);
-            alert.setHeaderText(null);
-            alert.setContentText("Cosa voui fare?");
-            ButtonType buttonTypeOne = new ButtonType("One");
-            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-
-            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
-            Platform.runLater(alert::show);
-        try {
-            alert.wait();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            ButtonType result = alert.getResult();
-                if (result == buttonTypeOne){
-                    
-            } 
-    }*/
+    @Override
+    public void backwash(){
+        GamePane gm = this.game.schermataGioco;
+        Timeline t = new Timeline();
+        t.setCycleCount(1);
+        
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK1.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(100),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK2.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(200),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK3.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(300),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK4.getImage());}));
+        
+        t.setOnFinished((ActionEvent e) -> {
+            Resources.Music.SOUNDTRACK.stop();
+            View.getInstance().createAlert("levelComplete.fxml");
+            Resources.SoundEffects.VICTORY.play();
+        });
+        
+        //Resources.SoundEffects.EXPLOSION.play();
+        t.play();
+    }
     
     @Override
     public void createAlert(String window){

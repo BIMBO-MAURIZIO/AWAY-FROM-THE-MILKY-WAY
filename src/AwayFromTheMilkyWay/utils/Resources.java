@@ -25,7 +25,8 @@ public class Resources {
         MILKYWAY("media/images/milkyWay.png"),
         GRID("media/images/grid.png"),
         SPACEMAN("media/images/spaceMan.png"),
-        SPACEMANICON("media/images/spaceManIcon.png");
+        SPACEMANICON("media/images/spaceManIcon.png"),
+        CIRCLE("media/images/circle.png");
         private Image img = null;
         
         GeneralImages(String fileSrc)
@@ -96,6 +97,25 @@ public class Resources {
     } 
     
     
+    public enum Backwash
+    {
+        BCK1("media/images/circle1.png"),
+        BCK2("media/images/circle2.png"),
+        BCK3("media/images/circle3.png"),
+        BCK4("media/images/circle4.png");
+        private Image img = null;
+        
+        Backwash(String fileSrc)
+        {
+            URL imgSrc = this.getClass().getResource(fileSrc);
+            img = new Image(imgSrc.toString());
+        }
+        
+        public Image getImage()
+        {
+            return this.img;
+        }
+    } 
     
     
     public enum SoundEffects{
