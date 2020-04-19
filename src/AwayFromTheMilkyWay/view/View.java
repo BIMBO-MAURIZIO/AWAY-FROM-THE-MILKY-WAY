@@ -14,6 +14,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 
@@ -73,6 +75,7 @@ public class View implements IView{
         stage.setResizable(false);
         stage.setWidth(1280);
         stage.setHeight(835);
+        stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
         stage.show();
         
         
@@ -101,7 +104,10 @@ public class View implements IView{
         stage.setResizable(false);
         stage.setWidth(1280);
         stage.setHeight(935);
+        stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+        
         stage.show();
+        handleExit();
         Resources.Music.SOUNDTRACK.play();
         
     
@@ -292,6 +298,19 @@ public class View implements IView{
     @Override
     public Stage getAlertStage(){
         return this.alertStage;
+    }
+    
+    
+    @Override
+    public void handleExit(){//metodo che serve a chiudere tutte le ffinestre attive se quella principale viene chiusa
+        EventHandler handler = (EventHandler<WindowEvent>) (WindowEvent event) -> {
+            if(pauseStage != null)
+                pauseStage.close();
+            if(alertStage != null)
+                alertStage.close();
+        };
+        
+        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, handler);
     }
  
     

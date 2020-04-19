@@ -23,7 +23,9 @@ public class Resources {
         MERCURIO("media/images/mercurio.png"),
         GIOVE("media/images/giove.png"),
         MILKYWAY("media/images/milkyWay.png"),
-        GRID("media/images/grid.png");
+        GRID("media/images/grid.png"),
+        SPACEMAN("media/images/spaceMan.png"),
+        SPACEMANICON("media/images/spaceManIcon.png");
         private Image img = null;
         
         GeneralImages(String fileSrc)

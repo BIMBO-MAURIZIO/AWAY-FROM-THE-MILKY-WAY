@@ -10,7 +10,7 @@
         <URL value="@opzioni.css" />
     </stylesheets>
    <children>
-      <Button layoutX="43.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" text="BACK" />
+      <Button layoutX="43.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
       <Label layoutX="857.0" layoutY="33.0" prefHeight="106.0" prefWidth="418.0" text="OPTIONS" />
       <Button layoutX="78.0" layoutY="139.0" mnemonicParsing="false" text="ON/OFF" />
       <Button layoutX="78.0" layoutY="200.0" mnemonicParsing="false" text="Button" />

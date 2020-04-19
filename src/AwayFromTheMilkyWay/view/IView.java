@@ -31,7 +31,7 @@ public interface IView {
    public PlayerDataPane getDataPane();
    public void createAlert(String window);
    public Stage getAlertStage();
-
+   public void handleExit();
    
    
 }

@@ -5,6 +5,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.OpzioniPausaController">
    <children>
-      <Button layoutX="495.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" text="Back" />
+      <Button layoutX="455.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
    </children>
 </AnchorPane>
