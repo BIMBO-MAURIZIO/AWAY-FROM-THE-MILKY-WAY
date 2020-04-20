@@ -123,7 +123,9 @@ public class Resources {
         PLANETHIT("media/sounds/impattoPianeti.mp3"),
         VICTORY("media/sounds/vittoria.mp3"),
         DEFEAT("media/sounds/sconfitta.mp3"),
-        EXPLOSION("media/sounds/esplosione.mp3");
+        EXPLOSION("media/sounds/esplosione.mp3"),
+        BACKWASH("media/sounds/risucchioAstronave.mp3"),
+        BUTTONCLICK("media/sounds/buttonClick.mp3");
         
         
         private boolean soundEnabled;

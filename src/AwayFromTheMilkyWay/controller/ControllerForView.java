@@ -44,10 +44,11 @@ public class ControllerForView implements IControllerForView {
     
     
     //variabili per il movimento
-    double t = 0;
-    double tDim,x,y,magnitude,xstab,ystab,variableSpaceshipX,variableSpaceshipY;
-    Point2D shipSpeed;
-    Timeline timeline;
+    private double t = 0;
+    private double x,y,magnitude,xstab,ystab,variableSpaceshipX,variableSpaceshipY;
+    private Point2D shipSpeed;
+    private Timeline timeline;
+    private boolean sound;
     //AnimationTimer a;
     
     
@@ -141,6 +142,7 @@ public class ControllerForView implements IControllerForView {
         Configuration();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
+        sound = true;
         System.out.println("velocità2 :"+v);
         spaceship = View.getInstance().getSpaceship();
         milkyWay = View.getInstance().getMilkyWay();
@@ -256,6 +258,10 @@ public class ControllerForView implements IControllerForView {
                 double NdifferenceY = differenceY/diagonal;
                 
                 if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){//fino a quando l'astronave non si è allineata con il centro della milkyway
+                    if(sound){
+                        Resources.SoundEffects.BACKWASH.play();
+                    }
+                    sound = false;
                     spaceship.setTranslateX(NdifferenceX);
                     spaceship.setTranslateY(NdifferenceY);
                 
@@ -266,10 +272,6 @@ public class ControllerForView implements IControllerForView {
                 }else{
                     
                     timeline.stop();
-                    double u = milkyWay.getCenterX() - variableSpaceshipX;
-                    
-                    double j = milkyWay.getCenterY() - variableSpaceshipY;
-                    System.out.println("coordinate AAAA"+u+" : "+j);
                     View.getInstance().backwash();  
                 }
             }else{//caso in cui non ci sono collisioni

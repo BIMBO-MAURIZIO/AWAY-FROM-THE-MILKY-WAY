@@ -5,6 +5,7 @@
  */
 package AwayFromTheMilkyWay.view;
 
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,5 +37,9 @@ public class SchermataInizialeController implements Initializable {
     
     public void opzioni() throws IOException{
         View.getInstance().changeCurrentWindow("opzioni.fxml");
+    }
+    
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
     }
 }
