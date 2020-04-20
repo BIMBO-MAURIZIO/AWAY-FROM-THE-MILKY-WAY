@@ -42,4 +42,5 @@ public class SchermataInizialeController implements Initializable {
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();
     }
-}
+}//ciao
+
