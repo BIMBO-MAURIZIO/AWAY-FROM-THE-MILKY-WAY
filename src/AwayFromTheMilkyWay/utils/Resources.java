@@ -19,14 +19,14 @@ public class Resources {
     
     public enum GeneralImages
     {   
-        SPAZIO("media/images/spazio5.jpg"),
         MERCURIO("media/images/mercurio.png"),
         GIOVE("media/images/giove.png"),
         MILKYWAY("media/images/milkyWay.png"),
         GRID("media/images/grid.png"),
         SPACEMAN("media/images/spaceMan.png"),
         SPACEMANICON("media/images/spaceManIcon.png"),
-        CIRCLE("media/images/circle.png");
+        SPACESHIP("media/images/spaceship.png"),
+        BACKGROUND("media/images/background.jpg");
         private Image img = null;
         
         GeneralImages(String fileSrc)
@@ -124,7 +124,7 @@ public class Resources {
         VICTORY("media/sounds/vittoria.mp3"),
         DEFEAT("media/sounds/sconfitta.mp3"),
         EXPLOSION("media/sounds/esplosione.mp3"),
-        BACKWASH("media/sounds/risucchioAstronave.mp3"),
+        //BACKWASH("media/sounds/risucchioAstronave.mp3"),
         BUTTONCLICK("media/sounds/buttonClick.mp3");
         
         

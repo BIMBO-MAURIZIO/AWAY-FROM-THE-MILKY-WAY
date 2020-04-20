@@ -28,11 +28,12 @@ import javafx.util.Duration;
  */
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
-    private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY;
+    private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY,angolo;
     private Circle spaceship,milkyWay,cir1,cir2,cir3,cir4,varCir;
     private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
     private Circle[] a;
+    
     Line line;
     
     
@@ -261,7 +262,7 @@ public class ControllerForView implements IControllerForView {
                 
                 if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){//fino a quando l'astronave non si è allineata con il centro della milkyway
                     if(sound){
-                        Resources.SoundEffects.BACKWASH.play();
+                        //Resources.SoundEffects.BACKWASH.play();
                     }
                     sound = false;
                     spaceship.setTranslateX(NdifferenceX);
@@ -339,8 +340,9 @@ public class ControllerForView implements IControllerForView {
         //System.out.println("vettore 2 :"+vect2.toString());
         double A = normal.angle(shipSpeed);
         double B = vect1.angle(vect2);
+        
         Point2D s = new Rotate(-B,0,0).transform(Nvect2.getX(), Nvect2.getY());
-        System.out.println("vettore2 ruotato : "+ Nvect2.toString());
+        
         //if(startSpaceshipX != cir.getCenterX() || startSpaceshipY != cir.getCenterY())
             if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY()))
                 A=-A;
@@ -348,7 +350,9 @@ public class ControllerForView implements IControllerForView {
                
                 
         System.out.println("angolo A : "+ A);
-        Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY); 
+        Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY);
+        angolo = -angolo +2*A;
+        View.getInstance().getSpaceship().setRotate(angolo);//secondo me il prob è che la rotazione viene fatta sempre considerando la navicella dritta
         double diffX = rN.getX()- spaceship.getCenterX();
         double diffY = rN.getY()- spaceship.getCenterY();
         double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
@@ -397,11 +401,13 @@ public class ControllerForView implements IControllerForView {
                     View.getInstance().getGamePane().getChildren().remove(line);
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
+                angolo = Math.toDegrees(Math.atan2(varMousePositionY-100,varMousePositionX-100));
+                View.getInstance().getSpaceship().setRotate(angolo);
                 if(varMousePositionX<=1280 && varMousePositionY<= 718){
                     line = new Line(View.getInstance().getSpaceship().getCenterX(),View.getInstance().getSpaceship().getCenterY(),varMousePositionX,varMousePositionY);
                     View.getInstance().getGamePane().getChildren().add(line);
                 }
-                //System.out.println(varMousePositionX  +" AAAAAAA "+varMousePositionY);
+                System.out.println(" angolo "+angolo);
             }
         };
         
