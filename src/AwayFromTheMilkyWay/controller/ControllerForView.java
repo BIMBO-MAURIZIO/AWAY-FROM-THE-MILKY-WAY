@@ -473,7 +473,7 @@ public class ControllerForView implements IControllerForView {
         double d = c/10000000;
         return d;
     }
-    
+    //aaa
     @Override
     public void Configuration(){//cominica al controller quanti e quali pineti ci sono nel livello
         a = new Circle[4];
