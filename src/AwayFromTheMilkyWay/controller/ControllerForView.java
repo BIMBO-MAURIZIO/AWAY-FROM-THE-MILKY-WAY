@@ -348,7 +348,7 @@ public class ControllerForView implements IControllerForView {
                 A=-A;
                 
                
-                
+        //commento        
         System.out.println("angolo A : "+ A);
         Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY);
         
