@@ -21,7 +21,12 @@ public interface IModel {
     public int getCurrentLevel();
     public MilkyWayModel getMilkyWay();
     public void increaseLevel();
-     public void decreaseLevel();
-     public void setLevel(int n);
+    public void decreaseLevel();
+    public void setLevel(int n);
+    public void setRimbDesiderati(int i);
+    public int getRimbDesiderati();
+    public void setRimbEffettuati(int i);
+    public void setName(String s);
+    public String getName();
     
 }//end class

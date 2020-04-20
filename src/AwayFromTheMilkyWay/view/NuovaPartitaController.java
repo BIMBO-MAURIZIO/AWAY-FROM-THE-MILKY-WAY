@@ -61,6 +61,7 @@ public class NuovaPartitaController implements Initializable {
         }else{   
             View.getInstance().openGameWindow(1);
             ControllerForView.getInstance().setName(name);
+            
         }
         
         

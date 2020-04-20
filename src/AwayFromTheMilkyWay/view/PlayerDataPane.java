@@ -193,6 +193,13 @@ public class PlayerDataPane extends GridPane {
         this.opzioni.setDisable(false);
     }
     
+    public int getRimbDes(){
+        return this.rimbalziDes;
+    }
+    
+    public String getNome(){
+        return this.name;
+    }    
     
     
     

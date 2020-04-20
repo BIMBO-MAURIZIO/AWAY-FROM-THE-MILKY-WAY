@@ -77,7 +77,7 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void setName (String nome){
-        View.getInstance().getGameWindow().setName(nome);
+        View.getInstance().getDataPane().setName(nome);
     
     }
     
@@ -143,6 +143,8 @@ public class ControllerForView implements IControllerForView {
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
         sound = true;
+        ControllerForModel.getInstance().setName();
+        Model.getInstance().setRimbDesiderati(View.getInstance().getRimbDes());
         System.out.println("velocità2 :"+v);
         spaceship = View.getInstance().getSpaceship();
         milkyWay = View.getInstance().getMilkyWay();
@@ -270,9 +272,11 @@ public class ControllerForView implements IControllerForView {
                     spaceship.setCenterX(Model.getInstance().getSpaceship().getCenterX());
                     spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());    
                 }else{
-                    
                     timeline.stop();
-                    View.getInstance().backwash();  
+                    if(Model.getInstance().getRimbDesiderati() == Model.getInstance().getRimbalziEffettuati())
+                        View.getInstance().backwashWin();  
+                    else
+                        View.getInstance().backwashLose();
                 }
             }else{//caso in cui non ci sono collisioni
                 
@@ -314,8 +318,7 @@ public class ControllerForView implements IControllerForView {
         Model.getInstance().incrementaRimbalziEffettuati();
         System.out.println(Model.getInstance().getRimbalziEffettuati());
         System.out.println("coordinate astronave : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
-        PlayerDataPane p = View.getInstance().getGameWindow().getPDP();
-        p.setRimbalziEff(Model.getInstance().getRimbalziEffettuati());
+        View.getInstance().getGameWindow().getPDP().setRimbalziEff(Model.getInstance().getRimbalziEffettuati());
         
         double dxNorm = -dx / distNum;
         double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
@@ -386,7 +389,8 @@ public class ControllerForView implements IControllerForView {
    
     @Override
     public void setDirection() {
-        
+    
+        System.out.println(View.getInstance().getNome()+"  DDDDDD");
         handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
                 if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
@@ -492,17 +496,21 @@ public class ControllerForView implements IControllerForView {
 
     @Override    
     public void restartLevel(){
-        
+        Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
+        View.getInstance().getDataPane().setName(Model.getInstance().getName());
         Resources.Music.SOUNDTRACK.play();
     }    
     
     @Override    
     public void nextLevel(int livelloCorrente){
         if(livelloCorrente != 8){
+            Model.getInstance().setRimbEffettuati(0);
             View.getInstance().openGameWindow(livelloCorrente+1);
+            View.getInstance().getDataPane().setName(Model.getInstance().getName());
             Resources.Music.SOUNDTRACK.play();
             Model.getInstance().increaseLevel();
+            
         }else{
             //TO-DO
         }

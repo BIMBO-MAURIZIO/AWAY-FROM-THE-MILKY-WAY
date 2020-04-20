@@ -54,20 +54,20 @@ public class Model implements IModel {
     
     @Override
     public int getRimbalziEffettuati() {
-        return this.gameStatus.rimbEffettuati;
+        return this.gameStatus.getRimbEff();
                 
     }
     
     
     @Override
     public void incrementaRimbalziEffettuati() {
-        this.gameStatus.rimbEffettuati++;
+        this.gameStatus.incrementaRimbEff();
     
     }
     
     @Override
     public int getCurrentLevel(){
-        return this.gameStatus.livello;
+        return this.gameStatus.getLevel();
     
     }
     
@@ -97,6 +97,32 @@ public class Model implements IModel {
     @Override
     public void setLevel(int n){
         this.gameStatus.setLevel(n);
+    }
+    
+    
+    @Override
+    public void setRimbDesiderati(int i){
+         this.gameStatus.setRimbDesiderati(i);
+     }
+    
+    @Override
+    public int getRimbDesiderati(){
+        return this.gameStatus.getRimbDes();
+    }
+    
+    @Override
+    public void setRimbEffettuati(int i){
+        this.gameStatus.setRimbEffettuati(i);
+    }
+    
+    @Override
+    public void setName(String s){
+        this.gameStatus.setName(s);
+    }
+    
+    @Override
+    public String getName(){
+        return this.gameStatus.getName();
     }
     
 }//end class

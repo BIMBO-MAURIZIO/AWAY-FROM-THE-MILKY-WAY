@@ -75,5 +75,10 @@ public class ControllerForModel implements IControllerForModel {
         return View.getInstance().getMilkyWay().getRadius();
     }
     
+    @Override
+    public void setName(){
+        Model.getInstance().setName(View.getInstance().getNome());
+    }
+    
     
 }

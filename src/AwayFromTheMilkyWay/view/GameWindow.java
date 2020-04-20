@@ -35,10 +35,10 @@ public class GameWindow extends BorderPane {
     }
     
     
-   public void setName(String nm){
+   /*public void setName(String nm){
        schermataDati.setName(nm) ;
     
-   }
+   }*/
    
    public GamePane getSchermataGioco(){
        return this.schermataGioco;

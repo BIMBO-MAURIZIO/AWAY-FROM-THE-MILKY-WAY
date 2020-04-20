@@ -32,7 +32,10 @@ public interface IView {
    public void createAlert(String window);
    public Stage getAlertStage();
    public void handleExit();
-   public void backwash();
+   public void backwashWin();
+   public void backwashLose();
+   public int getRimbDes();
+   public String getNome();
    
    
 }

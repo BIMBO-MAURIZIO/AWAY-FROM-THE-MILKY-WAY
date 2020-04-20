@@ -189,6 +189,16 @@ public class View implements IView{
         return this.game.schermataGioco.getMilkyWay();
     }
     
+    @Override
+    public int getRimbDes(){
+        return this.getDataPane().getRimbDes();
+    }
+    
+    @Override 
+    public String getNome(){
+        return this.getDataPane().getNome();
+    }
+    
     
     
     
@@ -250,7 +260,7 @@ public class View implements IView{
     
    
     @Override
-    public void backwash(){
+    public void backwashWin(){
         GamePane gm = this.game.schermataGioco;
         Timeline t = new Timeline();
         t.setCycleCount(1);
@@ -265,10 +275,32 @@ public class View implements IView{
             View.getInstance().createAlert("levelComplete.fxml");
             Resources.SoundEffects.VICTORY.play();
         });
-        
-        //Resources.SoundEffects.EXPLOSION.play();
+
         t.play();
     }
+    
+    
+    @Override
+    public void backwashLose(){
+        GamePane gm = this.game.schermataGioco;
+        Timeline t = new Timeline();
+        t.setCycleCount(1);
+        
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(0),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK1.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(100),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK2.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(200),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK3.getImage());}));
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(300),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK4.getImage());}));
+        
+        t.setOnFinished((ActionEvent e) -> {
+            Resources.Music.SOUNDTRACK.stop();
+            View.getInstance().createAlert("restartLevel.fxml");
+            Resources.SoundEffects.DEFEAT.play();
+        });
+
+        t.play();
+    }
+    
+    
     
     @Override
     public void createAlert(String window){
