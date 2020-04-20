@@ -351,7 +351,9 @@ public class ControllerForView implements IControllerForView {
                 
         System.out.println("angolo A : "+ A);
         Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY);
-        angolo = -angolo +2*A;
+        
+        angolo = angolo +2*A;
+         System.out.println("angolo C : "+ angolo);
         View.getInstance().getSpaceship().setRotate(angolo);//secondo me il prob è che la rotazione viene fatta sempre considerando la navicella dritta
         double diffX = rN.getX()- spaceship.getCenterX();
         double diffY = rN.getY()- spaceship.getCenterY();
