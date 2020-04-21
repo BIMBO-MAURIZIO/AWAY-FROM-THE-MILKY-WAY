@@ -17,9 +17,10 @@ public class Model implements IModel {
     
     private GameStatus gameStatus;
     private static Model instance;
-    private SpaceshipModel spaceship ;
-    private MilkyWayModel milkyWay;
-    private Planets pianeti = new Planets();
+    private Circle spaceship ;
+    private Circle milkyWay;
+    private PlanetsModel pianeti;
+    private fixObstaclesModel ostacoliFissi;
     
 
 
@@ -27,8 +28,8 @@ public class Model implements IModel {
         //DOMANDA: ma è necessario che esistano le classi SpaceshipModel e MilkyWayModel? questi non potrebber essere semplici cerchi?
         //DOMANDA: secondo me metodi sotto dovrebbero venire dal ControllerForModel. Infatti i controller dovrebbero poter prendere info da dove gli pare, ma il model
         //dovrebbe richiamare solo il controllerForModel e la View solo il ControllerForView. Quindi da riveder di cambiare questi metodi.
-        spaceship = new SpaceshipModel(ControllerForModel.getInstance().getSpaceshipCenterX(),ControllerForModel.getInstance().getSpaceshipCenterY(),45);
-        milkyWay = new MilkyWayModel(ControllerForModel.getInstance().getMWCenterX(),ControllerForModel.getInstance().getMWCenterY(),ControllerForModel.getInstance().getMWRadius());
+        spaceship = new Circle(ControllerForModel.getInstance().getSpaceshipCenterX(),ControllerForModel.getInstance().getSpaceshipCenterY(),45);
+        milkyWay = new Circle(ControllerForModel.getInstance().getMWCenterX(),ControllerForModel.getInstance().getMWCenterY(),ControllerForModel.getInstance().getMWRadius());
         gameStatus = new GameStatus();
         
     }
@@ -43,9 +44,15 @@ public class Model implements IModel {
     
     @Override
     public Circle[] scanPlanets(int level) throws IOException{
+        pianeti  = new PlanetsModel();
         return pianeti.scanning(level);
     }
     
+    @Override
+    public Circle[] scanFixObstacles(int level) throws IOException{
+        ostacoliFissi  = new fixObstaclesModel();
+        return ostacoliFissi.scanning(level);
+    }
     
     
     
@@ -80,7 +87,7 @@ public class Model implements IModel {
     
     
     @Override
-    public MilkyWayModel getMilkyWay(){
+    public Circle getMilkyWay(){
         return this.milkyWay;
     }
     

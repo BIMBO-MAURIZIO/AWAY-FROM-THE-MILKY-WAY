@@ -6,7 +6,6 @@
 package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
-import AwayFromTheMilkyWay.model.SpaceshipModel;
 import AwayFromTheMilkyWay.view.View;
 import javafx.scene.shape.Circle;
 

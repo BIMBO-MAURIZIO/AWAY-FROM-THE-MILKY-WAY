@@ -20,7 +20,7 @@ import javafx.scene.shape.Circle;
  */
 public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dovràconvivere nella stessa scena con la playerDataPane.
     
-    private Circle spaceship, planet1, planet2, milkyWay;  
+    private Circle spaceship, planet1, planet2, milkyWay, fixObstacle1, fixObstacle2,movingObstacle1;  
    
     public GamePane(){//avevo intenzione di mettere qui la dipendenza dal livello così da cambiare lo scenario in base al livello automaticamente
         super();
@@ -36,46 +36,74 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         
         if(levelNumber == 1){
             
-              spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
+                    spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
             
-                      planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1X")),
+                    planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet1Radius")));
-                      planet1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
-                      planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2X")),
+                    planet1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
+                    planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "planet2Radius")));
-                      planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
-                      spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                    planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
                       
-                      milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayX")),
+                    milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayY")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "milkyWayRadius")));
-                      milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
-                      this.getChildren().addAll(spaceship,planet1,planet2,milkyWay);
+                    milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
+                    
+                    fixObstacle1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1Radius")));
+         
+                    
+                    fixObstacle1.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                    
+                    movingObstacle1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "movingObstacle1X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "movingObstacle1Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "movingObstacle1Radius")));
+                    
+                    movingObstacle1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
+                    
+                    this.getChildren().addAll(spaceship,planet1,planet2,milkyWay,fixObstacle1,movingObstacle1);
+                    
+                    
                 
         }else if(levelNumber == 2){   
                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
             
-                      planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1X")),
+                    planet1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet1Radius")));
-                      planet1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
-                      planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2X")),
+                    planet1.setFill(new ImagePattern(Resources.GeneralImages.MERCURIO.getImage()));
+                    planet2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2X")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Y")),
                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "planet2Radius")));
-                      planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
-                      spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
-                      milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayX")),
+                    planet2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                    milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayY")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "milkyWayRadius")));
-                      milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
-                      this.getChildren().addAll(spaceship,planet1,planet2,milkyWay);
-            }
+                    milkyWay.setFill(new ImagePattern(Resources.GeneralImages.MILKYWAY.getImage()));
+                     
+                      
+                    fixObstacle1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle1Radius")));
+                      
+                    fixObstacle1.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                    fixObstacle2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2Radius")));
+                      
+                    fixObstacle2.setFill(new ImagePattern(Resources.GeneralImages.GIOVE.getImage()));
+                    this.getChildren().addAll(spaceship,planet1,planet2,milkyWay,fixObstacle1,fixObstacle2);
+        }
                       
             
         

@@ -7,7 +7,6 @@ package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
 import AwayFromTheMilkyWay.utils.Resources;
-import AwayFromTheMilkyWay.view.PlayerDataPane;
 import AwayFromTheMilkyWay.view.View;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -29,10 +28,10 @@ import javafx.util.Duration;
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
     private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY,angolo;
-    private Circle spaceship,milkyWay,cir1,cir2,cir3,cir4,varCir;
+    private Circle spaceship,milkyWay,pl1,pl2,pl3,pl4,varCir,fOb1,fOb2,mOb1;
     private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
-    private Circle[] a;
+    private Circle[] a,b;
     
     Line line;
     
@@ -48,7 +47,7 @@ public class ControllerForView implements IControllerForView {
     private double t = 0;
     private double x,y,magnitude,xstab,ystab,variableSpaceshipX,variableSpaceshipY;
     private Point2D shipSpeed;
-    private Timeline timeline;
+    private Timeline timeline,timelineObs;
     private boolean sound;
     //AnimationTimer a;
     
@@ -140,14 +139,15 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void movimento(double v){
         
-        Configuration();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
+        ConfigurationPlanets();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
+        ConfigurationFixObstacles();
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
         sound = true;
         ControllerForModel.getInstance().setName();
         Model.getInstance().setRimbDesiderati(View.getInstance().getRimbDes());
         System.out.println("velocità2 :"+v);
-        spaceship = View.getInstance().getSpaceship();
+        //spaceship = View.getInstance().getSpaceship();
         milkyWay = View.getInstance().getMilkyWay();
         System.out.println(spaceship.getCenterX());
         System.out.println(spaceship.getCenterY());
@@ -165,15 +165,7 @@ public class ControllerForView implements IControllerForView {
         xstab = x / magnitude;
         ystab = y / magnitude;
         t = 1.00;
-        /*
-        a = new AnimationTimer(){
-            @Override
-            public void handle(long now){
-                 move(xstab,ystab,2);
-            }
-        
-        };
-        a.start();*/
+
         
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
@@ -196,11 +188,11 @@ public class ControllerForView implements IControllerForView {
             && variableSpaceshipX - SPACESHIPRADIUS > 2 && variableSpaceshipY - SPACESHIPRADIUS > 2 ){//condizioni per mantenere la navicella dentro ai bordi
             double dx,dy,distNum;
 
-            if(cir1 != null && Math.sqrt((variableSpaceshipX - cir1.getCenterX())*(variableSpaceshipX - cir1.getCenterX())+(variableSpaceshipY - cir1.getCenterY())*(variableSpaceshipY - cir1.getCenterY()))<= SPACESHIPRADIUS+cir1.getRadius() ){
+            if(pl1 != null && Math.sqrt((variableSpaceshipX - pl1.getCenterX())*(variableSpaceshipX - pl1.getCenterX())+(variableSpaceshipY - pl1.getCenterY())*(variableSpaceshipY - pl1.getCenterY()))<= SPACESHIPRADIUS+pl1.getRadius() ){
                 Resources.SoundEffects.PLANETHIT.play();
-                varCir = cir1;
-                double dx1 = variableSpaceshipX - cir1.getCenterX();
-                double dy1 =  variableSpaceshipY - cir1.getCenterY();
+                varCir = pl1;
+                double dx1 = variableSpaceshipX - pl1.getCenterX();
+                double dy1 =  variableSpaceshipY - pl1.getCenterY();
                 double distNum1 = Math.sqrt(dx1*dx1+ dy1*dy1);
                 dx = dx1;
                 dy = dy1;
@@ -210,11 +202,11 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipX = Model.getInstance().getSpaceship().getCenterX();
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
 
-            }else if (cir2 != null && Math.sqrt((variableSpaceshipX - cir2.getCenterX())*(variableSpaceshipX - cir2.getCenterX())+(variableSpaceshipY - cir2.getCenterY())*(variableSpaceshipY - cir2.getCenterY()))<= SPACESHIPRADIUS+cir2.getRadius() ){
+            }else if (pl2 != null && Math.sqrt((variableSpaceshipX - pl2.getCenterX())*(variableSpaceshipX - pl2.getCenterX())+(variableSpaceshipY - pl2.getCenterY())*(variableSpaceshipY - pl2.getCenterY()))<= SPACESHIPRADIUS+pl2.getRadius() ){
                 Resources.SoundEffects.PLANETHIT.play();
-                varCir = cir2;
-                double dx2 = variableSpaceshipX - cir2.getCenterX();
-                double dy2 =  variableSpaceshipY - cir2.getCenterY();
+                varCir = pl2;
+                double dx2 = variableSpaceshipX - pl2.getCenterX();
+                double dy2 =  variableSpaceshipY - pl2.getCenterY();
                 double distNum2 = Math.sqrt(dx2*dx2+ dy2*dy2);
                 dx = dx2;
                 dy = dy2;
@@ -224,11 +216,11 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipX = Model.getInstance().getSpaceship().getCenterX();
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
             
-            }else if(cir3 != null && Math.sqrt((variableSpaceshipX - cir3.getCenterX())*(variableSpaceshipX - cir3.getCenterX())+(variableSpaceshipY - cir3.getCenterY())*(variableSpaceshipY - cir3.getCenterY()))<= SPACESHIPRADIUS+cir3.getRadius() ){
+            }else if(pl3 != null && Math.sqrt((variableSpaceshipX - pl3.getCenterX())*(variableSpaceshipX - pl3.getCenterX())+(variableSpaceshipY - pl3.getCenterY())*(variableSpaceshipY - pl3.getCenterY()))<= SPACESHIPRADIUS+pl3.getRadius() ){
                 Resources.SoundEffects.PLANETHIT.play();
-                varCir = cir3;
-                double dx3 = variableSpaceshipX - cir3.getCenterX();
-                double dy3 =  variableSpaceshipY - cir3.getCenterY();
+                varCir = pl3;
+                double dx3 = variableSpaceshipX - pl3.getCenterX();
+                double dy3 =  variableSpaceshipY - pl3.getCenterY();
                 double distNum3 = Math.sqrt(dx3*dx3+ dy3*dy3);
                 dx = dx3;
                 dy = dy3;
@@ -238,11 +230,11 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipX = Model.getInstance().getSpaceship().getCenterX();
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
             
-            }else if(cir4 != null && Math.sqrt((variableSpaceshipX - cir4.getCenterX())*(variableSpaceshipX - cir4.getCenterX())+(variableSpaceshipY - cir4.getCenterY())*(variableSpaceshipY - cir4.getCenterY()))<= SPACESHIPRADIUS+cir4.getRadius() ){ 
+            }else if(pl4 != null && Math.sqrt((variableSpaceshipX - pl4.getCenterX())*(variableSpaceshipX - pl4.getCenterX())+(variableSpaceshipY - pl4.getCenterY())*(variableSpaceshipY - pl4.getCenterY()))<= SPACESHIPRADIUS+pl4.getRadius() ){ 
                 Resources.SoundEffects.PLANETHIT.play();
-                varCir = cir4;
-                double dx4 = variableSpaceshipX - cir4.getCenterX();
-                double dy4 =  variableSpaceshipY - cir4.getCenterY();
+                varCir = pl4;
+                double dx4 = variableSpaceshipX - pl4.getCenterX();
+                double dy4 =  variableSpaceshipY - pl4.getCenterY();
                 double distNum4 = Math.sqrt(dx4*dx4+ dy4*dy4);
                 dx = dx4;
                 dy =  dy4;
@@ -251,6 +243,12 @@ public class ControllerForView implements IControllerForView {
                 bounce(dx,dy,distNum,v);
                 startSpaceshipX = Model.getInstance().getSpaceship().getCenterX();
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
+            }else if((fOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb1.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb1.getCenterY(), 2)) < SPACESHIPRADIUS+fOb1.getRadius()) ||
+                     (fOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb2.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb2.getCenterY(), 2)) < SPACESHIPRADIUS+fOb2.getRadius())){
+                timeline.stop();
+                View.getInstance().explosion();
+                
+                
             }else if(Math.sqrt((variableSpaceshipX - milkyWay.getCenterX())*(variableSpaceshipX - milkyWay.getCenterX())+(variableSpaceshipY - milkyWay.getCenterY())*(variableSpaceshipY - milkyWay.getCenterY())) < milkyWay.getRadius()){ //caso di vittoria del gioco   
                   //la condizione nell'if impne che appena la distanza fra i due cerchi è minore del raggio della via lattea il giocatore ha vinto
                 
@@ -295,10 +293,14 @@ public class ControllerForView implements IControllerForView {
                 spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());
                 
                 if (t > 0.1)//se t avesse dovuto raggiungere 0 la decellerazione sarebbe stata troppo lenta
-                    t = t-0.0009;
-                else
+                    t = t-0.001;
+                else{
                     timeline.stop();
+                    Resources.Music.SOUNDTRACK.stop();
+                    View.getInstance().createAlert("restartLevel.fxml");
+                    Resources.SoundEffects.DEFEAT.play();
                 }
+            }
         
         }else { 
             System.out.println("centri astronave : "+spaceship.getCenterX()+" "+spaceship.getCenterY() );
@@ -342,18 +344,19 @@ public class ControllerForView implements IControllerForView {
         double B = vect1.angle(vect2);
         
         Point2D s = new Rotate(-B,0,0).transform(Nvect2.getX(), Nvect2.getY());
-        
-        //if(startSpaceshipX != cir.getCenterX() || startSpaceshipY != cir.getCenterY())
-            if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY()))
-                A=-A;
-                
+        angolo = angolo + (180 -2*Math.abs(A));
+
+        if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY())){
+            A=-A;
+            angolo = angolo - 2*(180 -2*Math.abs(A)); //il 2 sta per togliere il(180 -2 ec.) che avevamo sommato sopra
+        }    
                
         //commento        
         System.out.println("angolo A : "+ A);
         Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY);
         
-        angolo = angolo +2*A;
-         System.out.println("angolo C : "+ angolo);
+       
+        System.out.println("angolo C : "+ angolo);
         View.getInstance().getSpaceship().setRotate(angolo);//secondo me il prob è che la rotazione viene fatta sempre considerando la navicella dritta
         double diffX = rN.getX()- spaceship.getCenterX();
         double diffY = rN.getY()- spaceship.getCenterY();
@@ -403,7 +406,8 @@ public class ControllerForView implements IControllerForView {
                     View.getInstance().getGamePane().getChildren().remove(line);
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
-                angolo = Math.toDegrees(Math.atan2(varMousePositionY-100,varMousePositionX-100));
+                spaceship = View.getInstance().getSpaceship();
+                angolo = Math.toDegrees(Math.atan2(varMousePositionY-spaceship.getCenterY(),varMousePositionX-spaceship.getCenterX()));
                 View.getInstance().getSpaceship().setRotate(angolo);
                 if(varMousePositionX<=1280 && varMousePositionY<= 718){
                     line = new Line(View.getInstance().getSpaceship().getCenterX(),View.getInstance().getSpaceship().getCenterY(),varMousePositionX,varMousePositionY);
@@ -483,7 +487,7 @@ public class ControllerForView implements IControllerForView {
     }
     //aaa
     @Override
-    public void Configuration(){//cominica al controller quanti e quali pineti ci sono nel livello
+    public void ConfigurationPlanets(){//cominica al controller quanti e quali pineti ci sono nel livello
         a = new Circle[4];
         int cl = Model.getInstance().getCurrentLevel();
         try {
@@ -494,11 +498,27 @@ public class ControllerForView implements IControllerForView {
         } catch (IOException ex) {
             Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
         }
-       cir1 = a[0];
-       cir2 = a[1];
-       cir3 = a[2];
-       cir4 =a[3];
+       pl1 = a[0];
+       pl2 = a[1];
+       pl3 = a[2];
+       pl4 =a[3];
         
+    }
+    
+    @Override
+    public void ConfigurationFixObstacles(){//cominica al controller quanti e quali ostacoli ci sono nel livello
+        b = new Circle[2];
+        int cl = Model.getInstance().getCurrentLevel();
+        try {
+            b[0] = Model.getInstance().scanFixObstacles(cl)[0];
+            b[1] = Model.getInstance().scanFixObstacles(cl)[1];
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       fOb1 = b[0];
+       fOb2 = b[1];
+      
     }
     
 
@@ -522,7 +542,33 @@ public class ControllerForView implements IControllerForView {
         }else{
             //TO-DO
         }
-    }   
+    } 
+    
+    @Override
+    public void moveObstacles(){
+        if(mOb1 != null){
+             timelineObs = new Timeline(new KeyFrame(
+                Duration.seconds(0.025), // ogni quanto va chiamata la funzione
+                x -> moveObsVer())
+                
+            );
+            timelineObs.setCycleCount(Timeline.INDEFINITE);
+            timelineObs.play();
+        }
+    }
+    
+    @Override
+    public void moveObsVer(){
+        double orientation = 1;
+        if(mOb1.getCenterY() < 100 || mOb1.getCenterY() > 620)
+            orientation = -orientation;
+        double trY = orientation * 0.5;
+        mOb1.setTranslateY(trY);
+       
+        ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+trY);
+                
+        mOb1.setCenterY(Model.getInstance().getSpaceship().getCenterY());
+    }
         
         
         

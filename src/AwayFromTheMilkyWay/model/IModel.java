@@ -18,8 +18,9 @@ public interface IModel {
     public int getRimbalziEffettuati();
     public Circle getSpaceship();
     public Circle[] scanPlanets(int level) throws IOException;
+    public Circle[] scanFixObstacles(int level) throws IOException;
     public int getCurrentLevel();
-    public MilkyWayModel getMilkyWay();
+    public Circle getMilkyWay();
     public void increaseLevel();
     public void decreaseLevel();
     public void setLevel(int n);

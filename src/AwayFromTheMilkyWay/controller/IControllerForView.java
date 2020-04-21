@@ -27,7 +27,10 @@ public interface IControllerForView {
     public void pauseAnimations();
     public void playAnimations();
     public double truncate(double a);
-    public void Configuration();
+    public void ConfigurationPlanets();
+    public void ConfigurationFixObstacles();
+    public void moveObstacles();
+    public void moveObsVer();
     public void restartLevel();
     public void nextLevel(int livelloCorrente);
     public void setCurrentLevel(int level);

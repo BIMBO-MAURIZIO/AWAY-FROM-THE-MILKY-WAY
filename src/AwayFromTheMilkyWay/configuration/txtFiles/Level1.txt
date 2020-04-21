@@ -22,3 +22,15 @@ milkyWayRadius
 70
 rimbalziDes
 1
+fixObstacle1X
+400
+fixObstacle1Y
+400
+fixObstacle1Radius
+30
+movingObstacle1X
+1100
+movingObstacle1Y
+100
+movingObstacle1Radius
+40

@@ -13,14 +13,14 @@ import javafx.scene.shape.Circle;
  *
  * @author giorg
  */
-public class Planets {
+public class PlanetsModel {
     private Circle pl1;
     private Circle pl2;
     private Circle pl3;
     private Circle pl4;
     Circle[] a = new Circle[4];
     
-    public Planets(){}
+    public PlanetsModel(){}
     
     public Circle[] scanning(int level) throws IOException{
        if(level == 1){

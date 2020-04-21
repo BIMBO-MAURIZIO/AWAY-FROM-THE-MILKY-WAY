@@ -5,20 +5,10 @@
  */
 package AwayFromTheMilkyWay.model;
 
-import javafx.scene.shape.Circle;
-
 /**
  *
  * @author giorg
  */
-public class SpaceshipModel extends Circle{
+public class movingObstaclesModel {
     
-    
-    public SpaceshipModel(double x, double y, double radius ) {       
-        super(x,y,radius);
-              
-    }
-    
-    
-
 }
