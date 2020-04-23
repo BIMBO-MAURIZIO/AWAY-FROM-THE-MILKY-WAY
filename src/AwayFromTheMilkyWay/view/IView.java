@@ -36,6 +36,8 @@ public interface IView {
    public void backwashLose();
    public int getRimbDes();
    public String getNome();
+   public Circle getMovingObstacle1();
+   public Circle getMovingObstacle2();
    
    
 }

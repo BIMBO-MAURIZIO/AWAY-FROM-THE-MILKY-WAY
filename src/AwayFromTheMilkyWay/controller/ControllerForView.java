@@ -27,11 +27,11 @@ import javafx.util.Duration;
  */
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
-    private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY,angolo;
-    private Circle spaceship,milkyWay,pl1,pl2,pl3,pl4,varCir,fOb1,fOb2,mOb1;
+    private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY,angolo,orientation,orientation2;
+    private Circle spaceship,milkyWay,pl1,pl2,pl3,pl4,varCir,fOb1,fOb2,mOb1,mOb2,movingObs1,movingObs2;
     private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
-    private Circle[] a,b;
+    private Circle[] a,b,c;
     
     Line line;
     
@@ -47,7 +47,7 @@ public class ControllerForView implements IControllerForView {
     private double t = 0;
     private double x,y,magnitude,xstab,ystab,variableSpaceshipX,variableSpaceshipY;
     private Point2D shipSpeed;
-    private Timeline timeline,timelineObs;
+    private Timeline timeline,timelineObs1,timelineObs2;
     private boolean sound;
     //AnimationTimer a;
     
@@ -141,6 +141,9 @@ public class ControllerForView implements IControllerForView {
         
         ConfigurationPlanets();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
         ConfigurationFixObstacles();
+        ConfigurationMovingObstacles();
+        moveObstacles();
+        
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
         sound = true;
@@ -246,6 +249,18 @@ public class ControllerForView implements IControllerForView {
             }else if((fOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb1.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb1.getCenterY(), 2)) < SPACESHIPRADIUS+fOb1.getRadius()) ||
                      (fOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb2.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb2.getCenterY(), 2)) < SPACESHIPRADIUS+fOb2.getRadius())){
                 timeline.stop();
+                View.getInstance().explosion();
+                
+            }else if(mOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - Model.getInstance().getOstacoloMobile1().getCenterX(),2)+ Math.pow(variableSpaceshipY - Model.getInstance().getOstacoloMobile1().getCenterY(), 2)) < SPACESHIPRADIUS + Model.getInstance().getOstacoloMobile1().getRadius() ||
+                     mOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - Model.getInstance().getOstacoloMobile2().getCenterX(),2)+ Math.pow(variableSpaceshipY - Model.getInstance().getOstacoloMobile2().getCenterY(), 2)) < SPACESHIPRADIUS + Model.getInstance().getOstacoloMobile2().getRadius()){
+                  
+                timeline.stop();
+                if(mOb1 != null){
+                    timelineObs1.stop();
+                }
+                if(mOb2 != null){
+                    timelineObs2.stop();
+                }
                 View.getInstance().explosion();
                 
                 
@@ -398,8 +413,7 @@ public class ControllerForView implements IControllerForView {
    
     @Override
     public void setDirection() {
-    
-        System.out.println(View.getInstance().getNome()+"  DDDDDD");
+  
         handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
                 if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
@@ -467,7 +481,10 @@ public class ControllerForView implements IControllerForView {
     public void pauseAnimations(){
         if(this.timeline != null)
             this.timeline.pause();
-        //this.a.stop();
+        if(mOb1 != null)
+            timelineObs1.stop();
+        if(mOb2 != null)
+            timelineObs2.stop();
     }
     
     @Override
@@ -521,9 +538,26 @@ public class ControllerForView implements IControllerForView {
       
     }
     
+    @Override
+    public void ConfigurationMovingObstacles(){//cominica al controller quanti e quali ostacoli ci sono nel livello
+        c = new Circle[2];
+        int cl = Model.getInstance().getCurrentLevel();
+        try {
+            c[0] = Model.getInstance().scanMovingObstacles(cl)[0];
+            c[1] = Model.getInstance().scanMovingObstacles(cl)[1];
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       mOb1 = c[0];
+       mOb2 = c[1];
+      
+    }
+    
 
     @Override    
     public void restartLevel(){
+        
         Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
@@ -547,27 +581,55 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void moveObstacles(){
         if(mOb1 != null){
-             timelineObs = new Timeline(new KeyFrame(
+            orientation = 1;
+            System.out.println("ENTRO QUIIIIIII");
+            movingObs1 = View.getInstance().getMovingObstacle1();
+            timelineObs1 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
                 x -> moveObsVer())
                 
             );
-            timelineObs.setCycleCount(Timeline.INDEFINITE);
-            timelineObs.play();
+            timelineObs1.setCycleCount(Timeline.INDEFINITE);
+            timelineObs1.play();
+        }
+        
+        if(mOb2 != null){
+            orientation2 = 1;
+            movingObs2 = View.getInstance().getMovingObstacle2();
+            timelineObs2 = new Timeline(new KeyFrame(
+                Duration.seconds(0.025), // ogni quanto va chiamata la funzione
+                x -> moveObsOri())
+                
+            );
+            timelineObs2.setCycleCount(Timeline.INDEFINITE);
+            timelineObs2.play();
         }
     }
-    
+    //mob1 è il modello metre movingobs1 è l'oggetto nella view, in pratico mob 1 non serve a nulla, serve solo a verificare che in quel livello l'oggetto ci sia o meno
     @Override
     public void moveObsVer(){
-        double orientation = 1;
-        if(mOb1.getCenterY() < 100 || mOb1.getCenterY() > 620)
+        if(Model.getInstance().getOstacoloMobile1().getCenterY() < 100 || Model.getInstance().getOstacoloMobile1().getCenterY() > 620)
             orientation = -orientation;
-        double trY = orientation * 0.5;
-        mOb1.setTranslateY(trY);
+        double trY = orientation * 5;
+        movingObs1.setTranslateY(trY);
        
-        ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+trY);
-                
-        mOb1.setCenterY(Model.getInstance().getSpaceship().getCenterY());
+        ControllerForModel.getInstance().setObs1CenterY(movingObs1.getCenterY()+trY);
+        
+        movingObs1.setCenterY(Model.getInstance().getOstacoloMobile1().getCenterY());
+    }
+    
+    
+    @Override
+    public void moveObsOri(){
+       
+        if(Model.getInstance().getOstacoloMobile2().getCenterX() < 100 || Model.getInstance().getOstacoloMobile2().getCenterX() > 800)
+            orientation2 = -orientation2;
+        double trX = orientation2 * 5;
+        movingObs2.setTranslateX(trX);
+
+        ControllerForModel.getInstance().setObs2CenterX(movingObs2.getCenterX()+trX);
+        
+        movingObs2.setCenterX(Model.getInstance().getOstacoloMobile2().getCenterX());
     }
         
         

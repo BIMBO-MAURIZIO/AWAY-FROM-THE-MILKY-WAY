@@ -17,8 +17,8 @@ public class Model implements IModel {
     
     private GameStatus gameStatus;
     private static Model instance;
-    private Circle spaceship ;
-    private Circle milkyWay;
+    private Circle spaceship,milkyWay,ostacoloMobile1,ostacoloMobile2; 
+    private movingObstaclesModel ostacoliMobili;
     private PlanetsModel pianeti;
     private fixObstaclesModel ostacoliFissi;
     
@@ -54,7 +54,13 @@ public class Model implements IModel {
         return ostacoliFissi.scanning(level);
     }
     
-    
+    @Override
+    public Circle[] scanMovingObstacles(int level) throws IOException{
+        ostacoliMobili = new movingObstaclesModel();//non va bene non sa quale dei due ostacoli creare
+        ostacoloMobile1 = ostacoliMobili.scanning(level)[0];
+        ostacoloMobile2 = ostacoliMobili.scanning(level)[1];
+        return ostacoliMobili.scanning(level);
+    }
     
     
     //metodi getter di GameStatus
@@ -130,6 +136,20 @@ public class Model implements IModel {
     @Override
     public String getName(){
         return this.gameStatus.getName();
+    }
+    
+  
+    @Override
+    public Circle getOstacoloMobile1(){
+        return this.ostacoloMobile1;
+    }
+    
+  
+    
+    
+    @Override
+    public Circle getOstacoloMobile2(){
+        return this.ostacoloMobile2;
     }
     
 }//end class

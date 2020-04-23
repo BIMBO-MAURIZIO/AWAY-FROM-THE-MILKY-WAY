@@ -29,8 +29,10 @@ public interface IControllerForView {
     public double truncate(double a);
     public void ConfigurationPlanets();
     public void ConfigurationFixObstacles();
+     public void ConfigurationMovingObstacles();
     public void moveObstacles();
     public void moveObsVer();
+    public void moveObsOri();
     public void restartLevel();
     public void nextLevel(int livelloCorrente);
     public void setCurrentLevel(int level);

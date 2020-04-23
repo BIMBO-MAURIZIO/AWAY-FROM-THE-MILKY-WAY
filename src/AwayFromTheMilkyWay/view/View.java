@@ -185,6 +185,16 @@ public class View implements IView{
     }
     
     @Override
+    public Circle getMovingObstacle1(){
+        return this.game.schermataGioco.getMO1();
+    }
+    @Override
+    public Circle getMovingObstacle2(){
+        return this.game.schermataGioco.getMO2();
+    }
+    
+    
+    @Override
     public Circle getMilkyWay(){
         return this.game.schermataGioco.getMilkyWay();
     }
@@ -204,6 +214,7 @@ public class View implements IView{
     
     @Override
     public void explosion(){
+        
         GamePane gm = this.game.schermataGioco;
         Timeline t = new Timeline();
         t.setCycleCount(1);
@@ -247,6 +258,7 @@ public class View implements IView{
         
         
         t.setOnFinished((ActionEvent e) -> {
+            ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
             View.getInstance().createAlert("restartLevel.fxml");
             Resources.SoundEffects.DEFEAT.play();
@@ -271,6 +283,7 @@ public class View implements IView{
         t.getKeyFrames().add(new KeyFrame(Duration.millis(300),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK4.getImage());}));
         
         t.setOnFinished((ActionEvent e) -> {
+            ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
             View.getInstance().createAlert("levelComplete.fxml");
             Resources.SoundEffects.VICTORY.play();
@@ -292,6 +305,7 @@ public class View implements IView{
         t.getKeyFrames().add(new KeyFrame(Duration.millis(300),(ActionEvent event) ->{gm.setSpaceshipIm(Resources.Backwash.BCK4.getImage());}));
         
         t.setOnFinished((ActionEvent e) -> {
+            ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
             View.getInstance().createAlert("restartLevel.fxml");
             Resources.SoundEffects.DEFEAT.play();

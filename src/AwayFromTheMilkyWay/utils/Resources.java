@@ -21,12 +21,20 @@ public class Resources {
     {   
         MERCURIO("media/images/mercurio.png"),
         GIOVE("media/images/giove.png"),
+        NETTUNO("media/images/nettuno.png"),
+        MARTE("media/images/marte.png"),
+        URANIO("media/images/uranio.png"),
+        TERRA("media/images/terra.png"),
         MILKYWAY("media/images/milkyWay.png"),
         GRID("media/images/grid.png"),
         SPACEMAN("media/images/spaceMan.png"),
         SPACEMANICON("media/images/spaceManIcon.png"),
         SPACESHIP("media/images/spaceship.png"),
-        BACKGROUND("media/images/background.jpg");
+        BACKGROUND("media/images/background.jpg"),
+        OBSTACLE1("media/images/obstacle1.png"),
+        ALIEN("media/images/alien.png"),
+        ALIEN2("media/images/alien2.png"),
+        OBSTACLE2("media/images/obstacle2.png");
         private Image img = null;
         
         GeneralImages(String fileSrc)

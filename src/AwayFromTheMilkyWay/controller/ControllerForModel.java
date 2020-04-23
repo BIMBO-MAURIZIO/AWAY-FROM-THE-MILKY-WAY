@@ -38,10 +38,22 @@ public class ControllerForModel implements IControllerForModel {
         Model.getInstance().getSpaceship().setCenterX(x);
     
     }
+    
+    @Override
+    public void setObs1CenterY (double y){
+        Model.getInstance().getOstacoloMobile1().setCenterY(y);
+    
+    }
 
     @Override
     public void setSpaceshipCenterY (double y){
         Model.getInstance().getSpaceship().setCenterY(y);
+    
+    }
+    
+    @Override
+    public void setObs2CenterX (double x){
+        Model.getInstance().getOstacoloMobile2().setCenterX(x);
     
     }
     

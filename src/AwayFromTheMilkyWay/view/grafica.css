@@ -1,0 +1,63 @@
+.background {
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/sfondoSenzaNulla.png');
+}
+
+ 
+
+.button {
+    -fx-font-family: "AR CENA";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
+}
+   
+#labelTitolo {
+    -fx-font-family: "AR CENA";
+    -fx-font-size: 77;
+    -fx-text-fill: #184ddd;
+    -fx-effect: dropshadow(three-pass-box, #e1e3ea, 10, 0.98, 1, 1);
+    
+}
+#label{
+    -fx-font-family: "AR CENA";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+    -fx-effect: dropshadow(three-pass-box,#e1e3ea, 10, 0.7, 0, 0);
+}
+
+ 
+
+
+#buttonBack{
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/backIconBLU.png');
+}
+
+ 
+
+#textfield{
+    -fx-effect: dropshadow(one-pass-box, #e1e3ea, 10, 0.7, 0, 0);   
+}
+
+ 
+
+#textfield:focused {
+    -fx-font-family: "AR CENA";
+    -fx-font-size: 21;
+    -fx-text-fill: #184ddd;
+}
+
+#effetti{
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOn.png');
+}
+
+#volume{
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOn.png');
+}
+
+#istruzioni{
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/instructions.png');
+}

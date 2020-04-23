@@ -35,9 +35,6 @@ public class SchermataInizialeController implements Initializable {
         View.getInstance().changeCurrentWindow("caricaPartita.fxml");
     }
     
-    public void opzioni() throws IOException{
-        View.getInstance().changeCurrentWindow("opzioni.fxml");
-    }
     
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();

@@ -19,6 +19,8 @@ public interface IControllerForModel {
    public double getMWCenterY();
    public double getMWRadius();
    public void setName();
+   public void setObs1CenterY (double x);
+   public void setObs2CenterX (double x);
    
    
 }

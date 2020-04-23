@@ -19,6 +19,7 @@ public interface IModel {
     public Circle getSpaceship();
     public Circle[] scanPlanets(int level) throws IOException;
     public Circle[] scanFixObstacles(int level) throws IOException;
+    public Circle[] scanMovingObstacles(int level) throws IOException;
     public int getCurrentLevel();
     public Circle getMilkyWay();
     public void increaseLevel();
@@ -29,5 +30,7 @@ public interface IModel {
     public void setRimbEffettuati(int i);
     public void setName(String s);
     public String getName();
+    public Circle getOstacoloMobile1();
+    public Circle getOstacoloMobile2();
     
 }//end class

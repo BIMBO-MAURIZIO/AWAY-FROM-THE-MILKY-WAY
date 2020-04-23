@@ -22,15 +22,10 @@ public class fixObstaclesModel {
     
     public Circle[] scanning(int level) throws IOException{
         if(level == 1){
-                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1X")),
-                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1Y")),
-                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "fixObstacle1Radius")));
-                      
-                      
-                
-                
-                        a[0] = fo1;
+
+                        a[0] = null;
                         a[1] = null;
+                       
                         return a;
                       
         }else if(level == 2){           
@@ -38,17 +33,61 @@ public class fixObstaclesModel {
                                                 Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle1Y")),
                                                 Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle1Radius")));
                       
-                        fo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2X")),
-                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2Y")),
-                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "fixObstacle2Radius")));
+                        
+                        a[0] = fo1;
+                        a[1] = null;
+                       
+                        return a;
+       }else if(level == 3){           
+                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "fixObstacle1Radius")));
+                      
+                
+                        a[0] = fo1;
+                        a[1] = null;
+                       
+                        return a;
+       }else if(level == 4){           
+                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle1Radius")));
+                      
+                        fo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "fixObstacle2Radius")));
                 
                 
                         a[0] = fo1;
                         a[1] = fo2;
+                       
                         return a;
-       }   
+       }else if(level == 5){           
+                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle1Radius")));
+                      
+                        fo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "fixObstacle2Radius")));
+                
+                
+                        a[0] = fo1;
+                        a[1] = fo2;
+                       
+                        return a;
+       }else if(level == 6){           
+                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "fixObstacle1Radius")));
+                      
+                        
+                        a[0] = fo1;
+                        a[1] = null;
+                       
+                        return a;            
             
-        
+       } 
        return a;
     }
     

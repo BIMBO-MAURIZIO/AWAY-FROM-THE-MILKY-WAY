@@ -135,7 +135,25 @@ public class PlayerDataPane extends GridPane {
         }else if(level == 2){
             setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "rimbalziDes")));
             setLevel(level);
-        }
+        }else if(level == 3){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "rimbalziDes")));
+            setLevel(level);
+        }else if(level == 4){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "rimbalziDes")));
+            setLevel(level);
+        }else if(level == 5){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "rimbalziDes")));
+            setLevel(level);
+        }else if(level == 6){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "rimbalziDes")));
+            setLevel(level);
+        }/*else if(level == 7){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "rimbalziDes")));
+            setLevel(level);
+        }else if(level == 8){
+            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "rimbalziDes")));
+            setLevel(level);
+        }*/
     }
     
     
