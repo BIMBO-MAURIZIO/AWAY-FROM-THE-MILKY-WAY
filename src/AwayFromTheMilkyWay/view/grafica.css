@@ -1,11 +1,15 @@
-.background {
+#background {
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/sfondoSenzaNulla.png');
 }
 
  
 
-.button {
-    -fx-font-family: "AR CENA";
+#button {
+    -fx-min-height: 70;
+    -fx-min-width: 250;
+    -fx-max-height: 70;
+    -fx-max-width: 250;
+    -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
     -fx-background-color: #e1e3ea;
@@ -14,16 +18,38 @@
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
-   
+
+ 
+
+#start {
+    -fx-min-height: 55;
+    -fx-min-width: 150;
+    -fx-max-height: 55;
+    -fx-max-width: 150; 
+    -fx-font-family: "mistral";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
+}
+
+ 
+
 #labelTitolo {
-    -fx-font-family: "AR CENA";
+    -fx-font-family: "mistral";
     -fx-font-size: 77;
     -fx-text-fill: #184ddd;
     -fx-effect: dropshadow(three-pass-box, #e1e3ea, 10, 0.98, 1, 1);
     
 }
+
+ 
+
 #label{
-    -fx-font-family: "AR CENA";
+    -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
     -fx-effect: dropshadow(three-pass-box,#e1e3ea, 10, 0.7, 0, 0);
@@ -33,31 +59,270 @@
 
 
 #buttonBack{
+    -fx-font-size: 7;
+    -fx-min-height: 45;
+    -fx-min-width: 55;
+    -fx-max-height: 45;
+    -fx-max-width: 55;
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/backIconBLU.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 45;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
 
  
+
 
 #textfield{
-    -fx-effect: dropshadow(one-pass-box, #e1e3ea, 10, 0.7, 0, 0);   
+    -fx-effect: dropshadow(one-pass-box, #e1e3ea, 10, 0.7, 0, 0);
+    -fx-min-height: 38;
+    -fx-min-width: 155;
+    -fx-max-height: 38;
+    -fx-max-width: 155;
+    
 }
 
  
 
+
 #textfield:focused {
-    -fx-font-family: "AR CENA";
+    -fx-font-family: "mistral";
     -fx-font-size: 21;
     -fx-text-fill: #184ddd;
 }
 
+ 
+
+ 
+
+
 #effetti{
+    -fx-font-size: 7;
+    -fx-min-height: 50;
+    -fx-min-width: 50;
+    -fx-max-height: 50;
+    -fx-max-width: 50;
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOn.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
+ 
 
 #volume{
+    -fx-font-size: 7;
+    -fx-min-height: 50;
+    -fx-min-width: 50;
+    -fx-max-height: 50;
+    -fx-max-width: 50;
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOn.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
 
+ 
+
 #istruzioni{
+    -fx-font-size: 7;
+    -fx-min-height: 50;
+    -fx-min-width: 50;
+    -fx-max-height: 50;
+    -fx-max-width: 50;
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/instructions.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
+#retry {
+    -fx-font-size: 7;
+    -fx-min-height: 40;
+    -fx-min-width: 45;
+    -fx-max-height: 45;
+    -fx-max-width: 40;
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/retryIcon.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 1, 1);
+}
+
+ 
+
+#esci {
+    -fx-font-family: "mistral";
+    -fx-font-size: 18;
+    -fx-text-fill: #184ddd; 
+    -fx-min-height: 40;
+    -fx-min-width: 60;
+    -fx-max-height: 40;
+    -fx-max-width: 60; 
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 1, 1);
+}
+
+ 
+
+#labelEasy {
+    -fx-font-family: "mistral";
+    -fx-font-size: 25;
+    -fx-text-fill: #184ddd; 
+    -fx-border-color: #e1e3ea;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2 0;
+    -fx-min-height: 33;
+    -fx-min-width: 136;
+    -fx-max-height: 33;
+    -fx-max-width: 136;
+}
+
+ 
+
+#bground {
+     -fx-background-color: darkgrey;
+     -fx-border-color: #184ddd;
+     -fx-border-style: solid;
+     -fx-border-width: 2.5;
+}
+
+ 
+
+#next{
+    -fx-font-family: "mistral";
+    -fx-font-size: 20;
+    -fx-text-fill: #184ddd; 
+    -fx-min-height: 45;
+    -fx-min-width: 185;
+    -fx-max-height: 45;
+    -fx-max-width: 185;
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 1, 1);
+}
+
+ 
+
+#rimbDes {
+        -fx-background-color: #e1e3ea;
+        -fx-border-color: #184ddd;
+        -fx-border-style: solid;
+        -fx-border-width: 1 1 1 1;
+        -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+        -fx-font-family: "mistral";
+        -fx-font-size: 27;
+        -fx-text-fill: #184ddd;
+}
+
+ 
+
+#opz {
+      -fx-border-color: #184ddd;
+      -fx-border-style: solid;
+      -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+      -fx-font-family: "mistral";
+      -fx-font-size: 27;
+      -fx-text-fill: #184ddd;
+}
+
+ 
+
+#nome{
+       -fx-background-color: #e1e3ea;
+       -fx-border-color: #184ddd;
+       -fx-border-style: solid;
+       -fx-border-width: 1 9 1 1;
+       -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+       -fx-font-family: "mistral";
+       -fx-font-size: 27;
+       -fx-text-fill: #184ddd;
+}
+
+ 
+
+#forza{
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 1 1 2 3;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+    -fx-font-family: "mistral";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+}
+
+ 
+
+.progress-bar{ 
+    -fx-box-border: goldenrod;
+}
+.green-bar{
+    -fx-accent: green;
+}
+.yellow-bar{
+    -fx-accent: yellow;
+}
+.red-bar{
+    -fx-accent: red;
+}
+
+ 
+
+#rimbEff{
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 1 1 2 1;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+    -fx-font-family: "mistral";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+}
+
+ 
+
+#liv{
+    -fx-background-color: #e1e3ea;
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 1 1 1 3;
+    -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
+    -fx-font-family: "mistral";
+    -fx-font-size: 27;
+    -fx-text-fill: #184ddd;
+}
+

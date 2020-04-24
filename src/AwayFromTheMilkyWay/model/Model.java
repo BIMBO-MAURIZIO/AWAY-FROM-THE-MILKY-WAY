@@ -25,9 +25,6 @@ public class Model implements IModel {
 
 
     public Model(){
-        //DOMANDA: ma è necessario che esistano le classi SpaceshipModel e MilkyWayModel? questi non potrebber essere semplici cerchi?
-        //DOMANDA: secondo me metodi sotto dovrebbero venire dal ControllerForModel. Infatti i controller dovrebbero poter prendere info da dove gli pare, ma il model
-        //dovrebbe richiamare solo il controllerForModel e la View solo il ControllerForView. Quindi da riveder di cambiare questi metodi.
         spaceship = new Circle(ControllerForModel.getInstance().getSpaceshipCenterX(),ControllerForModel.getInstance().getSpaceshipCenterY(),45);
         milkyWay = new Circle(ControllerForModel.getInstance().getMWCenterX(),ControllerForModel.getInstance().getMWCenterY(),ControllerForModel.getInstance().getMWRadius());
         gameStatus = new GameStatus();

@@ -150,14 +150,18 @@ public class Resources {
         
         public void play()
         {
-            if(this.soundEnabled)
+            if(this.soundEnabled){
                 media.setVolume(MUSIC_VOLUME);
                 media.play();
+            }
         }
         
         public void toggleSoundEnabled()
         {
             this.soundEnabled = !soundEnabled;
+        }
+        public boolean getToggleEffect(){
+            return this.soundEnabled;
         }
     }
     
@@ -165,11 +169,11 @@ public class Resources {
     public enum Music{
     
         //SOUNDTRACK("src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3");
-        SOUNDTRACK("media/sounds/song1.mp3");
-             
+        SOUNDTRACK("media/sounds/songGame.mp3"),
+        SOUNDINTRO("media/sounds/songIntro.mp3");     
         private boolean musicEnabled;
         private MediaPlayer audioMedia;
-        private final static double MUSIC_VOLUME = 0.01;
+        private final static double MUSIC_VOLUME = 0.1;
         Music(String fileSrc){
         
             URL url = this.getClass().getResource(fileSrc);
@@ -179,8 +183,7 @@ public class Resources {
         }
         
         public void play(){
-            if(this.musicEnabled)
-            {
+            if(this.musicEnabled){
                 this.audioMedia.setVolume(MUSIC_VOLUME);
                 this.audioMedia.play();
             }
@@ -198,7 +201,9 @@ public class Resources {
             this.musicEnabled = !musicEnabled;
         }
         
-        
+        public boolean getToggleMusic(){
+            return this.musicEnabled;
+        }
     }
     
 }

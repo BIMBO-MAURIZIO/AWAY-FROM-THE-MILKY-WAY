@@ -108,6 +108,7 @@ public class View implements IView{
         
         stage.show();
         handleExit();
+        Resources.Music.SOUNDINTRO.stop();
         Resources.Music.SOUNDTRACK.play();
         
     

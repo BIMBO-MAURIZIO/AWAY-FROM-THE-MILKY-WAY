@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.SchermataInizialeController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#buttonSound" prefHeight="800.0" prefWidth="1280.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.SchermataInizialeController">
    <children>
-      <Button layoutX="77.0" layoutY="70.0" mnemonicParsing="false" onAction="#nuovaPartita" onMouseEntered="#buttonSound" prefHeight="80.0" prefWidth="410.0" text="NUOVA PARTITA">
+      <Button id="button" layoutX="153.0" layoutY="71.0" mnemonicParsing="false" onAction="#nuovaPartita" onMouseEntered="#buttonSound" prefHeight="80.0" prefWidth="410.0" text="NUOVA PARTITA">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font></Button>
-      <Button layoutX="77.0" layoutY="220.0" mnemonicParsing="false" onAction="#caricaPartita" onMouseEntered="#buttonSound" prefHeight="80.0" prefWidth="410.0" text="CARICA PARTITA">
+      <Button id="button" layoutX="153.0" layoutY="218.0" mnemonicParsing="false" onAction="#caricaPartita" onMouseEntered="#buttonSound" prefHeight="80.0" prefWidth="410.0" text="CARICA PARTITA">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font></Button>
       <Label id="labelTitolo" layoutX="717.0" layoutY="91.0" prefHeight="101.0" prefWidth="494.0" text="AWAY FROM" />
       <Label id="labelTitolo" layoutX="664.0" layoutY="170.0" text="THE MILKY WAY" />
-      <Button id="effetti" layoutX="165.0" layoutY="369.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" />
-      <Button id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" />
-      <Button id="volume" layoutX="343.0" layoutY="369.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="62.0" />
+      <Button id="effetti" layoutX="165.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleEffects" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
+      <Button id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
+      <Button id="volume" layoutX="343.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleMusic" onMouseEntered="#buttonSound" prefHeight="50.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

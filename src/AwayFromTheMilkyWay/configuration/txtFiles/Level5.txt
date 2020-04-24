@@ -14,6 +14,12 @@ planet2Y
 500
 planet2Radius
 60
+planet3X
+1100
+planet3Y
+100
+planet3Radius
+55
 milkyWayX
 1000
 milkyWayY

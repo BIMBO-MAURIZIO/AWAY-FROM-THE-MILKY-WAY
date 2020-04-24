@@ -87,7 +87,28 @@ public class fixObstaclesModel {
                        
                         return a;            
             
-       } 
+       }else if(level == 7){           
+                        
+                        a[0] = null;
+                        a[1] = null;
+                       
+                        return a;            
+            
+       }else if(level == 8){           
+                        fo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle1X")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle1Y")),
+                                                Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle1Radius")));
+                      
+                        fo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "fixObstacle2Radius")));
+                
+                
+                        a[0] = fo1;
+                        a[1] = fo2;
+                       
+                        return a;
+       }  
        return a;
     }
     

@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,11 +63,15 @@ public class NuovaPartitaController implements Initializable {
             View.getInstance().openGameWindow(1);
             ControllerForView.getInstance().setName(name);
             
-        }
-        
-        
+        }   
     }
+    
+     
     
     
       
+    
+    
+    
+   
 }

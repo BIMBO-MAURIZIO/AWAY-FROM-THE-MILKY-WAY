@@ -70,6 +70,27 @@ public class movingObstaclesModel {
                         a[0]=mo1;
                         a[1]= null;
                         return a;
+        }else if(level == 7){
+                        mo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "movingObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "movingObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "movingObstacle2Radius")));
+                      
+        
+                        a[0]= null;
+                        a[1]= mo2;
+                        return a;
+        }else if(level == 8){
+                        mo1 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle1X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle1Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle1Radius")));
+                        mo2 = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle2X")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle2Y")),
+                                            Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "movingObstacle2Radius")));
+                      
+        
+                        a[0]= mo1;
+                        a[1]= mo2;
+                        return a;
         }
         return a;
         

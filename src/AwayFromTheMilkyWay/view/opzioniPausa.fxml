@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.OpzioniPausaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.OpzioniPausaController">
    <children>
-      <Button layoutX="455.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
+      <Button layoutX="55.0" layoutY="43.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
+      <Button layoutX="268.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="652.0" text="salva partita" />
+      <Button layoutX="294.0" layoutY="331.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="623.0" text="esci" />
+      <Button layoutX="320.0" layoutY="457.0" mnemonicParsing="false" />
+      <Button layoutX="457.0" layoutY="457.0" mnemonicParsing="false" />
+      <Label layoutX="1044.0" layoutY="90.0" text="Label" />
+      <Label layoutX="1044.0" layoutY="176.0" text="Label" />
    </children>
 </AnchorPane>

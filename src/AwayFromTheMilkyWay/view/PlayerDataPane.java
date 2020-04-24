@@ -51,7 +51,7 @@ public class PlayerDataPane extends GridPane {
     
     
     //metodi per popolare la PDP
-    public void populatePane(){
+    /*public void populatePane(){
 
         
         rimbalziDesiderati = new Label("Rimbalzi Desiderati: "+ rimbalziDes);
@@ -105,28 +105,96 @@ public class PlayerDataPane extends GridPane {
         
         
         
-        this.add(rimbalziDesiderati,0,0);
-        this.add(nome,1,0);
+        this.add(rimbalziDesiderati,1,0);
+        this.add(nome,2,0);
         this.add(layout,0,1);
         this.add(rimbalziEffettuati,1,1);
-        this.add(numLivello,2,0);
+        this.add(numLivello,0,0);
+        this.add(opzioni,2,1);
+        //this.setGridLinesVisible(true);
+        
+        
+      
+    }*/
+    
+    
+    public void fillGrid(){
+        this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
+    }
+     public void populatePane(){
+
+ 
+
+        
+        rimbalziDesiderati = new Label("RIMBALZI DESIDERATI: " + rimbalziDes);
+        rimbalziDesiderati.setPrefSize(426.7, 90);
+        rimbalziDesiderati.setAlignment(Pos.CENTER);
+        rimbalziDesiderati.setId("rimbDes");
+        
+        nome  = new Label("NOME: " + name);
+        nome.setPrefSize(426.7, 90);
+        nome.setAlignment(Pos.CENTER);
+        nome.setId("nome");
+
+ 
+
+        
+        pb = new ProgressBar();
+        pb.setPrefSize(200, 40);//dimensioni della barra
+        pb.setMaxWidth(200);
+        pb.setProgress(0);
+        pb.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double progress = newValue == null ? 0 : newValue.doubleValue();
+                if (progress < 0.5) {
+                    setBarStyleClass(pb, GREEN_BAR);
+                } else if (progress < 0.8) {
+                    setBarStyleClass(pb, YELLOW_BAR);
+                } else {
+                    setBarStyleClass(pb, RED_BAR);
+                }
+            }
+            private void setBarStyleClass(ProgressBar bar, String barStyleClass) {
+                bar.getStyleClass().removeAll(BCS);
+                bar.getStyleClass().add(barStyleClass);
+            }
+        });    
+        
+        final VBox layout = new VBox();
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().setAll(pb);
+        //layout.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        layout.setId("forza");
+        
+        rimbalziEffettuati = new Label("RIMBALZI EFFETTUATI: " + rimbalziEff);
+        rimbalziEffettuati.setPrefSize(426.7, 90);
+        rimbalziEffettuati.setAlignment(Pos.CENTER);
+        rimbalziEffettuati.setId("rimbEff");
+        
+        numLivello = new Label("LIVELLO NUMERO " + level);
+        numLivello.setPrefSize(426.7, 90);
+        numLivello.setAlignment(Pos.CENTER);
+        numLivello.setId("liv");
+        
+        opzioni = new Button("OPZIONI");
+        opzioni.setPrefSize(419, 88);
+        opzioni.setOnAction(event -> {
+            View.getInstance().pause();
+        });
+        opzioni.setId("opz");
+        
+        this.add(numLivello,0,0);
+        this.add(layout,0,1);
+        this.add(rimbalziDesiderati,1,0);
+        this.add(rimbalziEffettuati,1,1);
+        this.add(nome,2,0);
         this.add(opzioni,2,1);
         //this.setGridLinesVisible(true);
         
         
       
     }
-    
-    
-    public void fillGrid(){
-        Image image = Resources.GeneralImages.GRID.getImage();
-        BackgroundSize backgroundSize = new BackgroundSize(1280, 180, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
-        this.setBackground(background);
-        //GridPane.setHalignment(pb, HPos.CENTER);//serve a centrare la progressBar
-    }
-    
     
     public void adaptToLevel(int level) throws IOException{
         if(level == 1){
@@ -147,13 +215,13 @@ public class PlayerDataPane extends GridPane {
         }else if(level == 6){
             setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "rimbalziDes")));
             setLevel(level);
-        }/*else if(level == 7){
+        }else if(level == 7){
             setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "rimbalziDes")));
             setLevel(level);
         }else if(level == 8){
             setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "rimbalziDes")));
             setLevel(level);
-        }*/
+        }
     }
     
     
@@ -223,11 +291,11 @@ public class PlayerDataPane extends GridPane {
     
     
     public void update(){
-        nome.setText("nome: " + name);
-        rimbalziDesiderati.setText("rimbalzi desiderati: "+ rimbalziDes);
-        rimbalziEffettuati.setText("rimbalzi effettuati: "+ rimbalziEff);
-        numLivello.setText("livello numero "+ level);
-        
+        nome.setText("NOME: " + name);
+        rimbalziDesiderati.setText("RIMBALZI DESIDERATI: "+ rimbalziDes);
+        rimbalziEffettuati.setText("RIMABLZI EFFETTUATI: "+ rimbalziEff);
+        numLivello.setText("LIVELLO NUMERO "+ level);
+       
     }
      
    

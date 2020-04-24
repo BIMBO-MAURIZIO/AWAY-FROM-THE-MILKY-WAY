@@ -71,9 +71,9 @@ public class Utils {
         //System.out.println(increasing);
     
         String result = "";
-        String[] splittedString = new String[100];
+        String[] splittedString = new String[300];
         splittedString = increasing.split("\n");
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){
                 result = splittedString[i+1];
                 break;

@@ -17,9 +17,21 @@ planet2Radius
 milkyWayX
 900
 milkyWayY
-650
+630
 milkyWayRadius
-70
+80
+planet3X
+1100
+planet3Y
+220
+planet3Radius
+65
+planet4X
+500
+planet4Y
+350
+planet4Radius
+50
 rimbalziDes
 1
 

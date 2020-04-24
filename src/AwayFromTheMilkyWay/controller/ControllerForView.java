@@ -248,12 +248,13 @@ public class ControllerForView implements IControllerForView {
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
             }else if((fOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb1.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb1.getCenterY(), 2)) < SPACESHIPRADIUS+fOb1.getRadius()) ||
                      (fOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb2.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb2.getCenterY(), 2)) < SPACESHIPRADIUS+fOb2.getRadius())){
+                //scontro ostacolo fisso
                 timeline.stop();
                 View.getInstance().explosion();
                 
             }else if(mOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - Model.getInstance().getOstacoloMobile1().getCenterX(),2)+ Math.pow(variableSpaceshipY - Model.getInstance().getOstacoloMobile1().getCenterY(), 2)) < SPACESHIPRADIUS + Model.getInstance().getOstacoloMobile1().getRadius() ||
                      mOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - Model.getInstance().getOstacoloMobile2().getCenterX(),2)+ Math.pow(variableSpaceshipY - Model.getInstance().getOstacoloMobile2().getCenterY(), 2)) < SPACESHIPRADIUS + Model.getInstance().getOstacoloMobile2().getRadius()){
-                  
+                //scontro ostacolo mobile  
                 timeline.stop();
                 if(mOb1 != null){
                     timelineObs1.stop();
@@ -384,7 +385,7 @@ public class ControllerForView implements IControllerForView {
             spaceship.setTranslateX(NrotatedNormal.getX()*t);
             spaceship.setTranslateY(NrotatedNormal.getY()*t);
             if (t > 0.1)
-                    t = t-0.0009;
+                    t = t-0.003;
             else
                     timeline.stop();    
             ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+(NrotatedNormal.getX()*t));
@@ -413,7 +414,8 @@ public class ControllerForView implements IControllerForView {
    
     @Override
     public void setDirection() {
-  
+        //ConfigurationMovingObstacles();
+        //moveObstacles();
         handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
                 if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
@@ -421,13 +423,22 @@ public class ControllerForView implements IControllerForView {
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
                 spaceship = View.getInstance().getSpaceship();
+                
                 angolo = Math.toDegrees(Math.atan2(varMousePositionY-spaceship.getCenterY(),varMousePositionX-spaceship.getCenterX()));
                 View.getInstance().getSpaceship().setRotate(angolo);
+                double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angolo)));
+                double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angolo))));
                 if(varMousePositionX<=1280 && varMousePositionY<= 718){
-                    line = new Line(View.getInstance().getSpaceship().getCenterX(),View.getInstance().getSpaceship().getCenterY(),varMousePositionX,varMousePositionY);
+                    line = new Line(parX,parY,varMousePositionX,varMousePositionY);
                     View.getInstance().getGamePane().getChildren().add(line);
+                    line.setStyle("-fx-stroke-width: 2;" +
+                                  "-fx-stroke: #184ddd;" +
+                                  "-fx-stroke-dash-array: 2 12 12 2;");
                 }
+                
                 System.out.println(" angolo "+angolo);
+
+                System.out.println(" X "+varMousePositionX+" Y "+varMousePositionY);
             }
         };
         
@@ -582,7 +593,6 @@ public class ControllerForView implements IControllerForView {
     public void moveObstacles(){
         if(mOb1 != null){
             orientation = 1;
-            System.out.println("ENTRO QUIIIIIII");
             movingObs1 = View.getInstance().getMovingObstacle1();
             timelineObs1 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
@@ -610,7 +620,7 @@ public class ControllerForView implements IControllerForView {
     public void moveObsVer(){
         if(Model.getInstance().getOstacoloMobile1().getCenterY() < 100 || Model.getInstance().getOstacoloMobile1().getCenterY() > 620)
             orientation = -orientation;
-        double trY = orientation * 5;
+        double trY = orientation * 4;
         movingObs1.setTranslateY(trY);
        
         ControllerForModel.getInstance().setObs1CenterY(movingObs1.getCenterY()+trY);
@@ -622,9 +632,9 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void moveObsOri(){
        
-        if(Model.getInstance().getOstacoloMobile2().getCenterX() < 100 || Model.getInstance().getOstacoloMobile2().getCenterX() > 800)
+        if(Model.getInstance().getOstacoloMobile2().getCenterX() < 100 || Model.getInstance().getOstacoloMobile2().getCenterX() > 600)
             orientation2 = -orientation2;
-        double trX = orientation2 * 5;
+        double trX = orientation2 * 4;
         movingObs2.setTranslateX(trX);
 
         ControllerForModel.getInstance().setObs2CenterX(movingObs2.getCenterX()+trX);
