@@ -25,6 +25,8 @@ public class Resources {
         MARTE("media/images/marte.png"),
         URANIO("media/images/uranio.png"),
         TERRA("media/images/terra.png"),
+        OROLOGIO("media/images/orologio.png"),
+        CIAMBELLA("media/images/ciambella.png"),
         MILKYWAY("media/images/milkyWay.png"),
         GRID("media/images/grid.png"),
         SPACEMAN("media/images/spaceMan.png"),
@@ -34,7 +36,8 @@ public class Resources {
         OBSTACLE1("media/images/obstacle1.png"),
         ALIEN("media/images/alien.png"),
         ALIEN2("media/images/alien2.png"),
-        OBSTACLE2("media/images/obstacle2.png");
+        OBSTACLE2("media/images/obstacle2.png"),
+        PIZZA("media/images/pizza.png");
         private Image img = null;
         
         GeneralImages(String fileSrc)
@@ -107,10 +110,10 @@ public class Resources {
     
     public enum Backwash
     {
-        BCK1("media/images/circle1.png"),
-        BCK2("media/images/circle2.png"),
-        BCK3("media/images/circle3.png"),
-        BCK4("media/images/circle4.png");
+        BCK1("media/images/spaceship1.png"),
+        BCK2("media/images/spaceship2.png"),
+        BCK3("media/images/spaceship3.png"),
+        BCK4("media/images/spaceship4.png");
         private Image img = null;
         
         Backwash(String fileSrc)

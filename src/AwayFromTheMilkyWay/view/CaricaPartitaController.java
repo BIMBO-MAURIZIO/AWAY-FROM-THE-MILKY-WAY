@@ -25,7 +25,7 @@ public class CaricaPartitaController implements Initializable {
         // TODO
     }    
     
-     public void back() throws IOException{
+    public void back() throws IOException{
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
     }
     

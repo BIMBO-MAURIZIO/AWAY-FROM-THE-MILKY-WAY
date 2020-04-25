@@ -18,7 +18,7 @@
       <Label id="labelTitolo" layoutX="717.0" layoutY="91.0" prefHeight="101.0" prefWidth="494.0" text="AWAY FROM" />
       <Label id="labelTitolo" layoutX="664.0" layoutY="170.0" text="THE MILKY WAY" />
       <Button id="effetti" layoutX="165.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleEffects" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
-      <Button id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
+      <Button id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" onAction="#instructions" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
       <Button id="volume" layoutX="343.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleMusic" onMouseEntered="#buttonSound" prefHeight="50.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

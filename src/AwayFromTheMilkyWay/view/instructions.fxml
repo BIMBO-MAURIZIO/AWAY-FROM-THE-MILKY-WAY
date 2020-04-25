@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="AwayFromTheMilkyWay.view.InstructionsController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.InstructionsController">
    <children>
       <Label layoutX="981.0" layoutY="137.0" text="AWAY FROM" />
       <Label layoutX="967.0" layoutY="208.0" text="THE MILKY WAY" />
-      <TextArea layoutX="217.0" layoutY="170.0" prefHeight="505.0" prefWidth="402.0" />
-      <Button layoutX="101.0" layoutY="75.0" mnemonicParsing="false" text="Button" />
+      <TextArea layoutX="217.0" layoutY="170.0" prefHeight="505.0" prefWidth="402.0" text="CIAO ASTROESPLORATORE!&#10;La tua missione è riuscire a entrare nella via lattea facendo un numero &#10;di rimbalzi pari a quelli richiesti dal livello!&#10;Ma attenzione, perchè nel tuo cammino si possono celare degli asteroidi&#10;e delle astonavi aliene che, se colpiti , faranno esplodere la tua astronave!&#10;" />
+      <Button layoutX="101.0" layoutY="75.0" mnemonicParsing="false" onAction="#back" text="Button" />
    </children>
 </AnchorPane>

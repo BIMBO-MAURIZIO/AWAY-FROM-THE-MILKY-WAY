@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 /**
  *
@@ -23,7 +24,7 @@ import javafx.scene.shape.Circle;
 public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dovràconvivere nella stessa scena con la playerDataPane.
     
     private Circle spaceship, planet1, planet2,planet3,planet4,milkyWay,fixObstacle1,fixObstacle2,movingObstacle1,movingObstacle2;  
-   
+    private Button help;
     public GamePane(){//avevo intenzione di mettere qui la dipendenza dal livello così da cambiare lo scenario in base al livello automaticamente
         super();
        
@@ -35,16 +36,22 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         ImageView imageView = new ImageView(Resources.GeneralImages.BACKGROUND.getImage());
         
         
-        Button help = new Button();
+        help = new Button();
         help.setPrefSize(40, 40);
         help.setMaxSize(40, 40);
-        help.setLayoutX(1240);
-        help.setLayoutY(40);
+        help.setLayoutX(1200);
+        help.setLayoutY(50);
         
 
         help.setOnAction(event -> {
-            ControllerForView.getInstance().nextLevel(ControllerForView.getInstance().getCurrentLevel());
+            ControllerForView.getInstance().hint(ControllerForView.getInstance().getCurrentLevel());
         });
+        
+        help.setOnMouseEntered(event -> {
+            Line line = ControllerForView.getInstance().getLine();
+            this.getChildren().remove(line);
+        });
+        
         this.getChildren().addAll(imageView,help);
         
         if(levelNumber == 1){
@@ -128,7 +135,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.PIZZA.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "milkyWayY")),
@@ -170,7 +177,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.PIZZA.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "milkyWayY")),
@@ -212,7 +219,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.CIAMBELLA.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "milkyWayY")),
@@ -256,7 +263,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.CIAMBELLA.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "milkyWayY")),
@@ -301,7 +308,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.OROLOGIO.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "milkyWayY")),
@@ -341,7 +348,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
                                     spaceship = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "SpaceshipX")),
                                              Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "SpaceshipY")),
                                              45);//x, y , raggio   
-                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.SPACESHIP.getImage()));
+                                    spaceship.setFill(new ImagePattern(Resources.GeneralImages.OROLOGIO.getImage()));
                                     
                                     milkyWay = new Circle(Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "milkyWayX")),
                                             Double.parseDouble(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "milkyWayY")),
@@ -418,4 +425,7 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         this.spaceship.setFill(new ImagePattern(i));
     }
     
+    public Button getHelpButton(){
+        return this.help;
+    }
 }   

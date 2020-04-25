@@ -7,6 +7,7 @@ package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -38,6 +39,6 @@ public interface IView {
    public String getNome();
    public Circle getMovingObstacle1();
    public Circle getMovingObstacle2();
-   
+   public Button getHelpButton();
    
 }

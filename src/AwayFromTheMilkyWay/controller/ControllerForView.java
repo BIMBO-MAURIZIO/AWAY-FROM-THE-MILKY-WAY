@@ -32,8 +32,7 @@ public class ControllerForView implements IControllerForView {
     private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
     private Circle[] a,b,c;
-    
-    Line line;
+    Line line,lineH;
     
     
     
@@ -120,7 +119,10 @@ public class ControllerForView implements IControllerForView {
         Model.getInstance().setLevel(level);
     }
     
-    
+    @Override
+    public Line getLine(){
+        return this.line;
+    }
     
     
     
@@ -141,8 +143,8 @@ public class ControllerForView implements IControllerForView {
         
         ConfigurationPlanets();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
         ConfigurationFixObstacles();
-        ConfigurationMovingObstacles();
-        moveObstacles();
+        //ConfigurationMovingObstacles();
+        //moveObstacles();
         
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
@@ -313,6 +315,7 @@ public class ControllerForView implements IControllerForView {
                 else{
                     timeline.stop();
                     Resources.Music.SOUNDTRACK.stop();
+                    pauseAnimations();
                     View.getInstance().createAlert("restartLevel.fxml");
                     Resources.SoundEffects.DEFEAT.play();
                 }
@@ -386,8 +389,13 @@ public class ControllerForView implements IControllerForView {
             spaceship.setTranslateY(NrotatedNormal.getY()*t);
             if (t > 0.1)
                     t = t-0.003;
-            else
-                    timeline.stop();    
+            else{
+                    timeline.stop(); 
+                    Resources.Music.SOUNDTRACK.stop();
+                    pauseAnimations();
+                    View.getInstance().createAlert("restartLevel.fxml");
+                    Resources.SoundEffects.DEFEAT.play();
+            }
             ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX()+(NrotatedNormal.getX()*t));
             ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY()+(NrotatedNormal.getY()*t));
             spaceship.setCenterX(Model.getInstance().getSpaceship().getCenterX());
@@ -414,15 +422,15 @@ public class ControllerForView implements IControllerForView {
    
     @Override
     public void setDirection() {
-        //ConfigurationMovingObstacles();
-        //moveObstacles();
+        View.getInstance().getHelpButton().setDisable(false);
+        spaceship = View.getInstance().getSpaceship();
         handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
             public void handle(MouseEvent event) { 
                 if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
                     View.getInstance().getGamePane().getChildren().remove(line);
                 double varMousePositionX = event.getX();
                 double varMousePositionY = event.getY();
-                spaceship = View.getInstance().getSpaceship();
+                //spaceship = View.getInstance().getSpaceship();
                 
                 angolo = Math.toDegrees(Math.atan2(varMousePositionY-spaceship.getCenterY(),varMousePositionX-spaceship.getCenterX()));
                 View.getInstance().getSpaceship().setRotate(angolo);
@@ -473,7 +481,12 @@ public class ControllerForView implements IControllerForView {
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler3);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_EXITED, handler2);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_MOVED, handler);
-
+        
+        View.getInstance().getHelpButton().setDisable(true);
+        View.getInstance().getGamePane().getChildren().remove(lineH);
+        
+        ConfigurationMovingObstacles();
+        moveObstacles();
         
         handler4 = new EventHandler<MouseEvent>() {  
             public void handle(MouseEvent event) {
@@ -615,14 +628,15 @@ public class ControllerForView implements IControllerForView {
             timelineObs2.play();
         }
     }
-    //mob1 è il modello metre movingobs1 è l'oggetto nella view, in pratico mob 1 non serve a nulla, serve solo a verificare che in quel livello l'oggetto ci sia o meno
+    
+    
     @Override
     public void moveObsVer(){
         if(Model.getInstance().getOstacoloMobile1().getCenterY() < 100 || Model.getInstance().getOstacoloMobile1().getCenterY() > 620)
             orientation = -orientation;
         double trY = orientation * 4;
         movingObs1.setTranslateY(trY);
-       
+
         ControllerForModel.getInstance().setObs1CenterY(movingObs1.getCenterY()+trY);
         
         movingObs1.setCenterY(Model.getInstance().getOstacoloMobile1().getCenterY());
@@ -641,7 +655,50 @@ public class ControllerForView implements IControllerForView {
         
         movingObs2.setCenterX(Model.getInstance().getOstacoloMobile2().getCenterX());
     }
-        
+    
+    @Override
+    public void hint(int level){
+        double solutionX = 0;
+        double solutionY = 0;
+        double angle = 0;
+        if(level == 1){
+            solutionX = 387;
+            solutionY = 559;
+            angle = 57.98339772420928;
+        }else if(level == 2){
+            /*solutionX = 170;
+            solutionY = 289;
+            angle = -78.05900909669737;*/
+            solutionX = 340;
+            solutionY = 160;
+            angle = -62.447188423282206;
+        }else if(level == 3){
+            solutionX = 547;
+            solutionY = 191;
+            angle = -19.580711661097112;
+        }else if(level == 4){
+            solutionX = 473;
+            solutionY = 575;
+            angle = 51.85875847113365;
+        }else if(level == 5){
+            solutionX = 802;
+            solutionY = 258;
+            angle = 16.0845756583733;
+        }else if(level == 6){
+            solutionX = 1039;
+            solutionY = 274;
+            angle = 10.498031843502302;
+        }
+        double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angle)));
+        double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angle))));
+        lineH = new Line(parX,parY,solutionX,solutionY);
+        View.getInstance().getGamePane().getChildren().add(lineH);
+                    lineH.setStyle("-fx-stroke-width: 2;" +
+                                  "-fx-stroke: #f6e602;" /*+
+                                  "-fx-stroke-dash-array: 2 12 12 2"*/);
+    }
+    //f6e602
+    //f60208   
         
         
 }//end class sss

@@ -31,47 +31,17 @@ public class Utils {
     }
     
     
-    /*public String readTxt(String filePath) throws FileNotFoundException, IOException{
-        File file = new File(filePath);
-        buffRead = new BufferedReader(new FileReader(file));
-        String line;
-        String increasing = "";
-        while ((line = buffRead.readLine()) != null){
-            //System.out.println(line);
-            increasing += line+"\n";
-        }
-        //System.out.println(increasing);
-            
-        return increasing;
-    }
-    
-    
-    public String searchWord(String increasing, String searchedWord) throws ArrayIndexOutOfBoundsException{
-        String result = "";
-        String[] splittedString = new String[100];
-        splittedString = increasing.split("\n");
-        for(int i = 0; i < 100; i++){
-            if(splittedString[i].equals(searchedWord)){
-                result = splittedString[i+1];
-                break;
-            } 
-        }
-        return result;
-
-    }*/
     public String searchWord(String filePath,String searchedWord) throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
         File file = new File(filePath);
         buffRead = new BufferedReader(new FileReader(file));
         String line;
         String increasing = "";
         while ((line = buffRead.readLine()) != null){
-            //System.out.println(line);
             increasing += line+"\n";
         }
-        //System.out.println(increasing);
     
         String result = "";
-        String[] splittedString = new String[300];
+        String[] splittedString;// = new String[300];
         splittedString = increasing.split("\n");
         for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){

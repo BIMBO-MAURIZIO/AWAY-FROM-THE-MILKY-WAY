@@ -5,6 +5,8 @@
  */
 package AwayFromTheMilkyWay.controller;
 
+import javafx.scene.shape.Line;
+
 
 /**
  *
@@ -36,5 +38,7 @@ public interface IControllerForView {
     public void restartLevel();
     public void nextLevel(int livelloCorrente);
     public void setCurrentLevel(int level);
+    public void hint(int level);
+    public Line getLine();
     
 }

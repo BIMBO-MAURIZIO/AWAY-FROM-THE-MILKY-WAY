@@ -63,6 +63,9 @@ public class SchermataInizialeController implements Initializable {
         Resources.SoundEffects.VICTORY.toggleSoundEnabled();
     }
     
+    public void instructions() throws IOException{
+        View.getInstance().changeCurrentWindow("instructions.fxml");
+    }
     
       
 }

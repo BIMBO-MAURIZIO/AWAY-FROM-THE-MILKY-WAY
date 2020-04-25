@@ -41,7 +41,7 @@ fixObstacle2Radius
 movingObstacle2X
 150
 movingObstacle2Y
-350
+335
 movingObstacle2Radius
 30
 rimbalziDes

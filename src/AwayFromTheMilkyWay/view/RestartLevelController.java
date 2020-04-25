@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +34,7 @@ public class RestartLevelController implements Initializable {
     public void exit() throws IOException{
         View.getInstance().getAlertStage().close();
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
+        Resources.Music.SOUNDINTRO.play();
         View.getInstance().getDataPane().enableButton();
         ControllerForView.getInstance().setCurrentLevel(1);//ogni qualvolta l'utente cliccherà exit e poi nuova partita dovrà ripartire da livello 1
         
