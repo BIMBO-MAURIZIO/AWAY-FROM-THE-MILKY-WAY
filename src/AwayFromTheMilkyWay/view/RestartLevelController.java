@@ -10,7 +10,10 @@ import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -20,9 +23,33 @@ import javafx.fxml.Initializable;
 public class RestartLevelController implements Initializable {
 
     
+    @FXML private Label lose;
+    @FXML private Label cosa;
+    @FXML private Button retry;
+    @FXML private Button esci;
+
+ 
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        lose.setLayoutX(98);
+        lose.setLayoutY(37);
+        lose.setMinSize(114,35);
+        lose.setMaxSize(114,35);
+        lose.setText(lose.getText().toUpperCase());
+        cosa.setLayoutX(94);
+        cosa.setLayoutY(91);
+        cosa.setMinSize(130,33);
+        cosa.setMaxSize(130,33);
+        cosa.setText(cosa.getText().toUpperCase());
+        retry.setLayoutX(67);
+        retry.setLayoutY(155);
+        esci.setLayoutX(195);
+        esci.setLayoutY(155);
+        esci.setText(esci.getText().toUpperCase());
+        
     }
 
     public void restartLevel(){

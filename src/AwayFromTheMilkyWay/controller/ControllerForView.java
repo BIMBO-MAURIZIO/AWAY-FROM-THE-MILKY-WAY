@@ -7,18 +7,25 @@ package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
 import AwayFromTheMilkyWay.utils.Resources;
+import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.View;
+import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -143,8 +150,6 @@ public class ControllerForView implements IControllerForView {
         
         ConfigurationPlanets();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
         ConfigurationFixObstacles();
-        //ConfigurationMovingObstacles();
-        //moveObstacles();
         
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
@@ -335,8 +340,7 @@ public class ControllerForView implements IControllerForView {
     
     @Override 
     public void bounce(double dx,double dy,double distNum,double v){
-        //a.stop();
-        //timeline.stop();
+
         Model.getInstance().incrementaRimbalziEffettuati();
         System.out.println(Model.getInstance().getRimbalziEffettuati());
         System.out.println("coordinate astronave : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
@@ -408,14 +412,7 @@ public class ControllerForView implements IControllerForView {
 
         timeline.play();
                 
-        /*a = new AnimationTimer(){
-            @Override
-            public void handle(long now){
-                 move(NrotatedNormal.getX(),NrotatedNormal.getY(),1);
-            }
-        };
-        a.start();
-        */
+      
     }
     
    
@@ -439,9 +436,7 @@ public class ControllerForView implements IControllerForView {
                 if(varMousePositionX<=1280 && varMousePositionY<= 718){
                     line = new Line(parX,parY,varMousePositionX,varMousePositionY);
                     View.getInstance().getGamePane().getChildren().add(line);
-                    line.setStyle("-fx-stroke-width: 2;" +
-                                  "-fx-stroke: #184ddd;" +
-                                  "-fx-stroke-dash-array: 2 12 12 2;");
+                    line.setId("line");
                 }
                 
                 System.out.println(" angolo "+angolo);
@@ -505,17 +500,33 @@ public class ControllerForView implements IControllerForView {
     public void pauseAnimations(){
         if(this.timeline != null)
             this.timeline.pause();
-        if(mOb1 != null)
+        if(timelineObs1 != null)
             timelineObs1.stop();
-        if(mOb2 != null)
+        if(timelineObs2 != null)
             timelineObs2.stop();
+        if(View.getInstance().getT1() != null)
+            View.getInstance().getT1().stop();
+        if(View.getInstance().getT2() != null)
+            View.getInstance().getT2().stop();
+        if(View.getInstance().getT3() != null)
+            View.getInstance().getT3().stop();
     }
     
     @Override
     public void playAnimations(){
         if(this.timeline != null)
             this.timeline.play();
-    //this.a.start();
+        if(mOb1 != null)
+            timelineObs1.play();
+        if(mOb2 != null)
+            timelineObs2.play();
+        if(View.getInstance().getT1() != null)
+            View.getInstance().getT1().play();
+        if(View.getInstance().getT2() != null)
+            View.getInstance().getT2().play();
+        if(View.getInstance().getT3() != null)
+            View.getInstance().getT3().play();
+
     }
      
         
@@ -582,6 +593,9 @@ public class ControllerForView implements IControllerForView {
     @Override    
     public void restartLevel(){
         
+        timeline = timelineObs1 = timelineObs2 = null;
+        View.getInstance().setTimelines();
+        
         Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
@@ -590,16 +604,18 @@ public class ControllerForView implements IControllerForView {
     
     @Override    
     public void nextLevel(int livelloCorrente){
-        if(livelloCorrente != 8){
-            Model.getInstance().setRimbEffettuati(0);
-            View.getInstance().openGameWindow(livelloCorrente+1);
-            View.getInstance().getDataPane().setName(Model.getInstance().getName());
-            Resources.Music.SOUNDTRACK.play();
-            Model.getInstance().increaseLevel();
+
+        timeline = timelineObs1 = timelineObs2 = null;
+        View.getInstance().setTimelines();
+        Model.getInstance().setRimbEffettuati(0);
+        View.getInstance().openGameWindow(livelloCorrente+1);
+        View.getInstance().getDataPane().setName(Model.getInstance().getName());
+        Resources.Music.SOUNDTRACK.play();
+        Model.getInstance().increaseLevel();
             
-        }else{
-            //TO-DO
-        }
+
+           
+
     } 
     
     @Override
@@ -666,9 +682,6 @@ public class ControllerForView implements IControllerForView {
             solutionY = 559;
             angle = 57.98339772420928;
         }else if(level == 2){
-            /*solutionX = 170;
-            solutionY = 289;
-            angle = -78.05900909669737;*/
             solutionX = 340;
             solutionY = 160;
             angle = -62.447188423282206;
@@ -688,17 +701,95 @@ public class ControllerForView implements IControllerForView {
             solutionX = 1039;
             solutionY = 274;
             angle = 10.498031843502302;
+        }else if(level == 7){
+            solutionX = 544;
+            solutionY = 179;
+            angle = -45.448114278042475;
+        }else if(level == 8){
+            solutionX = 447;
+            solutionY = 542;
+            angle = 51.86568026978651;
         }
         double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angle)));
         double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angle))));
         lineH = new Line(parX,parY,solutionX,solutionY);
         View.getInstance().getGamePane().getChildren().add(lineH);
-                    lineH.setStyle("-fx-stroke-width: 2;" +
-                                  "-fx-stroke: #f6e602;" /*+
-                                  "-fx-stroke-dash-array: 2 12 12 2"*/);
+                    lineH.setId("lineH");
     }
-    //f6e602
-    //f60208   
+    
+    
+    @Override 
+    public void saveGame(){
+        int level = getCurrentLevel();
+        String nomePl = View.getInstance().getNome();
         
+        File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nomePl);
+        if(f.exists()){
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Away From The Milky Way");
+            alert.setHeaderText("ESISTE UN PRECEDENTE SALVATAGGIO");
+            alert.setContentText("vuoi sovrascrivere il salvataggio di "+ nomePl+ " ?");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+            Optional o = alert.showAndWait();
+            
+            if(o.get() == ButtonType.OK){
+                Utils.getInstance().writeFile(f, "nome\n"+nomePl+"\n"+"livello\n"+level);
+            }
+            
+        }else{
+            Alert alert2 = new Alert(AlertType.WARNING);
+            alert2.setTitle("Away From The Milky Way");
+            alert2.setHeaderText("PARTITA SALVATA");
+            alert2.setContentText("è stato creato il salvataggio di "+ nomePl);
+            Stage stage = (Stage) alert2.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+            alert2.show();
+            Utils.getInstance().writeFile(f, "nome\n"+nomePl+"\n"+"livello\n"+level);
+        }
+    }
+    
+    @Override
+    public void loadGame(String nome){
+       
+        String path = "src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nome;
+        try {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Away From The Milky Way");
+            alert.setHeaderText("CARICAMENTO PARTITA");
+            alert.setContentText("Vuoi caricare la partita di "+ nome+ " ?");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+            
+            if(alert.showAndWait().get() == ButtonType.OK){
+                View.getInstance().openGameWindow(Integer.parseInt(Utils.getInstance().searchWord(path, "livello")));
+                Model.getInstance().setLevel(Integer.parseInt(Utils.getInstance().searchWord(path, "livello")));
+                View.getInstance().getDataPane().setName(Utils.getInstance().searchWord(path, "nome"));
+                Resources.Music.SOUNDTRACK.play();
+            }
+                 
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    @Override
+    public boolean deleteLog(String nome){
+        File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nome);
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("ATTENZIONE");
+        alert.setContentText("vuoi davvero cancellare la partita di "+ nome+ " ?");
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+        if(alert.showAndWait().get() == ButtonType.OK){
+            f.delete();
+            return true;
+        }else
+            return false;
+    }
+    
+ 
         
 }//end class sss

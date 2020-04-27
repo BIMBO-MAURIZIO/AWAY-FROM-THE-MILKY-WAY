@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.OpzioniPausaController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.OpzioniPausaController">
    <children>
-      <Button layoutX="55.0" layoutY="43.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
-      <Button layoutX="268.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="652.0" text="salva partita" />
-      <Button layoutX="294.0" layoutY="331.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="623.0" text="esci" />
-      <Button layoutX="320.0" layoutY="457.0" mnemonicParsing="false" />
-      <Button layoutX="457.0" layoutY="457.0" mnemonicParsing="false" />
-      <Label layoutX="1044.0" layoutY="90.0" text="Label" />
-      <Label layoutX="1044.0" layoutY="176.0" text="Label" />
+      <Button id="buttonBack" fx:id="backo" layoutX="55.0" layoutY="43.0" mnemonicParsing="false" onAction="#back" onKeyPressed="#keyPressed" prefHeight="55.0" prefWidth="74.0" />
+      <Button id="button" fx:id="salva" layoutX="268.0" layoutY="216.0" mnemonicParsing="false" onAction="#saveGame" prefHeight="26.0" prefWidth="652.0" text="salva partita" />
+      <Button id="button" fx:id="exit" layoutX="294.0" layoutY="331.0" onAction="#exit" prefHeight="26.0" prefWidth="623.0" text="esci dal gioco" />
+      <Button id="volume" fx:id="musica" layoutX="320.0" layoutY="457.0" mnemonicParsing="false" onAction="#toggleMusic" />
+      <Button id="effetti" fx:id="effetti" layoutX="457.0" layoutY="457.0" mnemonicParsing="false" onAction="#toggleEffects" />
+      <Label id="labelTitolo" fx:id="tit1o" layoutX="1044.0" layoutY="90.0" text="AWAY FROM" />
+      <Label id="labelTitolo" fx:id="tit2o" layoutX="1044.0" layoutY="176.0" text="THE MILKY WAY" />
+      <ChoiceBox layoutX="268.0" layoutY="108.0" prefWidth="150.0" />
+      <ComboBox layoutX="633.0" layoutY="108.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

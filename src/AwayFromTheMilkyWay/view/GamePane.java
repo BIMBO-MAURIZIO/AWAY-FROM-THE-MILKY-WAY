@@ -32,15 +32,16 @@ public class GamePane extends AnchorPane {//sarà la schermata di gioco che  dov
         
     
     public void setScenario(int levelNumber) throws IOException {
-        //Image image = new Image("AwayFromTheMilkyWay/configuration/media/images/spazio2.jpg");
+        this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
         ImageView imageView = new ImageView(Resources.GeneralImages.BACKGROUND.getImage());
         
         
         help = new Button();
+        help.setId("help");
         help.setPrefSize(40, 40);
         help.setMaxSize(40, 40);
         help.setLayoutX(1200);
-        help.setLayoutY(50);
+        help.setLayoutY(30);
         
 
         help.setOnAction(event -> {

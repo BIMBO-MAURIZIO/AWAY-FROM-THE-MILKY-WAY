@@ -8,7 +8,10 @@ package AwayFromTheMilkyWay.view;
 import AwayFromTheMilkyWay.controller.ControllerForView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -17,13 +20,20 @@ import javafx.fxml.Initializable;
  */
 public class LevelCompleteController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private Label sup;
+    @FXML private Button next;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        sup.setLayoutX(125);
+        sup.setLayoutY(57);
+        sup.setMinSize(70,46);
+        sup.setMaxSize(70,46);
+        sup.setText(sup.getText().toUpperCase());
+        next.setLayoutX(68);
+        next.setLayoutY(135);
+        next.setText(next.getText().toUpperCase());
+    }       
     
     public void nextLevel(){
         View.getInstance().getAlertStage().close();

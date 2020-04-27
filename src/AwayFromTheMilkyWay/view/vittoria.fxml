@@ -4,10 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="AwayFromTheMilkyWay.view.VittoriaController">
+<AnchorPane id="bground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.VittoriaController">
    <children>
-      <Label layoutX="76.0" layoutY="43.0" prefHeight="18.0" prefWidth="146.0" text="CONGRATULAZIONI! HAI VINTO!" />
-      <Button layoutX="123.0" layoutY="143.0" mnemonicParsing="false" text="esci" />
+      <Label id="labelBig" fx:id="win" layoutX="76.0" layoutY="43.0" prefHeight="18.0" prefWidth="146.0" text="HAI VINTO!" />
+      <Button id="esci" fx:id="esci1" layoutX="123.0" layoutY="143.0" mnemonicParsing="false" onAction="#exit" text="esci" />
+      <Label id="labelEasy" fx:id="win1" layoutX="127.0" layoutY="61.0" text="CONGRATULAZIONI" />
    </children>
 </AnchorPane>

@@ -40,5 +40,7 @@ public interface IControllerForView {
     public void setCurrentLevel(int level);
     public void hint(int level);
     public Line getLine();
-    
+    public void saveGame();
+    public void loadGame(String nome);
+    public boolean deleteLog(String nome);
 }

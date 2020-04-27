@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 import java.io.IOException;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
@@ -40,5 +41,9 @@ public interface IView {
    public Circle getMovingObstacle1();
    public Circle getMovingObstacle2();
    public Button getHelpButton();
+   public Timeline getT1();
+   public Timeline getT2();
+   public Timeline getT3();
+   public void setTimelines();
    
 }

@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 
@@ -41,7 +43,7 @@ public class Utils {
         }
     
         String result = "";
-        String[] splittedString;// = new String[300];
+        String[] splittedString;// = new String[300]; se ci fossero problemi rimetti questo
         splittedString = increasing.split("\n");
         for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){
@@ -52,4 +54,20 @@ public class Utils {
         return result;
   
     }
+    
+    public void writeFile(File file, String txt){
+		try {
+			PrintWriter out = new PrintWriter (new FileWriter(file));
+			out.println(txt);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+                }
+    }
+
+    /*public boolean fileCheck(File file){
+        
+    }*/
+
+
 }

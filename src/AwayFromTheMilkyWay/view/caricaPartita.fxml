@@ -5,10 +5,14 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.CaricaPartitaController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.CaricaPartitaController">
    <children>
-      <Button layoutX="100.0" layoutY="65.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0" prefWidth="74.0" style="-fx-background-image: url('AwayFromTheMilkyWay/utils/media/images/backIcon.png');" />
-      <ListView layoutX="294.0" layoutY="302.0" prefHeight="264.0" prefWidth="549.0" />
-      <Label layoutX="292.0" layoutY="205.0" prefHeight="58.0" prefWidth="554.0" text="SCEGLI IL PROFILO CON CUI CONTINUARE" />
+      <Button id="buttonBack" fx:id="backc" layoutX="100.0" layoutY="65.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0" prefWidth="74.0" />
+      <ListView id="lista" fx:id="lv" layoutX="294.0" layoutY="302.0" prefHeight="264.0" prefWidth="549.0" />
+      <Label id="labelBig" fx:id="scegli" layoutX="292.0" layoutY="205.0" prefHeight="58.0" prefWidth="554.0" text="SCEGLI IL PROFILO" />
+      <Button id="button2" fx:id="carica" layoutX="249.0" layoutY="624.0" mnemonicParsing="false" onAction="#caricaPartita" text="carica partita" />
+      <Button id="button2" fx:id="canc" layoutX="623.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancellaProfilo" text="cancella il profilo" />
+      <Label id="labelTitolo" fx:id="tit1c" layoutX="961.0" layoutY="111.0" text="AWAY FROM" />
+      <Label id="labelTitolo" fx:id="tit2c" layoutX="947.0" layoutY="216.0" text="THE MILKY WAY" />
    </children>
 </AnchorPane>

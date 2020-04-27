@@ -15,7 +15,7 @@ planet2Y
 planet2Radius
 55
 planet3X
-1000
+905
 planet3Y
 630
 planet3Radius
@@ -23,11 +23,11 @@ planet3Radius
 planet4X
 500
 planet4Y
-550
+560
 planet4Radius
 38
 milkyWayX
-650
+655
 milkyWayY
 350
 milkyWayRadius

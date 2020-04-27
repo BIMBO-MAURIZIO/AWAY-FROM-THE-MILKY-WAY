@@ -6,7 +6,6 @@
 package AwayFromTheMilkyWay.view;
 
 
-import AwayFromTheMilkyWay.utils.Resources;
 import AwayFromTheMilkyWay.utils.Utils;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
@@ -17,12 +16,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -33,7 +26,7 @@ import javafx.util.Duration;
  */
 public class PlayerDataPane extends GridPane {
     int level, rimbalziEff,rimbalziDes,power;
-    private String name;
+    private String name, originalName;
     private ProgressBar pb;
     private Timeline t ;
     private Label nome,rimbalziEffettuati,rimbalziDesiderati,numLivello;
@@ -49,79 +42,7 @@ public class PlayerDataPane extends GridPane {
         super();
     }
     
-    
-    //metodi per popolare la PDP
-    /*public void populatePane(){
-
-        
-        rimbalziDesiderati = new Label("Rimbalzi Desiderati: "+ rimbalziDes);
-        rimbalziDesiderati.setPrefSize(427, 90);
-        rimbalziDesiderati.setAlignment(Pos.CENTER);
-        
-        nome  = new Label("nome: " + name);
-        nome.setPrefSize(427, 90);
-        nome.setAlignment(Pos.CENTER);
-        
-        pb = new ProgressBar();
-        pb.setPrefSize(200, 40);//dimensioni della barra
-        pb.setMaxWidth(200);
-        pb.setProgress(0);
-        pb.progressProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double progress = newValue == null ? 0 : newValue.doubleValue();
-                if (progress < 0.5) {
-                    setBarStyleClass(pb, GREEN_BAR);
-                } else if (progress < 0.8) {
-                    setBarStyleClass(pb, YELLOW_BAR);
-                } else {
-                    setBarStyleClass(pb, RED_BAR);
-                }
-            }
-            private void setBarStyleClass(ProgressBar bar, String barStyleClass) {
-                bar.getStyleClass().removeAll(BCS);
-                bar.getStyleClass().add(barStyleClass);
-            }
-        });    
-        
-        final VBox layout = new VBox();
-        layout.setAlignment(Pos.CENTER);
-        layout.getChildren().setAll(pb);
-        layout.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
-        rimbalziEffettuati = new Label("rimbalzi effettuati: "+ rimbalziEff);
-        rimbalziEffettuati.setPrefSize(427, 90);
-        rimbalziEffettuati.setAlignment(Pos.CENTER);
-        
-        numLivello = new Label("livello numero "+ level);
-        numLivello.setPrefSize(426, 90);
-        numLivello.setAlignment(Pos.CENTER);
-        
-        opzioni = new Button("opzioni");
-        opzioni.setPrefSize(426, 90);
-        opzioni.setOnAction(event -> {
-            View.getInstance().pause();
-        });
-        
-        
-        
-        this.add(rimbalziDesiderati,1,0);
-        this.add(nome,2,0);
-        this.add(layout,0,1);
-        this.add(rimbalziEffettuati,1,1);
-        this.add(numLivello,0,0);
-        this.add(opzioni,2,1);
-        //this.setGridLinesVisible(true);
-        
-        
-      
-    }*/
-    
-    
-    public void fillGrid(){
-        this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
-    }
-     public void populatePane(){
+    public void populatePane(){
 
  
 
@@ -180,6 +101,7 @@ public class PlayerDataPane extends GridPane {
         opzioni = new Button("OPZIONI");
         opzioni.setPrefSize(419, 88);
         opzioni.setOnAction(event -> {
+
             View.getInstance().pause();
         });
         opzioni.setId("opz");
@@ -224,10 +146,14 @@ public class PlayerDataPane extends GridPane {
         }
     }
     
-    
+    public void fillGrid(){
+        this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
+    }
+     
     //metodi per operare sulla PDP
     public void setName(String nm){
-        this.name = nm;
+        this.originalName = nm;
+        this.name = nm.toUpperCase();
         update();
     }
     
@@ -284,7 +210,7 @@ public class PlayerDataPane extends GridPane {
     }
     
     public String getNome(){
-        return this.name;
+        return this.originalName;
     }    
     
     
