@@ -4,6 +4,7 @@
 
  
 
+ 
 
 #button {
     -fx-min-height: 70;
@@ -13,7 +14,7 @@
     -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
@@ -22,15 +23,18 @@
 
  
 
- 
+#button:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
 
  
+
 
 #button2 {
     -fx-font-family: "mistral";
     -fx-font-size: 25;
     -fx-text-fill: #184ddd;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
@@ -39,7 +43,24 @@
 
  
 
+#button2:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
  
+
+#button2:pressed {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+ 
+
+ 
+
+
+ 
+
+ 
+
 #labelTitolo {
     -fx-font-family: "mistral";
     -fx-font-size: 85;
@@ -49,6 +70,7 @@
 
  
 
+ 
 
 #label{
     -fx-font-family: "mistral";
@@ -70,12 +92,20 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 45;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
+#buttonBack:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
+ 
 
  
 
@@ -88,6 +118,9 @@
     -fx-max-height: 38;
     -fx-max-width: 155;
 }
+
+ 
+
 
  
 
@@ -114,11 +147,14 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
+}
+#effetti:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
  
@@ -135,12 +171,22 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
+#volume:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
+ 
+
+ 
 
  
 
@@ -158,11 +204,14 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
+}
+#istruzioni:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
  
@@ -177,7 +226,7 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 35;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
     -fx-border-width: 2;
@@ -186,6 +235,13 @@
 
  
 
+#retry:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
+ 
+
+ 
 
 #esci {
     -fx-font-family: "mistral";
@@ -195,7 +251,7 @@
     -fx-min-width: 60;
     -fx-max-height: 40;
     -fx-max-width: 60; 
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
     -fx-border-width: 2;
@@ -204,12 +260,23 @@
 
  
 
+#esci:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
+ 
+
+
 #labelBig{
     -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
     -fx-effect: dropshadow(three-pass-box, darkgrey, 10, 0.7, 0, 0);
 }
+
+ 
+
+ 
 
  
 
@@ -224,6 +291,7 @@
 
  
 
+ 
 
 #bground {
      -fx-background-color: #e1e3ea;
@@ -234,6 +302,7 @@
 
  
 
+ 
 
 #next{
     -fx-font-family: "mistral";
@@ -243,15 +312,17 @@
     -fx-min-width: 185;
     -fx-max-height: 40;
     -fx-max-width: 185;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 1, 1);
 }
+#next:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
 
  
-
 
 #rimbDes {
         -fx-background-color: #e1e3ea;
@@ -266,10 +337,13 @@
 
  
 
+ 
 
 #opz {
+      -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
       -fx-border-color: #184ddd;
       -fx-border-style: solid;
+      -fx-border-width: 1 9 2 1;
       -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 0, 0);
       -fx-font-family: "mistral";
       -fx-font-size: 27;
@@ -278,8 +352,9 @@
 
  
 
-
- 
+#opz:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
 
  
 
@@ -293,13 +368,6 @@
        -fx-font-size: 27;
        -fx-text-fill: #184ddd;
 }
-
- 
-
-
- 
-
- 
 
 
 #forza{
@@ -315,6 +383,7 @@
 
  
 
+ 
 
 .progress-bar{ 
     -fx-box-border: goldenrod;
@@ -331,6 +400,7 @@
 
  
 
+ 
 
 #rimbEff{
     -fx-background-color: #e1e3ea;
@@ -345,6 +415,7 @@
 
  
 
+ 
 
 #liv{
     -fx-background-color: #e1e3ea;
@@ -359,12 +430,17 @@
 
  
 
+
+ 
+
+ 
+
 #help{
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/lampadina.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 35;
-    -fx-background-color: #e1e3ea;
+     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
     -fx-border-width: 1;
@@ -372,6 +448,14 @@
 }
 
  
+
+#help:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+ 
+
+ 
+
 
 #line {
     -fx-stroke-width: 2;
@@ -381,10 +465,21 @@
 
  
 
+
+ 
+
+ 
+
+
 #lineH{
     -fx-stroke-width: 2;
     -fx-stroke: #f6e602;
 }
+
+ 
+
+
+ 
 
  
 
@@ -399,12 +494,16 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 23;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+#effettiOff:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+ 
 
  
 
@@ -418,11 +517,17 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30;
-    -fx-background-color: #e1e3ea;
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
+}
+
+ 
+
+#volumeOff:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
  
@@ -432,6 +537,46 @@
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(three-pass-box, darkgrey, 10,0.5, 1, 1);
+    -fx-font-family: "comic sans ms";
+    -fx-font-size: 19;
+    -fx-text-fill: #184ddd;
 }
-    
+
  
+
+
+#lista .list-cell:odd{
+    -fx-background-color: white; 
+    -fx-text-fill: #184ddd;
+
+ 
+
+}
+
+ 
+
+#lista .list-cell:even{
+    -fx-background-color: #e1e3ea;
+     -fx-text-fill: #184ddd;
+
+ 
+
+}
+
+ 
+
+
+#lista .list-cell:hover{
+    -fx-background-color: silver;
+    -fx-text-fill: #184ddd;
+
+ 
+
+}
+
+ 
+
+#lista .list-cell:selected{
+    -fx-background-color: #184ddd;
+    -fx-text-fill: white;  
+}

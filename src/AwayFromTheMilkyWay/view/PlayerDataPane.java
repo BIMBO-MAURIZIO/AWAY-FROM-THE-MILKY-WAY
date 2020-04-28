@@ -99,9 +99,8 @@ public class PlayerDataPane extends GridPane {
         numLivello.setId("liv");
         
         opzioni = new Button("OPZIONI");
-        opzioni.setPrefSize(419, 88);
+        opzioni.setPrefSize(426.7, 90);
         opzioni.setOnAction(event -> {
-
             View.getInstance().pause();
         });
         opzioni.setId("opz");

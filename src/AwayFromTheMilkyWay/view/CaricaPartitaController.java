@@ -112,6 +112,7 @@ public class CaricaPartitaController implements Initializable {
     public void caricaPartita(){
         if(scelta != null)
             ControllerForView.getInstance().loadGame(scelta);
+            
         else{
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Away From the Milky Way");

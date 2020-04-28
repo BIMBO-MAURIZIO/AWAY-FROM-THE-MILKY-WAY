@@ -110,10 +110,10 @@ public class Resources {
     
     public enum Backwash
     {
-        BCK1("media/images/spaceship1.png"),
-        BCK2("media/images/spaceship2.png"),
-        BCK3("media/images/spaceship3.png"),
-        BCK4("media/images/spaceship4.png");
+        BCK1("media/images/circle1.png"),
+        BCK2("media/images/circle2.png"),
+        BCK3("media/images/circle3.png"),
+        BCK4("media/images/circle4.png");
         private Image img = null;
         
         Backwash(String fileSrc)

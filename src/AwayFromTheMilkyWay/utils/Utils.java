@@ -48,6 +48,7 @@ public class Utils {
         for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){
                 result = splittedString[i+1];
+                buffRead.close();
                 break;
             } 
         }

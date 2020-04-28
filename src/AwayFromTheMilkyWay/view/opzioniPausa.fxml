@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -15,7 +14,7 @@
       <Button id="effetti" fx:id="effetti" layoutX="457.0" layoutY="457.0" mnemonicParsing="false" onAction="#toggleEffects" />
       <Label id="labelTitolo" fx:id="tit1o" layoutX="1044.0" layoutY="90.0" text="AWAY FROM" />
       <Label id="labelTitolo" fx:id="tit2o" layoutX="1044.0" layoutY="176.0" text="THE MILKY WAY" />
-      <ChoiceBox layoutX="268.0" layoutY="108.0" prefWidth="150.0" />
-      <ComboBox layoutX="633.0" layoutY="108.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="immagine" layoutX="686.0" layoutY="347.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="songs" layoutX="969.0" layoutY="347.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

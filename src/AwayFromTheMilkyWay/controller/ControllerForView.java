@@ -421,58 +421,43 @@ public class ControllerForView implements IControllerForView {
     public void setDirection() {
         View.getInstance().getHelpButton().setDisable(false);
         spaceship = View.getInstance().getSpaceship();
-        handler = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
-            public void handle(MouseEvent event) { 
-                if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
-                    View.getInstance().getGamePane().getChildren().remove(line);
-                double varMousePositionX = event.getX();
-                double varMousePositionY = event.getY();
-                //spaceship = View.getInstance().getSpaceship();
-                
-                angolo = Math.toDegrees(Math.atan2(varMousePositionY-spaceship.getCenterY(),varMousePositionX-spaceship.getCenterX()));
-                View.getInstance().getSpaceship().setRotate(angolo);
-                double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angolo)));
-                double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angolo))));
-                if(varMousePositionX<=1280 && varMousePositionY<= 718){
-                    line = new Line(parX,parY,varMousePositionX,varMousePositionY);
-                    View.getInstance().getGamePane().getChildren().add(line);
-                    line.setId("line");
-                }
-                
-                System.out.println(" angolo "+angolo);
-
-                System.out.println(" X "+varMousePositionX+" Y "+varMousePositionY);
+        handler = (MouseEvent event) -> {
+            if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
+                View.getInstance().getGamePane().getChildren().remove(line);
+            double varMousePositionX = event.getX();
+            double varMousePositionY = event.getY();
+            
+            angolo = Math.toDegrees(Math.atan2(varMousePositionY-spaceship.getCenterY(),varMousePositionX-spaceship.getCenterX()));
+            View.getInstance().getSpaceship().setRotate(angolo);
+            double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angolo)));
+            double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angolo))));
+            if(varMousePositionX<=1280 && varMousePositionY<= 718){
+                line = new Line(parX,parY,varMousePositionX,varMousePositionY);
+                View.getInstance().getGamePane().getChildren().add(line);
+                line.setId("line");
             }
-        };
-        
+        }; 
+
         View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_MOVED, handler);
         
-        
-        handler2 = new EventHandler<MouseEvent>() {  //handler che traccia la freccia ddirezionale
-            public void handle(MouseEvent event) { 
-                View.getInstance().getGamePane().getChildren().remove(line);
-
-            }
-        };
-        
+        handler2 = (MouseEvent event) -> {
+            View.getInstance().getGamePane().getChildren().remove(line);
+        }; 
         View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_EXITED, handler2);
        
-        
-        handler3 = new EventHandler<MouseEvent>() {  
-            public void handle(MouseEvent event) {  
-                mousePositionX = event.getX();
-                mousePositionY = event.getY();
-                View.getInstance().getDataPane().startPB();
-                setPower();
-            }
+        handler3 = (MouseEvent event) -> {
+            mousePositionX = event.getX();
+            mousePositionY = event.getY();
+            View.getInstance().getDataPane().startPB();
+            setPower();
         };
-       
         View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler3);    
     }
     
     
     @Override
     public void setPower(){
+        
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler3);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_EXITED, handler2);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_MOVED, handler);
@@ -490,14 +475,13 @@ public class ControllerForView implements IControllerForView {
                 movimento((View.getInstance().getDataPane().getProgressPB()*3/1)+2);
             }
         };
-       
-       
         View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler4);    
     }
     
     
     @Override
     public void pauseAnimations(){
+        
         if(this.timeline != null)
             this.timeline.pause();
         if(timelineObs1 != null)
@@ -512,13 +496,15 @@ public class ControllerForView implements IControllerForView {
             View.getInstance().getT3().stop();
     }
     
+    
     @Override
     public void playAnimations(){
+        
         if(this.timeline != null)
             this.timeline.play();
-        if(mOb1 != null)
+        if(timelineObs1 != null)
             timelineObs1.play();
-        if(mOb2 != null)
+        if(timelineObs2 != null)
             timelineObs2.play();
         if(View.getInstance().getT1() != null)
             View.getInstance().getT1().play();
@@ -526,27 +512,26 @@ public class ControllerForView implements IControllerForView {
             View.getInstance().getT2().play();
         if(View.getInstance().getT3() != null)
             View.getInstance().getT3().play();
-
     }
      
         
     @Override
     public double truncate(double a){
-        double b = a*10000000;
-        double c = Math.floor(b);
-        double d = c/10000000;
-        return d;
+        
+        double mult = a*10000000;
+        double fl = Math.floor(mult);
+        double res = fl/10000000;
+        return res;
     }
-    //aaa
+
     @Override
-    public void ConfigurationPlanets(){//cominica al controller quanti e quali pineti ci sono nel livello
+    public void ConfigurationPlanets(){
         a = new Circle[4];
-        int cl = Model.getInstance().getCurrentLevel();
         try {
-            a[0] = Model.getInstance().scanPlanets(cl)[0];
-            a[1] = Model.getInstance().scanPlanets(cl)[1];
-            a[2] = Model.getInstance().scanPlanets(cl)[2];
-            a[3] = Model.getInstance().scanPlanets(cl)[3];
+            a[0] = Model.getInstance().scanPlanets(Model.getInstance().getCurrentLevel())[0];
+            a[1] = Model.getInstance().scanPlanets(Model.getInstance().getCurrentLevel())[1];
+            a[2] = Model.getInstance().scanPlanets(Model.getInstance().getCurrentLevel())[2];
+            a[3] = Model.getInstance().scanPlanets(Model.getInstance().getCurrentLevel())[3];
         } catch (IOException ex) {
             Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -560,27 +545,25 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void ConfigurationFixObstacles(){//cominica al controller quanti e quali ostacoli ci sono nel livello
         b = new Circle[2];
-        int cl = Model.getInstance().getCurrentLevel();
         try {
-            b[0] = Model.getInstance().scanFixObstacles(cl)[0];
-            b[1] = Model.getInstance().scanFixObstacles(cl)[1];
-            
+            b[0] = Model.getInstance().scanFixObstacles(Model.getInstance().getCurrentLevel())[0];
+            b[1] = Model.getInstance().scanFixObstacles(Model.getInstance().getCurrentLevel())[1];  
         } catch (IOException ex) {
             Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
         }
        fOb1 = b[0];
-       fOb2 = b[1];
-      
+       fOb2 = b[1];  
     }
     
+    
     @Override
-    public void ConfigurationMovingObstacles(){//cominica al controller quanti e quali ostacoli ci sono nel livello
+    public void ConfigurationMovingObstacles(){
+        
         c = new Circle[2];
         int cl = Model.getInstance().getCurrentLevel();
         try {
             c[0] = Model.getInstance().scanMovingObstacles(cl)[0];
             c[1] = Model.getInstance().scanMovingObstacles(cl)[1];
-            
         } catch (IOException ex) {
             Logger.getLogger(ControllerForView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -604,29 +587,33 @@ public class ControllerForView implements IControllerForView {
     
     @Override    
     public void nextLevel(int livelloCorrente){
-
+        
         timeline = timelineObs1 = timelineObs2 = null;
         View.getInstance().setTimelines();
         Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(livelloCorrente+1);
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
+        if((livelloCorrente + 1) == 3 || (livelloCorrente + 1) == 5 || (livelloCorrente + 1) == 7 ){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Away From The Milky Way");
+            alert.setHeaderText("complimenti!");
+            alert.setContentText("hai sbloccato una nuova astronave");
+            alert.show();     
+        }
         Resources.Music.SOUNDTRACK.play();
         Model.getInstance().increaseLevel();
-            
-
-           
-
     } 
+    
     
     @Override
     public void moveObstacles(){
+        
         if(mOb1 != null){
             orientation = 1;
             movingObs1 = View.getInstance().getMovingObstacle1();
             timelineObs1 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> moveObsVer())
-                
+                x -> moveObsVer()) 
             );
             timelineObs1.setCycleCount(Timeline.INDEFINITE);
             timelineObs1.play();
@@ -637,8 +624,7 @@ public class ControllerForView implements IControllerForView {
             movingObs2 = View.getInstance().getMovingObstacle2();
             timelineObs2 = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> moveObsOri())
-                
+                x -> moveObsOri())    
             );
             timelineObs2.setCycleCount(Timeline.INDEFINITE);
             timelineObs2.play();
@@ -648,13 +634,12 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public void moveObsVer(){
+        
         if(Model.getInstance().getOstacoloMobile1().getCenterY() < 100 || Model.getInstance().getOstacoloMobile1().getCenterY() > 620)
             orientation = -orientation;
         double trY = orientation * 4;
         movingObs1.setTranslateY(trY);
-
         ControllerForModel.getInstance().setObs1CenterY(movingObs1.getCenterY()+trY);
-        
         movingObs1.setCenterY(Model.getInstance().getOstacoloMobile1().getCenterY());
     }
     
@@ -666,63 +651,73 @@ public class ControllerForView implements IControllerForView {
             orientation2 = -orientation2;
         double trX = orientation2 * 4;
         movingObs2.setTranslateX(trX);
-
         ControllerForModel.getInstance().setObs2CenterX(movingObs2.getCenterX()+trX);
-        
         movingObs2.setCenterX(Model.getInstance().getOstacoloMobile2().getCenterX());
     }
     
     @Override
     public void hint(int level){
+        
         double solutionX = 0;
         double solutionY = 0;
         double angle = 0;
-        if(level == 1){
-            solutionX = 387;
-            solutionY = 559;
-            angle = 57.98339772420928;
-        }else if(level == 2){
-            solutionX = 340;
-            solutionY = 160;
-            angle = -62.447188423282206;
-        }else if(level == 3){
-            solutionX = 547;
-            solutionY = 191;
-            angle = -19.580711661097112;
-        }else if(level == 4){
-            solutionX = 473;
-            solutionY = 575;
-            angle = 51.85875847113365;
-        }else if(level == 5){
-            solutionX = 802;
-            solutionY = 258;
-            angle = 16.0845756583733;
-        }else if(level == 6){
-            solutionX = 1039;
-            solutionY = 274;
-            angle = 10.498031843502302;
-        }else if(level == 7){
-            solutionX = 544;
-            solutionY = 179;
-            angle = -45.448114278042475;
-        }else if(level == 8){
-            solutionX = 447;
-            solutionY = 542;
-            angle = 51.86568026978651;
+        switch (level) {
+            case 1:
+                solutionX = 387;
+                solutionY = 559;
+                angle = 57.98339772420928;
+                break;
+            case 2:
+                solutionX = 340;
+                solutionY = 160;
+                angle = -62.447188423282206;
+                break;
+            case 3:
+                solutionX = 547;
+                solutionY = 191;
+                angle = -19.580711661097112;
+                break;
+            case 4:
+                solutionX = 473;
+                solutionY = 575;
+                angle = 51.85875847113365;
+                break;
+            case 5:
+                solutionX = 802;
+                solutionY = 258;
+                angle = 16.0845756583733;
+                break;
+            case 6:
+                solutionX = 1039;
+                solutionY = 274;
+                angle = 10.498031843502302;
+                break;
+            case 7:
+                solutionX = 544;
+                solutionY = 179;
+                angle = -45.448114278042475;
+                break;
+            case 8:
+                solutionX = 447;
+                solutionY = 542;
+                angle = 51.86568026978651;
+                break;
+            default:
+                break;
         }
         double parX = spaceship.getCenterX()+(45*Math.cos(Math.toRadians(angle)));
         double parY = spaceship.getCenterY()+(45*(Math.sin(Math.toRadians(angle))));
         lineH = new Line(parX,parY,solutionX,solutionY);
         View.getInstance().getGamePane().getChildren().add(lineH);
-                    lineH.setId("lineH");
+        lineH.setId("lineH");
     }
     
     
     @Override 
     public void saveGame(){
+        
         int level = getCurrentLevel();
         String nomePl = View.getInstance().getNome();
-        
         File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nomePl);
         if(f.exists()){
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -732,11 +727,8 @@ public class ControllerForView implements IControllerForView {
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
             Optional o = alert.showAndWait();
-            
-            if(o.get() == ButtonType.OK){
+            if(o.get() == ButtonType.OK)
                 Utils.getInstance().writeFile(f, "nome\n"+nomePl+"\n"+"livello\n"+level);
-            }
-            
         }else{
             Alert alert2 = new Alert(AlertType.WARNING);
             alert2.setTitle("Away From The Milky Way");
@@ -748,6 +740,7 @@ public class ControllerForView implements IControllerForView {
             Utils.getInstance().writeFile(f, "nome\n"+nomePl+"\n"+"livello\n"+level);
         }
     }
+    
     
     @Override
     public void loadGame(String nome){
@@ -777,7 +770,9 @@ public class ControllerForView implements IControllerForView {
     
     @Override
     public boolean deleteLog(String nome){
+        
         File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nome);
+        System.out.println(f.getPath());
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("ATTENZIONE");
         alert.setContentText("vuoi davvero cancellare la partita di "+ nome+ " ?");
@@ -789,7 +784,5 @@ public class ControllerForView implements IControllerForView {
         }else
             return false;
     }
-    
- 
-        
+      
 }//end class sss

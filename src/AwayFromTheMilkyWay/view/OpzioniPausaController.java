@@ -10,9 +10,14 @@ import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,6 +34,9 @@ public class OpzioniPausaController implements Initializable {
     @FXML private Button backo;
     @FXML private Label tit1o;
     @FXML private Label tit2o;
+    @FXML private ChoiceBox immagine;
+    @FXML private ChoiceBox songs;
+    static int sceltaImg;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,13 +45,63 @@ public class OpzioniPausaController implements Initializable {
             musica.setId("volume");
         else
             musica.setId("volumeOff");
-        
-        
+      
         if(Resources.SoundEffects.BUTTONCLICK.getToggleEffect())
             effetti.setId("effetti");
         else
             effetti.setId("effettiOff");
         
+        int currLev = ControllerForView.getInstance().getCurrentLevel();
+        switch (currLev) {
+            case 1:
+            case 2:
+                immagine.setItems(FXCollections.observableArrayList("astronave"));
+                break;
+            case 3:
+            case 4:
+                immagine.setItems(FXCollections.observableArrayList("astronave","pizza"));
+                break;
+            case 5:
+            case 6:
+                immagine.setItems(FXCollections.observableArrayList("astronave","pizza","ciambella"));
+                break;
+            case 7:
+            case 8:
+                immagine.setItems(FXCollections.observableArrayList("astronave","pizza","ciambella","orologio"));
+                break;
+            default:
+                immagine.setItems(FXCollections.observableArrayList("astronave"));
+                break;
+        }
+        
+        immagine.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
+            public void changed(ObservableValue ov,
+                    Number Value, Number new_value) {
+                        sceltaImg = new_value.intValue();
+                switch (sceltaImg) {
+                    case 0:
+                        View.getInstance().getGamePane().setSpaceshipIm(Resources.GeneralImages.SPACESHIP.getImage());
+                        break;
+                    case 1:
+                        View.getInstance().getGamePane().setSpaceshipIm(Resources.GeneralImages.PIZZA.getImage());
+                        break;
+                    case 2:
+                        View.getInstance().getGamePane().setSpaceshipIm(Resources.GeneralImages.CIAMBELLA.getImage());
+                        break;
+                    case 3:
+                        View.getInstance().getGamePane().setSpaceshipIm(Resources.GeneralImages.OROLOGIO.getImage());
+                        break;
+                    default:
+                        break;
+                }
+                        
+            }
+        });
+ 
+        songs.setItems(FXCollections.observableArrayList("traccia 1","traccia 2","traccia 3"));
+        
+    
+           
         salva.setLayoutX(153);
         salva.setLayoutY(77);
         salva.setText(salva.getText().toUpperCase());
@@ -126,6 +184,10 @@ public class OpzioniPausaController implements Initializable {
         Resources.SoundEffects.EXPLOSION.toggleSoundEnabled();
         Resources.SoundEffects.PLANETHIT.toggleSoundEnabled();
         Resources.SoundEffects.VICTORY.toggleSoundEnabled();
+    }
+    
+    public static int getScelta(){
+        return OpzioniPausaController.sceltaImg;
     }
     
     
