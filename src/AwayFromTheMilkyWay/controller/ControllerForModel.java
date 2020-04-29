@@ -1,24 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
 import AwayFromTheMilkyWay.view.View;
-import javafx.scene.shape.Circle;
 
-/**
- *
- * @author giorg
- */
+
 public class ControllerForModel implements IControllerForModel {
     private static ControllerForModel instance;
     
     
-    
-    Circle spaceship ;
+  
     
     public ControllerForModel(){
         
@@ -58,7 +49,7 @@ public class ControllerForModel implements IControllerForModel {
     }
     
     @Override
-    public double getSpaceshipCenterX (){ //centro dell'astronave nella view
+    public double getSpaceshipCenterX (){ 
         return View.getInstance().getSpaceship().getCenterX();
         
     }

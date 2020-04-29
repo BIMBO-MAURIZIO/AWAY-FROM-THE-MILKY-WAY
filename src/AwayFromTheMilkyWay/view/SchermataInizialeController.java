@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.utils.Resources;
@@ -14,11 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author giorg
- */
+
 
 public class SchermataInizialeController implements Initializable {
 
@@ -84,12 +76,14 @@ public class SchermataInizialeController implements Initializable {
         Resources.SoundEffects.BUTTONCLICK.play();
     }
     
-    public void toggleMusic(){//ricordati che per i tasti sviluppati in game il discorso deve essere opposto,ossia l'if deve essere fattomsolamente per la musica SOUNDTRACK
+    public void toggleMusic(){
         if(musica.getId().equals("volume"))
             musica.setId("volumeOff");
         else
             musica.setId("volume");
         Resources.Music.SOUNDTRACK.toggleMusicEnabled();
+        Resources.Music.SOUNDTRACK2.toggleMusicEnabled();
+        Resources.Music.SOUNDTRACK3.toggleMusicEnabled();
         Resources.Music.SOUNDINTRO.toggleMusicEnabled();
         if(Resources.Music.SOUNDINTRO.getToggleMusic()){
             Resources.Music.SOUNDINTRO.play();

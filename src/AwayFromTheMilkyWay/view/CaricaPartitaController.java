@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,15 +19,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author giorg
- */
+
 public class CaricaPartitaController implements Initializable {
 
     private @FXML ListView lv;
-    String scelta = null;
+    private String scelta = null;
     @FXML private Button carica;
     @FXML private Button canc;
     @FXML private Button backc;
@@ -108,6 +101,9 @@ public class CaricaPartitaController implements Initializable {
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
     }
     
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
+    }
     
     public void caricaPartita(){
         if(scelta != null)

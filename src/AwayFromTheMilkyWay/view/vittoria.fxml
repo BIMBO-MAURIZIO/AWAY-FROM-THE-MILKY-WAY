@@ -7,7 +7,7 @@
 <AnchorPane id="bground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.VittoriaController">
    <children>
       <Label id="labelBig" fx:id="win" layoutX="76.0" layoutY="43.0" prefHeight="18.0" prefWidth="146.0" text="HAI VINTO!" />
-      <Button id="esci" fx:id="esci1" layoutX="123.0" layoutY="143.0" mnemonicParsing="false" onAction="#exit" text="esci" />
+      <Button id="esci" fx:id="esci1" layoutX="123.0" layoutY="143.0" mnemonicParsing="false" onAction="#exit" onMouseMoved="#buttonSound" text="esci" />
       <Label id="labelEasy" fx:id="win1" layoutX="127.0" layoutY="61.0" text="CONGRATULAZIONI" />
    </children>
 </AnchorPane>

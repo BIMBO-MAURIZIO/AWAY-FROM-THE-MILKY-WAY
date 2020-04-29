@@ -4,8 +4,6 @@
 
  
 
- 
-
 #button {
     -fx-min-height: 70;
     -fx-min-width: 250;
@@ -29,7 +27,6 @@
 
  
 
-
 #button2 {
     -fx-font-family: "mistral";
     -fx-font-size: 25;
@@ -45,19 +42,7 @@
 
 #button2:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
-}
-
- 
-
-#button2:pressed {
-    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
-}
- 
-
- 
-
-
- 
+} 
 
  
 
@@ -66,13 +51,11 @@
     -fx-font-size: 85;
     -fx-text-fill: #184ddd;
     -fx-effect: dropshadow(three-pass-box, #e1e3ea, 10, 0.98, 1, 1);
-}
+} 
 
  
 
- 
-
-#label{
+#label {
     -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
@@ -81,8 +64,7 @@
 
  
 
-
-#buttonBack{
+#buttonBack {
     -fx-font-size: 7;
     -fx-min-height: 45;
     -fx-min-width: 55;
@@ -107,11 +89,7 @@
 
  
 
- 
-
- 
-
-#textfield{
+#textfield {
     -fx-effect: dropshadow(one-pass-box, #e1e3ea, 10, 0.7, 0, 0);
     -fx-min-height: 38;
     -fx-min-width: 155;
@@ -121,8 +99,13 @@
 
  
 
-
- 
+#textfield:hover {
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, #184ddd, 10,0.5, 1, 1);
+    
+}
 
  
 
@@ -134,10 +117,7 @@
 
  
 
- 
-
-
-#effetti{
+#effetti {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
@@ -146,22 +126,23 @@
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOn.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30;
+    -fx-background-size: 27;
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
 #effetti:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
  
 
- 
-
-#volume{
+#volume {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
@@ -186,15 +167,7 @@
 
  
 
- 
-
- 
-
- 
-
- 
-
-#istruzioni{
+#istruzioni {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
@@ -210,6 +183,9 @@
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
 #istruzioni:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
@@ -241,8 +217,6 @@
 
  
 
- 
-
 #esci {
     -fx-font-family: "mistral";
     -fx-font-size: 18;
@@ -266,8 +240,7 @@
 
  
 
-
-#labelBig{
+#labelBig {
     -fx-font-family: "mistral";
     -fx-font-size: 27;
     -fx-text-fill: #184ddd;
@@ -276,20 +249,11 @@
 
  
 
- 
-
- 
-
 #labelEasy {
     -fx-font-family: "mistral";
     -fx-font-size: 21;
     -fx-text-fill: #184ddd; 
-    -fx-border-color: darkgrey;
-    -fx-border-style: solid;
-    -fx-border-width: 0 0 2 0;
 }
-
- 
 
  
 
@@ -299,12 +263,7 @@
      -fx-border-style: solid;
      -fx-border-width: 2.5;
 }
-
- 
-
- 
-
-#next{
+#next {
     -fx-font-family: "mistral";
     -fx-font-size: 18;
     -fx-text-fill: #184ddd; 
@@ -318,6 +277,9 @@
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, #184ddd, 10,0.5, 1, 1);
 }
+
+ 
+
 #next:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
@@ -334,8 +296,6 @@
         -fx-font-size: 27;
         -fx-text-fill: #184ddd;
 }
-
- 
 
  
 
@@ -358,7 +318,7 @@
 
  
 
-#nome{
+#nome {
        -fx-background-color: #e1e3ea;
        -fx-border-color: #184ddd;
        -fx-border-style: solid;
@@ -369,8 +329,9 @@
        -fx-text-fill: #184ddd;
 }
 
+ 
 
-#forza{
+#forza {
     -fx-background-color: #e1e3ea;
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
@@ -383,26 +344,25 @@
 
  
 
- 
-
-.progress-bar{ 
+.progress-bar { 
     -fx-box-border: goldenrod;
 }
-.green-bar{
+.green-bar {
     -fx-accent: green;
 }
-.yellow-bar{
+.yellow-bar {
     -fx-accent: yellow;
 }
-.red-bar{
+
+ 
+
+.red-bar {
     -fx-accent: red;
 }
 
  
 
- 
-
-#rimbEff{
+#rimbEff {
     -fx-background-color: #e1e3ea;
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
@@ -415,9 +375,7 @@
 
  
 
- 
-
-#liv{
+#liv {
     -fx-background-color: #e1e3ea;
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
@@ -430,17 +388,12 @@
 
  
 
-
- 
-
- 
-
-#help{
+#help {
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/lampadina.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 35;
-     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
     -fx-border-width: 1;
@@ -452,10 +405,8 @@
 #help:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
- 
 
  
-
 
 #line {
     -fx-stroke-width: 2;
@@ -465,26 +416,14 @@
 
  
 
-
- 
-
- 
-
-
-#lineH{
+#lineH {
     -fx-stroke-width: 2;
     -fx-stroke: #f6e602;
 }
 
  
 
-
- 
-
- 
-
-
-#effettiOff{
+#effettiOff {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
@@ -493,21 +432,23 @@
     -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOff.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 23;
+    -fx-background-size: 25;
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(one-pass-box, darkgrey, 10,0.5, 1, 1);
 }
+
+ 
+
 #effettiOff:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
- 
 
  
 
-#volumeOff{
+#volumeOff {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
@@ -532,11 +473,11 @@
 
  
 
-#lista{
+#lista {
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
     -fx-border-width: 2;
-    -fx-effect: dropshadow(three-pass-box, darkgrey, 10,0.5, 1, 1);
+    -fx-effect: dropshadow(three-pass-box, darkgrey, 10,0.5, 0, 0);
     -fx-font-family: "comic sans ms";
     -fx-font-size: 19;
     -fx-text-fill: #184ddd;
@@ -544,39 +485,104 @@
 
  
 
-
-#lista .list-cell:odd{
+#lista .list-cell:odd {
     -fx-background-color: white; 
     -fx-text-fill: #184ddd;
-
- 
-
 }
 
  
 
-#lista .list-cell:even{
+#lista .list-cell:even {
     -fx-background-color: #e1e3ea;
-     -fx-text-fill: #184ddd;
-
- 
-
+    -fx-text-fill: #184ddd;
 }
 
  
 
-
-#lista .list-cell:hover{
+#lista .list-cell:hover {
     -fx-background-color: silver;
     -fx-text-fill: #184ddd;
-
- 
-
 }
 
  
 
-#lista .list-cell:selected{
+#lista .list-cell:selected {
     -fx-background-color: #184ddd;
     -fx-text-fill: white;  
+}
+
+ 
+
+#testo {
+    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/testo.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 415;
+    -fx-min-height: 500;
+    -fx-min-width: 500;
+    -fx-max-height: 500;
+    -fx-max-width: 500;
+}
+
+ 
+
+#box {
+    -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
+    -fx-mark-color: #184ddd;
+}
+
+ 
+
+#box:hover {
+    -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
+}
+
+ 
+
+#box:focused {
+    -fx-border-color: #184ddd;
+    -fx-border-style: solid;
+    -fx-border-width: 3;   
+}
+
+ 
+
+#box > .label {
+    -fx-font-family: "mistral";
+    -fx-font-size: 15;
+    -fx-text-fill: #184ddd;
+}
+
+ 
+
+#box .context-menu {
+    -fx-background-color: white; 
+    -fx-min-width: 145;
+    -fx-max-width: 145; 
+}
+
+ 
+
+#box .context-menu:hover {
+    -fx-background-color: white;
+}
+
+ 
+
+#box .menu-item > .label {
+    -fx-font-family: "mistral";
+    -fx-font-size: 15;
+    -fx-text-fill: #184ddd;
+}
+
+ 
+
+#box .menu-item:focused {
+    -fx-background-color: #184ddd;
+}
+
+ 
+
+#box .menu-item:focused > .label {
+    -fx-text-fill: white;
 }

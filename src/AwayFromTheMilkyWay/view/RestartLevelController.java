@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
@@ -15,11 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author giorg
- */
+
 public class RestartLevelController implements Initializable {
 
     
@@ -56,6 +48,10 @@ public class RestartLevelController implements Initializable {
         View.getInstance().getAlertStage().close();
         ControllerForView.getInstance().restartLevel();
         View.getInstance().getDataPane().enableButton();
+    }
+    
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
     }
     
     public void exit() throws IOException{

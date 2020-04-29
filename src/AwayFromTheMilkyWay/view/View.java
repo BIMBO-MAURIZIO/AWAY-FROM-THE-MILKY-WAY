@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
@@ -37,7 +33,7 @@ public class View implements IView{
     private static View instance;
     private GameWindow game;
     private Scene scene;
-    Stage pauseStage,alertStage;
+    private Stage pauseStage,alertStage;
     private Timeline t1,t2,t3;
     
     
@@ -110,7 +106,12 @@ public class View implements IView{
         stage.show();
         handleExit();
         Resources.Music.SOUNDINTRO.stop();
-        Resources.Music.SOUNDTRACK.play();
+         if(OpzioniPausaController.getSong() == 0)
+            Resources.Music.SOUNDTRACK.play();
+        else if(OpzioniPausaController.getSong() == 1)
+            Resources.Music.SOUNDTRACK2.play();
+        else if(OpzioniPausaController.getSong() == 2)
+            Resources.Music.SOUNDTRACK3.play();
         
     
     }
@@ -131,8 +132,10 @@ public class View implements IView{
         scene = new Scene(root, 1280, 800);
         
         pauseStage.setScene(scene);
+        
         pauseStage.setResizable(false);
         pauseStage.setTitle("Opzioni");
+        pauseStage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
         pauseStage.initStyle(StageStyle.UNDECORATED);
         stage.hide();
         pauseStage.show();
@@ -182,23 +185,23 @@ public class View implements IView{
     
     @Override//sostituire questo metodo nella ControllerForView invece che quella struttura riondante usata sin ora
     public Circle getSpaceship(){
-        return this.game.schermataGioco.getSpaceship();
+        return this.game.getSchermataGioco().getSpaceship();
                 
     }
     
     @Override
     public Circle getMovingObstacle1(){
-        return this.game.schermataGioco.getMO1();
+        return this.game.getSchermataGioco().getMO1();
     }
     @Override
     public Circle getMovingObstacle2(){
-        return this.game.schermataGioco.getMO2();
+        return this.game.getSchermataGioco().getMO2();
     }
     
     
     @Override
     public Circle getMilkyWay(){
-        return this.game.schermataGioco.getMilkyWay();
+        return this.game.getSchermataGioco().getMilkyWay();
     }
     
     @Override
@@ -242,7 +245,7 @@ public class View implements IView{
     @Override
     public void explosion(){
         
-        GamePane gm = this.game.schermataGioco;
+        GamePane gm = this.game.getSchermataGioco();
         t1 = new Timeline();
         t1.setCycleCount(1);
         
@@ -287,6 +290,8 @@ public class View implements IView{
         t1.setOnFinished((ActionEvent e) -> {
             ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
+            Resources.Music.SOUNDTRACK2.stop();
+            Resources.Music.SOUNDTRACK3.stop();
             View.getInstance().createAlert("restartLevel.fxml");
             Resources.SoundEffects.DEFEAT.play();
         });
@@ -300,7 +305,7 @@ public class View implements IView{
    
     @Override
     public void backwashWin(){
-        GamePane gm = this.game.schermataGioco;
+        GamePane gm = this.game.getSchermataGioco();
         t2 = new Timeline();
         t2.setCycleCount(1);
         
@@ -312,6 +317,8 @@ public class View implements IView{
         t2.setOnFinished((ActionEvent e) -> {
             ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
+            Resources.Music.SOUNDTRACK2.stop();
+            Resources.Music.SOUNDTRACK3.stop();
             if(ControllerForView.getInstance().getCurrentLevel() < 8)
                 View.getInstance().createAlert("levelComplete.fxml");
             else
@@ -325,7 +332,7 @@ public class View implements IView{
     
     @Override
     public void backwashLose(){
-        GamePane gm = this.game.schermataGioco;
+        GamePane gm = this.game.getSchermataGioco();
         t3 = new Timeline();
         t3.setCycleCount(1);
         
@@ -337,6 +344,8 @@ public class View implements IView{
         t3.setOnFinished((ActionEvent e) -> {
             ControllerForView.getInstance().pauseAnimations();
             Resources.Music.SOUNDTRACK.stop();
+            Resources.Music.SOUNDTRACK2.stop();
+            Resources.Music.SOUNDTRACK3.stop();
             View.getInstance().createAlert("restartLevel.fxml");
             Resources.SoundEffects.DEFEAT.play();
         });

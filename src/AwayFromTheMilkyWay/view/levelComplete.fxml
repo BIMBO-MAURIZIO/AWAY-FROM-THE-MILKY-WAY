@@ -7,6 +7,6 @@
 <AnchorPane id="bground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.LevelCompleteController">
    <children>
       <Label id="labelBig" fx:id="sup" layoutX="68.0" layoutY="28.0" prefHeight="45.0" prefWidth="182.0" text="SUPER!" />
-      <Button id="next" fx:id="next" layoutX="67.0" layoutY="120.0" maxHeight="46.0" maxWidth="214.0" mnemonicParsing="false" onAction="#nextLevel" prefHeight="46.0" prefWidth="214.0" text="Vai al prossimo livello" />
+      <Button id="next" fx:id="next" layoutX="67.0" layoutY="120.0" maxHeight="46.0" maxWidth="214.0" mnemonicParsing="false" onAction="#nextLevel" onMouseEntered="#buttonSound" prefHeight="46.0" prefWidth="214.0" text="Vai al prossimo livello" />
    </children>
 </AnchorPane>

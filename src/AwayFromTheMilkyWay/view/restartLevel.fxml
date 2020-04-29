@@ -6,8 +6,8 @@
 
 <AnchorPane id="bground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.RestartLevelController">
    <children>
-      <Button id="retry" fx:id="retry" layoutX="67.0" layoutY="148.0" mnemonicParsing="false" onAction="#restartLevel" prefHeight="42.0" prefWidth="51.0" />
-      <Button id="esci" fx:id="esci" layoutX="195.0" layoutY="148.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="51.0" text="esci" />
+      <Button id="retry" fx:id="retry" layoutX="67.0" layoutY="148.0" mnemonicParsing="false" onAction="#restartLevel" onMouseEntered="#buttonSound" prefHeight="42.0" prefWidth="51.0" />
+      <Button id="esci" fx:id="esci" layoutX="195.0" layoutY="148.0" mnemonicParsing="false" onAction="#exit" onMouseEntered="#buttonSound" prefHeight="42.0" prefWidth="51.0" text="esci" />
       <Label id="labelBig" fx:id="lose" layoutX="80.0" layoutY="32.0" prefHeight="35.0" prefWidth="147.0" text="GAME OVER" />
       <Label id="labelEasy" fx:id="cosa" layoutX="93.0" layoutY="74.0" prefHeight="35.0" prefWidth="128.0" text="Cosa vuoi fare?" />
    </children>

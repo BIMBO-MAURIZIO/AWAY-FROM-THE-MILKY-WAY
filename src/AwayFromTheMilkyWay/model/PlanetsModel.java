@@ -18,7 +18,7 @@ public class PlanetsModel {
     private Circle pl2;
     private Circle pl3;
     private Circle pl4;
-    Circle[] a = new Circle[4];
+    private Circle[] a = new Circle[4];
     
     public PlanetsModel(){}
     

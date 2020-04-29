@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
+import AwayFromTheMilkyWay.utils.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,18 +10,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author giorg
- */
+
 public class InstructionsController implements Initializable {
 
     @FXML private Label tit1i;
     @FXML private Label tit2i;
+    @FXML private Label testo;
     @FXML private Button backi;
-  
+    
    
+
+ 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tit1i.setLayoutX(694);
@@ -39,10 +36,16 @@ public class InstructionsController implements Initializable {
         tit2i.setText(tit2i.getText().toUpperCase());
         backi.setLayoutX(53);
         backi.setLayoutY(45);
-    }   
+        testo.setLayoutX(85);
+        testo.setLayoutY(45);
+    }  
     
     public void back() throws IOException{
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
+    }
+    
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
     }
     
     

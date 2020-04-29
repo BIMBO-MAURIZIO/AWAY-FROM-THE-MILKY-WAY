@@ -20,7 +20,7 @@ public class movingObstaclesModel {
         
     private Circle mo1;
     private Circle mo2;
-    Circle[] a = new Circle[2];
+    private Circle[] a = new Circle[2];
     
     public movingObstaclesModel(){
         

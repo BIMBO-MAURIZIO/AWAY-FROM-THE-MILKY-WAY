@@ -39,34 +39,15 @@ public class ControllerForView implements IControllerForView {
     private EventHandler<MouseEvent> handler,handler2,handler3,handler4;
     private Point2D NrotatedNormal;
     private Circle[] a,b,c;
-    Line line,lineH;
-    
-    
-    
-     //private GameWindow gameWindow;
-     //private GamePane gamePane ;
-    
-    
-    
-    
-    //variabili per il movimento
+    private Line line,lineH;
     private double t = 0;
     private double x,y,magnitude,xstab,ystab,variableSpaceshipX,variableSpaceshipY;
     private Point2D shipSpeed;
     private Timeline timeline,timelineObs1,timelineObs2;
-    private boolean sound;
-    //AnimationTimer a;
-    
-    
-    
-    
-    
-    
-    
+       
     //costanti
-    
     private final int WINLENGTH = 1280;
-    private final int WINHEIGHT = 717;//sottraiamo 3 da 720 perhè il rendering non riesce a seguire la logica
+    private final int WINHEIGHT = 717;
     private final int SPACESHIPRADIUS = 45;
     
     public ControllerForView(){
@@ -88,11 +69,11 @@ public class ControllerForView implements IControllerForView {
     }
     
     
-    //questi metodi vanno messi nel controllerForModel!!!!!
     @Override
     public double getSpaceshipCenterX(){
         return Model.getInstance().getSpaceship().getCenterX();
     }
+    
     
     @Override
     public double getSpaceshipCenterY(){
@@ -105,6 +86,7 @@ public class ControllerForView implements IControllerForView {
         return Model.getInstance().getMilkyWay().getCenterX();
     }
     
+    
     @Override
     public double getMWCenterY(){
         return Model.getInstance().getMilkyWay().getCenterY();
@@ -114,6 +96,7 @@ public class ControllerForView implements IControllerForView {
     public double getMWRadius(){
         return Model.getInstance().getMilkyWay().getRadius();
     }
+    
     
     @Override
     public int getCurrentLevel(){
@@ -126,49 +109,32 @@ public class ControllerForView implements IControllerForView {
         Model.getInstance().setLevel(level);
     }
     
+    
     @Override
     public Line getLine(){
         return this.line;
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //METODI PER IL MOVIMENTO
     @Override
     public void movimento(double v){
         
-        ConfigurationPlanets();//visualizza quanti e quali pianeti stanno nella scena dipendentemente dal livello
+        ConfigurationPlanets();
         ConfigurationFixObstacles();
         
         View.getInstance().getGamePane().getChildren().remove(line);
         View.getInstance().getGamePane().removeEventHandler(MouseEvent.MOUSE_PRESSED, handler4);
-        sound = true;
+        
         ControllerForModel.getInstance().setName();
         Model.getInstance().setRimbDesiderati(View.getInstance().getRimbDes());
-        System.out.println("velocità2 :"+v);
-        //spaceship = View.getInstance().getSpaceship();
         milkyWay = View.getInstance().getMilkyWay();
-        System.out.println(spaceship.getCenterX());
-        System.out.println(spaceship.getCenterY());
         
         ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX());
         ControllerForModel.getInstance().setSpaceshipCenterY(spaceship.getCenterY());
         
         startSpaceshipX = spaceship.getCenterX();
         startSpaceshipY = spaceship.getCenterY();
-        
-        
         x = mousePositionX-startSpaceshipX;
         y = mousePositionY-startSpaceshipY;
         magnitude = Math.sqrt(x*x+ y*y);
@@ -179,8 +145,7 @@ public class ControllerForView implements IControllerForView {
         
         timeline = new Timeline(new KeyFrame(
                 Duration.seconds(0.025), // ogni quanto va chiamata la funzione
-                x -> move(xstab,ystab,v))
-                
+                x -> move(xstab,ystab,v)) 
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -282,10 +247,7 @@ public class ControllerForView implements IControllerForView {
                 double NdifferenceY = differenceY/diagonal;
                 
                 if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){//fino a quando l'astronave non si è allineata con il centro della milkyway
-                    if(sound){
-                        //Resources.SoundEffects.BACKWASH.play();
-                    }
-                    sound = false;
+                    
                     spaceship.setTranslateX(NdifferenceX);
                     spaceship.setTranslateY(NdifferenceY);
                 
@@ -295,10 +257,10 @@ public class ControllerForView implements IControllerForView {
                     spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());    
                 }else{
                     timeline.stop();
-                    if(Model.getInstance().getRimbDesiderati() == Model.getInstance().getRimbalziEffettuati())
+                    if(Model.getInstance().getRimbDesiderati() == Model.getInstance().getRimbalziEffettuati())//vittoria
                         View.getInstance().backwashWin();  
                     else
-                        View.getInstance().backwashLose();
+                        View.getInstance().backwashLose();//entra nella milkyway ma perde
                 }
             }else{//caso in cui non ci sono collisioni
                 
@@ -582,7 +544,6 @@ public class ControllerForView implements IControllerForView {
         Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
-        Resources.Music.SOUNDTRACK.play();
     }    
     
     @Override    
@@ -598,9 +559,11 @@ public class ControllerForView implements IControllerForView {
             alert.setTitle("Away From The Milky Way");
             alert.setHeaderText("complimenti!");
             alert.setContentText("hai sbloccato una nuova astronave");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
             alert.show();     
         }
-        Resources.Music.SOUNDTRACK.play();
+       
         Model.getInstance().increaseLevel();
     } 
     

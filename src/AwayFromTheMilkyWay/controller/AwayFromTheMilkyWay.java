@@ -1,35 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.controller;
 
 
 import AwayFromTheMilkyWay.utils.Resources;
-import AwayFromTheMilkyWay.utils.Utils;
 import AwayFromTheMilkyWay.view.View;
-import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- *
- * @author giorg
- */
+
 public class AwayFromTheMilkyWay extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        /*File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\");
-        String[] a = f.list();
-        for(int i=0 ; i<a.length;i++){
-            System.out.println(a[i]);
-        }
-        Utils.getInstance().writeFile(f, "vediamo se cambia\n"+"ciao");
-        System.out.println("fatto");*/
+
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
         Resources.Music.SOUNDINTRO.play();
         

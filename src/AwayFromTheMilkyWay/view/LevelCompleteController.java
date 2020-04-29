@@ -6,6 +6,7 @@
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
+import AwayFromTheMilkyWay.utils.Resources;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -33,7 +34,11 @@ public class LevelCompleteController implements Initializable {
         next.setLayoutX(68);
         next.setLayoutY(135);
         next.setText(next.getText().toUpperCase());
-    }       
+    }      
+    
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
+    }
     
     public void nextLevel(){
         View.getInstance().getAlertStage().close();

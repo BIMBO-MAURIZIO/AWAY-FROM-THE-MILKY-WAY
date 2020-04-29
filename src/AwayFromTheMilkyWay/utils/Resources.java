@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.utils;
 
 import java.net.URL;
@@ -11,10 +7,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author giorg
- */
+
 public class Resources {
     
     public enum GeneralImages
@@ -25,19 +18,18 @@ public class Resources {
         MARTE("media/images/marte.png"),
         URANIO("media/images/uranio.png"),
         TERRA("media/images/terra.png"),
+        PIZZA("media/images/pizza.png"),
         OROLOGIO("media/images/orologio.png"),
         CIAMBELLA("media/images/ciambella.png"),
         MILKYWAY("media/images/milkyWay.png"),
-        GRID("media/images/grid.png"),
-        SPACEMAN("media/images/spaceMan.png"),
         SPACEMANICON("media/images/spaceManIcon.png"),
         SPACESHIP("media/images/spaceship.png"),
         BACKGROUND("media/images/background.jpg"),
         OBSTACLE1("media/images/obstacle1.png"),
         ALIEN("media/images/alien.png"),
         ALIEN2("media/images/alien2.png"),
-        OBSTACLE2("media/images/obstacle2.png"),
-        PIZZA("media/images/pizza.png");
+        OBSTACLE2("media/images/obstacle2.png");
+
         private Image img = null;
         
         GeneralImages(String fileSrc)
@@ -135,13 +127,12 @@ public class Resources {
         VICTORY("media/sounds/vittoria.mp3"),
         DEFEAT("media/sounds/sconfitta.mp3"),
         EXPLOSION("media/sounds/esplosione.mp3"),
-        //BACKWASH("media/sounds/risucchioAstronave.mp3"),
         BUTTONCLICK("media/sounds/buttonClick.mp3");
         
         
         private boolean soundEnabled;
         private AudioClip media;
-        private final static double MUSIC_VOLUME = 0.10;
+        private final static double MUSIC_VOLUME = 0.15;
         
         SoundEffects(String fileSrc)
         {
@@ -171,12 +162,14 @@ public class Resources {
     
     public enum Music{
     
-        //SOUNDTRACK("src\\AwayFromTheMilkyWay\\configuration\\media\\sounds\\song1.mp3");
         SOUNDTRACK("media/sounds/songGame.mp3"),
+        SOUNDTRACK2("media/sounds/nuvoleBianche.mp3"),
+        SOUNDTRACK3("media/sounds/bananaSong.mp3"),
         SOUNDINTRO("media/sounds/songIntro.mp3");     
+        
         private boolean musicEnabled;
         private MediaPlayer audioMedia;
-        private final static double MUSIC_VOLUME = 0.1;
+        private final static double MUSIC_VOLUME = 0.15;
         Music(String fileSrc){
         
             URL url = this.getClass().getResource(fileSrc);

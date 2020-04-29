@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 import AwayFromTheMilkyWay.controller.ControllerForView;
@@ -22,11 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author giorg
- */
+
 public class NuovaPartitaController implements Initializable {
         
     @FXML private Label tit11;
@@ -35,8 +27,8 @@ public class NuovaPartitaController implements Initializable {
     @FXML private Button back;
     @FXML private Button start;
     @FXML private TextField textField;
-    String name;
-    Alert errorAlert = new Alert(AlertType.ERROR);
+    private String name;
+    private Alert errorAlert = new Alert(AlertType.ERROR);
    
    
    
@@ -76,6 +68,9 @@ public class NuovaPartitaController implements Initializable {
         }
     }
     
+    public void buttonSound(){
+        Resources.SoundEffects.BUTTONCLICK.play();
+    }
     
     public void back() throws IOException{
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
@@ -113,6 +108,8 @@ public class NuovaPartitaController implements Initializable {
             ControllerForView.getInstance().setName(name);
             
         }   
+        
+        
     }
     
      

@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.view;
 
 
+import AwayFromTheMilkyWay.utils.Resources;
 import AwayFromTheMilkyWay.utils.Utils;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
@@ -20,12 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-/**
- *
- * @author giorg
- */
+
 public class PlayerDataPane extends GridPane {
-    int level, rimbalziEff,rimbalziDes,power;
+    private int level, rimbalziEff,rimbalziDes;
     private String name, originalName;
     private ProgressBar pb;
     private Timeline t ;
@@ -85,7 +79,6 @@ public class PlayerDataPane extends GridPane {
         final VBox layout = new VBox();
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().setAll(pb);
-        //layout.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         layout.setId("forza");
         
         rimbalziEffettuati = new Label("RIMBALZI EFFETTUATI: " + rimbalziEff);
@@ -103,6 +96,9 @@ public class PlayerDataPane extends GridPane {
         opzioni.setOnAction(event -> {
             View.getInstance().pause();
         });
+        opzioni.setOnMouseEntered(event -> {
+            Resources.SoundEffects.BUTTONCLICK.play();
+        });
         opzioni.setId("opz");
         
         this.add(numLivello,0,0);
@@ -110,38 +106,46 @@ public class PlayerDataPane extends GridPane {
         this.add(rimbalziDesiderati,1,0);
         this.add(rimbalziEffettuati,1,1);
         this.add(nome,2,0);
-        this.add(opzioni,2,1);
-        //this.setGridLinesVisible(true);
-        
-        
-      
+        this.add(opzioni,2,1);      
     }
     
+    
     public void adaptToLevel(int level) throws IOException{
-        if(level == 1){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 2){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 3){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 4){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 5){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 6){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 7){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "rimbalziDes")));
-            setLevel(level);
-        }else if(level == 8){
-            setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "rimbalziDes")));
-            setLevel(level);
+        switch (level) {
+            case 1:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 2:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 3:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 4:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 5:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 6:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 7:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            case 8:
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "rimbalziDes")));
+                setLevel(level);
+                break;
+            default:
+                break;
         }
     }
     
@@ -149,7 +153,7 @@ public class PlayerDataPane extends GridPane {
         this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
     }
      
-    //metodi per operare sulla PDP
+    
     public void setName(String nm){
         this.originalName = nm;
         this.name = nm.toUpperCase();

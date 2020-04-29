@@ -16,7 +16,7 @@ import javafx.scene.shape.Circle;
 public class fixObstaclesModel {
     private Circle fo1;
     private Circle fo2;
-    Circle[] a = new Circle[2];
+    private Circle[] a = new Circle[2];
     
     public fixObstaclesModel(){}
     
