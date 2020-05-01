@@ -86,7 +86,7 @@ public class PlayerDataPane extends GridPane {
         rimbalziEffettuati.setAlignment(Pos.CENTER);
         rimbalziEffettuati.setId("rimbEff");
         
-        numLivello = new Label("LIVELLO NUMERO " + level);
+        numLivello = new Label("LIVELLO NUMERO: " + level);
         numLivello.setPrefSize(426.7, 90);
         numLivello.setAlignment(Pos.CENTER);
         numLivello.setId("liv");
@@ -113,35 +113,35 @@ public class PlayerDataPane extends GridPane {
     public void adaptToLevel(int level) throws IOException{
         switch (level) {
             case 1:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level1.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level1.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 2:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level2.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level2.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 3:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level3.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level3.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 4:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level4.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level4.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 5:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level5.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level5.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 6:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level6.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level6.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 7:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level7.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level7.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             case 8:
-                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("src\\AwayFromTheMilkyWay\\configuration\\txtFiles\\Level8.txt", "rimbalziDes")));
+                setRimbDes(Integer.parseInt(Utils.getInstance().searchWord("txtFiles/Level8.txt", "rimbalziDes")));
                 setLevel(level);
                 break;
             default:
@@ -222,7 +222,7 @@ public class PlayerDataPane extends GridPane {
     public void update(){
         nome.setText("NOME: " + name);
         rimbalziDesiderati.setText("RIMBALZI DESIDERATI: "+ rimbalziDes);
-        rimbalziEffettuati.setText("RIMABLZI EFFETTUATI: "+ rimbalziEff);
+        rimbalziEffettuati.setText("RIMBALZI EFFETTUATI: "+ rimbalziEff);
         numLivello.setText("LIVELLO NUMERO "+ level);
        
     }

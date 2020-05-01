@@ -12,6 +12,16 @@ public class Resources {
     
     public enum GeneralImages
     {   
+        ISTRUZIONI("media/images/instructions.png"),
+        TESTO("media/images/testo.jpeg"),
+        BACK("media/images/backIconBLU.png"),
+        HELP("media/images/lampadina.png"),
+        RETRY("media/images/retryIcon.png"),    
+        VOLUMEON("media/images/soundEffectsOn.png"),
+        VOLUMEOFF("media/images/soundEffectsOff.png"),
+        EFFETTION("media/images/volumeOn.png"),
+        EFFETTIOFF("media/images/volumeOff.png"),
+        BACKGROUNDF("media/images/sfondoSenzaNulla.png"),
         MERCURIO("media/images/mercurio.png"),
         GIOVE("media/images/giove.png"),
         NETTUNO("media/images/nettuno.png"),
@@ -201,5 +211,22 @@ public class Resources {
             return this.musicEnabled;
         }
     }
+    
+    /*public enum Config
+    {
+        LV1("configuration/txtFiles/Level1.txt");
+        private String s = null;
+        
+        Config(String fileSrc)
+        {
+            URL sSrc = this.getClass().getResource(fileSrc);
+            s = sSrc.toString();
+        }
+        
+        public String getConfig()
+        {
+            return this.s;
+        }
+    } */
     
 }

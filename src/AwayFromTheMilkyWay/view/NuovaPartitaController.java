@@ -14,8 +14,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 
@@ -27,6 +34,7 @@ public class NuovaPartitaController implements Initializable {
     @FXML private Button back;
     @FXML private Button start;
     @FXML private TextField textField;
+    @FXML private AnchorPane ap;
     private String name;
     private Alert errorAlert = new Alert(AlertType.ERROR);
    
@@ -34,7 +42,14 @@ public class NuovaPartitaController implements Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        
+        ap.setBackground(new Background(new BackgroundImage(Resources.GeneralImages.BACKGROUNDF.getImage(),
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundPosition.CENTER,
+                                                            BackgroundSize.DEFAULT)));
+        
+        back.setGraphic(new ImageView(Resources.GeneralImages.BACK.getImage()));
         tit11.setLayoutX(694);
         tit11.setLayoutY(75);
         tit11.setMinSize(374,112);

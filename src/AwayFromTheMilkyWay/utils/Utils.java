@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 
@@ -34,8 +36,11 @@ public class Utils {
     
     
     public String searchWord(String filePath,String searchedWord) throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
-        File file = new File(filePath);
-        buffRead = new BufferedReader(new FileReader(file));
+        /*File file = new File(filePath);
+        buffRead = new BufferedReader(new FileReader(file));*/
+        String path = "configuration/"+filePath;
+        InputStream in = getClass().getResourceAsStream(path);
+        buffRead = new BufferedReader(new InputStreamReader(in));
         String line;
         String increasing = "";
         while ((line = buffRead.readLine()) != null){
@@ -57,6 +62,7 @@ public class Utils {
     }
     
     public void writeFile(File file, String txt){
+        
 		try {
 			PrintWriter out = new PrintWriter (new FileWriter(file));
 			out.println(txt);
@@ -66,9 +72,30 @@ public class Utils {
                 }
     }
 
-    /*public boolean fileCheck(File file){
-        
-    }*/
-
+    public String searchWordProfile(String filePath,String searchedWord) throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
+        File file = new File(filePath);
+        buffRead = new BufferedReader(new FileReader(file));
+        //String path = "configuration/"+filePath;
+        //InputStream in = getClass().getResourceAsStream(path);
+        //buffRead = new BufferedReader(new InputStreamReader(in));
+        String line;
+        String increasing = "";
+        while ((line = buffRead.readLine()) != null){
+            increasing += line+"\n";
+        }
+    
+        String result = "";
+        String[] splittedString;// = new String[300]; se ci fossero problemi rimetti questo
+        splittedString = increasing.split("\n");
+        for(int i = 0; i < 300; i++){
+            if(splittedString[i].equals(searchedWord)){
+                result = splittedString[i+1];
+                buffRead.close();
+                break;
+            } 
+        }
+        return result;
+  
+    }
 
 }

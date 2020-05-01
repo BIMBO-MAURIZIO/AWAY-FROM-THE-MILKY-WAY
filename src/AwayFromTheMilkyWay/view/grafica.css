@@ -1,5 +1,7 @@
+
 #background {
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/sfondoSenzaNulla.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/sfondoSenzaNulla.png');*/
+    
 }
 
  
@@ -70,10 +72,10 @@
     -fx-min-width: 55;
     -fx-max-height: 45;
     -fx-max-width: 55;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/backIconBLU.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/backIconBLU.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 45;
+    -fx-background-size: 45;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -117,16 +119,16 @@
 
  
 
-#effetti {
+#eff {
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
     -fx-max-height: 50;
     -fx-max-width: 50;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOn.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOn.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 27;
+    -fx-background-size: 27;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -136,7 +138,7 @@
 
  
 
-#effetti:hover {
+#eff:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
@@ -148,10 +150,10 @@
     -fx-min-width: 50;
     -fx-max-height: 50;
     -fx-max-width: 50;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOn.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOn.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30;
+    -fx-background-size: 30;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -167,16 +169,16 @@
 
  
 
-#istruzioni {
+#instr{
     -fx-font-size: 7;
     -fx-min-height: 50;
     -fx-min-width: 50;
     -fx-max-height: 50;
     -fx-max-width: 50;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/instructions.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/instructions.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30;
+    -fx-background-size: 30;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -186,7 +188,7 @@
 
  
 
-#istruzioni:hover {
+#instr:hover {
     -fx-background-color: linear-gradient(gainsboro 0%, silver 25%, silver 75%, gainsboro 100%);
 }
 
@@ -198,10 +200,10 @@
     -fx-min-width: 45;
     -fx-max-height: 40;
     -fx-max-width: 45;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/retryIcon.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/retryIcon.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 35;
+    -fx-background-size: 35;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
@@ -389,10 +391,10 @@
  
 
 #help {
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/lampadina.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/lampadina.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 35;
+    -fx-background-size: 35;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: #184ddd;
     -fx-border-style: solid;
@@ -429,10 +431,10 @@
     -fx-min-width: 50;
     -fx-max-height: 50;
     -fx-max-width: 50;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOff.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/volumeOff.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 25;
+    -fx-background-size: 25;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -454,10 +456,10 @@
     -fx-min-width: 50;
     -fx-max-height: 50;
     -fx-max-width: 50;
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOff.png');
+    /*-fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/soundEffectsOff.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30;
+    -fx-background-size: 30;*/
     -fx-background-color: linear-gradient(white 0%, #e1e3ea 25%, #e1e3ea 75%, white 100%);
     -fx-border-color: darkgrey;
     -fx-border-style: solid;
@@ -514,14 +516,14 @@
  
 
 #testo {
-    -fx-background-image: url('file:src/AwayFromTheMilkyWay/utils/media/images/testo.png');
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 415;
-    -fx-min-height: 500;
-    -fx-min-width: 500;
-    -fx-max-height: 500;
-    -fx-max-width: 500;
+    -fx-border-color: darkgrey;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, darkgrey, 10,0.5, 0, 0);
+    -fx-min-height: 400;
+    -fx-min-width: 310;
+    -fx-max-height: 400;
+    -fx-max-width: 310;
 }
 
  

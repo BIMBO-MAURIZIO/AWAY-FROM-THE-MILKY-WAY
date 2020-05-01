@@ -17,49 +17,69 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 
 public class CaricaPartitaController implements Initializable {
 
     private @FXML ListView lv;
     private String scelta = null;
+    File f ;
     @FXML private Button carica;
     @FXML private Button canc;
     @FXML private Button backc;
     @FXML private Label tit1c;
     @FXML private Label tit2c;
     @FXML private Label scegli;
+    @FXML private AnchorPane ap;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\");
-        String[] allFiles = f.list();
-        ObservableList<String> list = FXCollections.observableArrayList(allFiles);
-        lv.setItems(list);
-        lv.setCellFactory(lv -> {
-            ListCell<String> cell = new ListCell<String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setText(null);
-                    } else {
-                        setText(item);
-                    }
-                }
-            };
-            cell.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-                if ((! cell.isEmpty())) {
-                    String item = cell.getItem();
-                    scelta = item;
-                    System.out.println("Right clicked "+item);
-                }
-            });
-        return cell ;
-        });
         
+        ap.setBackground(new Background(new BackgroundImage(Resources.GeneralImages.BACKGROUNDF.getImage(),
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundPosition.CENTER,
+                                                            BackgroundSize.DEFAULT)));
+        
+        backc.setGraphic(new ImageView(Resources.GeneralImages.BACK.getImage()));
+        
+        if(new File("gameProfiles").exists()){
+        //File f = new File("gameProfiles/");
+            f = new File("gameProfiles/");
+            String[] allFiles = f.list();
+            ObservableList<String> list = FXCollections.observableArrayList(allFiles);
+            lv.setItems(list);
+            lv.setCellFactory(lv -> {
+                ListCell<String> cell = new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                    }
+                };
+                cell.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                    if ((! cell.isEmpty())) {
+                        String item = cell.getItem();
+                        scelta = item;
+                        System.out.println("Right clicked "+item);
+                    }
+                });
+            return cell ;
+            });
+        }
         
         //parte grafica
         
@@ -122,7 +142,7 @@ public class CaricaPartitaController implements Initializable {
             Boolean r = ControllerForView.getInstance().deleteLog(scelta);
             if(r){
                 scelta = null;
-                File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\");
+                File f = new File("gameProfiles/");
                 String[] allFiles = f.list();
                 ObservableList<String> list = FXCollections.observableArrayList(allFiles);
                 lv.setItems(list);
@@ -132,6 +152,7 @@ public class CaricaPartitaController implements Initializable {
             alert.setTitle("Away From the Milky Way");
             alert.setContentText("per cancellare un profilo devi prima sceglierlo dalla lista");
             alert.show();
+            
         }
     }
     

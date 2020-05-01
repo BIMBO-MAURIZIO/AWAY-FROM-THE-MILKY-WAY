@@ -14,8 +14,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 
 
@@ -32,22 +39,38 @@ public class OpzioniPausaController implements Initializable {
     @FXML private ChoiceBox songs;
     @FXML private Label astronavi;
     @FXML private Label canzoni;
+    @FXML private AnchorPane ap;
     private static int sceltaImg;
     private static int sceltaSong;
+
    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        if(Resources.Music.SOUNDINTRO.getToggleMusic())
+        ap.setBackground(new Background(new BackgroundImage(Resources.GeneralImages.BACKGROUNDF.getImage(),
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundPosition.CENTER,
+                                                            BackgroundSize.DEFAULT)));
+        
+        backo.setGraphic(new ImageView(Resources.GeneralImages.BACK.getImage()));
+        
+        if(Resources.Music.SOUNDINTRO.getToggleMusic()){
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEON.getImage()));
             musica.setId("volume");
-        else
-            musica.setId("volumeOff");
-      
-        if(Resources.SoundEffects.BUTTONCLICK.getToggleEffect())
-            effetti.setId("effetti");
-        else
+        }else{
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEOFF.getImage()));
+            musica.setId("volumeOff");      
+        }
+        
+        if(Resources.SoundEffects.BUTTONCLICK.getToggleEffect()){
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTION.getImage()));
+            effetti.setId("eff");
+        }else{
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTIOFF.getImage()));
             effetti.setId("effettiOff");
+        }
         
         updateCBI();
         int currLev = ControllerForView.getInstance().getCurrentLevel();
@@ -216,10 +239,13 @@ public class OpzioniPausaController implements Initializable {
     
     
     public void toggleMusic(){
-        if(musica.getId().equals("volume"))
+        if(musica.getId().equals("volume")){
             musica.setId("volumeOff");
-        else
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEOFF.getImage()));
+        }else{
             musica.setId("volume");
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEON.getImage()));
+        }
         Resources.Music.SOUNDTRACK.toggleMusicEnabled();
         Resources.Music.SOUNDTRACK2.toggleMusicEnabled();
         Resources.Music.SOUNDTRACK3.toggleMusicEnabled();
@@ -240,11 +266,13 @@ public class OpzioniPausaController implements Initializable {
     
     public void toggleEffects(){
         
-        if(effetti.getId().equals("effetti"))
+        if(effetti.getId().equals("eff")){
             effetti.setId("effettiOff");
-        else
-            effetti.setId("effetti");
-        
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTIOFF.getImage()));
+        }else{
+            effetti.setId("eff");
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTION.getImage()));
+        }
         Resources.SoundEffects.BUTTONCLICK.toggleSoundEnabled();
         Resources.SoundEffects.DEFEAT.toggleSoundEnabled();
         Resources.SoundEffects.EXPLOSION.toggleSoundEnabled();

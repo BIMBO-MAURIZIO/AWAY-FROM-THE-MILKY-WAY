@@ -9,6 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+
+
 
 
 
@@ -21,20 +30,35 @@ public class SchermataInizialeController implements Initializable {
     @FXML private Button istruzioni;
     @FXML private Label tit1;
     @FXML private Label tit2;   
+    @FXML private AnchorPane ap;
    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(Resources.Music.SOUNDINTRO.getToggleMusic())
+
+        ap.setBackground(new Background(new BackgroundImage(Resources.GeneralImages.BACKGROUNDF.getImage(),
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundRepeat.NO_REPEAT,
+                                                            BackgroundPosition.CENTER,
+                                                            BackgroundSize.DEFAULT)));
+        istruzioni.setGraphic(new ImageView(Resources.GeneralImages.ISTRUZIONI.getImage()));
+        
+        
+        if(Resources.Music.SOUNDINTRO.getToggleMusic()){
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEON.getImage()));
             musica.setId("volume");
-        else
-            musica.setId("volumeOff");
+        }else{
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEOFF.getImage()));
+            musica.setId("volumeOff");      
+        }
         
-        
-        if(Resources.SoundEffects.BUTTONCLICK.getToggleEffect())
-            effetti.setId("effetti");
-        else
+        if(Resources.SoundEffects.BUTTONCLICK.getToggleEffect()){
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTION.getImage()));
+            effetti.setId("eff");
+        }else{
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTIOFF.getImage()));
             effetti.setId("effettiOff");
+        }
         
         nuova.setLayoutX(153);
         nuova.setLayoutY(77);
@@ -77,10 +101,13 @@ public class SchermataInizialeController implements Initializable {
     }
     
     public void toggleMusic(){
-        if(musica.getId().equals("volume"))
+        if(musica.getId().equals("volume")){
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEOFF.getImage()));
             musica.setId("volumeOff");
-        else
+        }else{
+            musica.setGraphic(new ImageView(Resources.GeneralImages.VOLUMEON.getImage()));
             musica.setId("volume");
+        }
         Resources.Music.SOUNDTRACK.toggleMusicEnabled();
         Resources.Music.SOUNDTRACK2.toggleMusicEnabled();
         Resources.Music.SOUNDTRACK3.toggleMusicEnabled();
@@ -94,10 +121,14 @@ public class SchermataInizialeController implements Initializable {
     }
     
     public void toggleEffects(){
-        if(effetti.getId().equals("effetti"))
+        if(effetti.getId().equals("eff")){
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTIOFF.getImage()));
             effetti.setId("effettiOff");
-        else
-            effetti.setId("effetti");
+        }else{
+            effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTION.getImage()));
+            effetti.setId("eff");
+        }
+
         
         Resources.SoundEffects.BUTTONCLICK.toggleSoundEnabled();
         Resources.SoundEffects.DEFEAT.toggleSoundEnabled();

@@ -128,6 +128,7 @@ public class ControllerForView implements IControllerForView {
         
         ControllerForModel.getInstance().setName();
         Model.getInstance().setRimbDesiderati(View.getInstance().getRimbDes());
+        Model.getInstance().setRimbEffettuati(0);
         milkyWay = View.getInstance().getMilkyWay();
         
         ControllerForModel.getInstance().setSpaceshipCenterX(spaceship.getCenterX());
@@ -541,7 +542,7 @@ public class ControllerForView implements IControllerForView {
         timeline = timelineObs1 = timelineObs2 = null;
         View.getInstance().setTimelines();
         
-        Model.getInstance().setRimbEffettuati(0);
+        //Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
     }    
@@ -551,7 +552,7 @@ public class ControllerForView implements IControllerForView {
         
         timeline = timelineObs1 = timelineObs2 = null;
         View.getInstance().setTimelines();
-        Model.getInstance().setRimbEffettuati(0);
+        //Model.getInstance().setRimbEffettuati(0);
         View.getInstance().openGameWindow(livelloCorrente+1);
         View.getInstance().getDataPane().setName(Model.getInstance().getName());
         if((livelloCorrente + 1) == 3 || (livelloCorrente + 1) == 5 || (livelloCorrente + 1) == 7 ){
@@ -681,7 +682,10 @@ public class ControllerForView implements IControllerForView {
         
         int level = getCurrentLevel();
         String nomePl = View.getInstance().getNome();
-        File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nomePl);
+        if(!new File("gameProfiles").exists())
+            new File("gameprofiles").mkdir();
+            
+        File f = new File("gameProfiles/"+nomePl);
         if(f.exists()){
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Away From The Milky Way");
@@ -708,7 +712,7 @@ public class ControllerForView implements IControllerForView {
     @Override
     public void loadGame(String nome){
        
-        String path = "src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nome;
+        String path = "gameProfiles/"+nome;
         try {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Away From The Milky Way");
@@ -718,10 +722,10 @@ public class ControllerForView implements IControllerForView {
             stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
             
             if(alert.showAndWait().get() == ButtonType.OK){
-                View.getInstance().openGameWindow(Integer.parseInt(Utils.getInstance().searchWord(path, "livello")));
-                Model.getInstance().setLevel(Integer.parseInt(Utils.getInstance().searchWord(path, "livello")));
-                View.getInstance().getDataPane().setName(Utils.getInstance().searchWord(path, "nome"));
-                Resources.Music.SOUNDTRACK.play();
+                View.getInstance().openGameWindow(Integer.parseInt(Utils.getInstance().searchWordProfile(path, "livello")));
+                Model.getInstance().setLevel(Integer.parseInt(Utils.getInstance().searchWordProfile(path, "livello")));
+                View.getInstance().getDataPane().setName(Utils.getInstance().searchWordProfile(path, "nome"));
+                
             }
                  
             } catch (IOException ex) {
@@ -734,8 +738,8 @@ public class ControllerForView implements IControllerForView {
     @Override
     public boolean deleteLog(String nome){
         
-        File f = new File("src\\AwayFromTheMilkyWay\\configuration\\logs\\"+nome);
-        System.out.println(f.getPath());
+        File f = new File("gameProfiles/"+nome);
+        //System.out.println(f.getPath());
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("ATTENZIONE");
         alert.setContentText("vuoi davvero cancellare la partita di "+ nome+ " ?");

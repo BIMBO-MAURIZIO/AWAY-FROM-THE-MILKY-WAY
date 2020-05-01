@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 
 public class RestartLevelController implements Initializable {
@@ -17,14 +18,16 @@ public class RestartLevelController implements Initializable {
     
     @FXML private Label lose;
     @FXML private Label cosa;
-    @FXML private Button retry;
+    @FXML private Button ret;
     @FXML private Button esci;
-
+    
  
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        ret.setGraphic(new ImageView(Resources.GeneralImages.RETRY.getImage()));
         
         lose.setLayoutX(98);
         lose.setLayoutY(37);
@@ -36,8 +39,8 @@ public class RestartLevelController implements Initializable {
         cosa.setMinSize(130,33);
         cosa.setMaxSize(130,33);
         cosa.setText(cosa.getText().toUpperCase());
-        retry.setLayoutX(67);
-        retry.setLayoutY(155);
+        ret.setLayoutX(67);
+        ret.setLayoutY(155);
         esci.setLayoutX(195);
         esci.setLayoutY(155);
         esci.setText(esci.getText().toUpperCase());

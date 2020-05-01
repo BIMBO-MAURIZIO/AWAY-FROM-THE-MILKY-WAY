@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#buttonSound" prefHeight="800.0" prefWidth="1280.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.SchermataInizialeController">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#buttonSound" prefHeight="800.0" prefWidth="1280.0" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AwayFromTheMilkyWay.view.SchermataInizialeController">
    <children>
       <Button id="button" fx:id="nuova" layoutX="153.0" layoutY="71.0" mnemonicParsing="false" onAction="#nuovaPartita" onMouseEntered="#buttonSound" prefHeight="80.0" prefWidth="410.0" text="NUOVA PARTITA">
          <font>
@@ -17,8 +17,8 @@
          </font></Button>
       <Label id="labelTitolo" fx:id="tit1" layoutX="717.0" layoutY="91.0" prefHeight="101.0" prefWidth="494.0" text="AWAY FROM" />
       <Label id="labelTitolo" fx:id="tit2" layoutX="664.0" layoutY="170.0" text="THE MILKY WAY" />
-      <Button id="effetti" fx:id="effetti" layoutX="165.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleEffects" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
-      <Button id="istruzioni" fx:id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" onAction="#instructions" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
+      <Button id="eff" fx:id="effetti" layoutX="165.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleEffects" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
+      <Button id="instr" fx:id="istruzioni" layoutX="253.0" layoutY="369.0" mnemonicParsing="false" onAction="#instructions" onMouseEntered="#buttonSound" prefHeight="62.0" prefWidth="62.0" />
       <Button id="volume" fx:id="musica" layoutX="343.0" layoutY="369.0" mnemonicParsing="false" onAction="#toggleMusic" onMouseEntered="#buttonSound" prefHeight="50.0" prefWidth="50.0" />
    </children>
 </AnchorPane>
