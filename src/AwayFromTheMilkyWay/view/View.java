@@ -71,7 +71,7 @@ public class View implements IView{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setWidth(1280);
-        stage.setHeight(835);
+        stage.setHeight(833);//835
         stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
         stage.show();
         
@@ -100,7 +100,7 @@ public class View implements IView{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setWidth(1280);
-        stage.setHeight(935);
+        stage.setHeight(933);//935
         stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
         
         stage.show();

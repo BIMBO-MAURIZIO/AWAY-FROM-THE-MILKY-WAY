@@ -5,7 +5,6 @@ import AwayFromTheMilkyWay.controller.ControllerForView;
 import AwayFromTheMilkyWay.utils.Resources;
 import AwayFromTheMilkyWay.utils.Utils;
 import java.io.IOException;
-import java.net.URL;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

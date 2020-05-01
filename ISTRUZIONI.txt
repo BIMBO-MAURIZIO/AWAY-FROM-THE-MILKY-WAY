@@ -1,0 +1,5 @@
+Per prima cosa scaricare java versione 8 update 251 al link:
+https://www.java.com/it/download/win10.jsp
+Cliccare su "Accettate e avviate il download gratuito" e quando chiederà cosa fare con l'eseguibile che state downlodando cliccate "esegui".
+Dopo aver completato l'installazione di java e aver scaricato la cartella del link di Google drive, estraete la cartella in un percorso a voi comodo, ed esempio sul Desktop (click con tasto destro sul file .zip, estrai, e poi devi dare in input la cartella in cui vuoi scaricare il file). Una volta fatto ciò ,vai nella cartella che hai estratto e fai double click sul file chiamato "AwayFromTheMilkyWay2.jar" e divertiti!
+SEGNALAMI EVENTUALI BUG!
