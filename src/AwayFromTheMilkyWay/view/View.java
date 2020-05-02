@@ -102,7 +102,6 @@ public class View implements IView{
         stage.setWidth(1280);
         stage.setHeight(933);//935
         stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
-        
         stage.show();
         handleExit();
         Resources.Music.SOUNDINTRO.stop();
@@ -139,6 +138,7 @@ public class View implements IView{
         pauseStage.initStyle(StageStyle.UNDECORATED);
         stage.hide();
         pauseStage.show();
+        
         
     
     }
@@ -373,6 +373,7 @@ public class View implements IView{
         alertStage.setResizable(false);
         alertStage.setTitle("Away From The Milky Way");
         alertStage.initStyle(StageStyle.UNDECORATED);
+        alertStage.setAlwaysOnTop(true);
         //stage.hide();
         alertStage.show();
         
