@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.utils;
 
 import java.io.BufferedReader;
@@ -16,8 +12,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 
-
-
 public class Utils {
  
     private BufferedReader buffRead;
@@ -26,6 +20,7 @@ public class Utils {
     public Utils(){
         
     }
+    
     
     public static Utils getInstance(){
         if(instance == null)
@@ -36,8 +31,7 @@ public class Utils {
     
     
     public String searchWord(String filePath,String searchedWord) throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
-        /*File file = new File(filePath);
-        buffRead = new BufferedReader(new FileReader(file));*/
+
         String path = "configuration/"+filePath;
         InputStream in = getClass().getResourceAsStream(path);
         buffRead = new BufferedReader(new InputStreamReader(in));
@@ -48,7 +42,7 @@ public class Utils {
         }
     
         String result = "";
-        String[] splittedString;// = new String[300]; se ci fossero problemi rimetti questo
+        String[] splittedString;
         splittedString = increasing.split("\n");
         for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){
@@ -58,8 +52,8 @@ public class Utils {
             } 
         }
         return result;
-  
     }
+    
     
     public void writeFile(File file, String txt){
         
@@ -71,13 +65,12 @@ public class Utils {
 			e.printStackTrace();
                 }
     }
+    
 
     public String searchWordProfile(String filePath,String searchedWord) throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
+        
         File file = new File(filePath);
         buffRead = new BufferedReader(new FileReader(file));
-        //String path = "configuration/"+filePath;
-        //InputStream in = getClass().getResourceAsStream(path);
-        //buffRead = new BufferedReader(new InputStreamReader(in));
         String line;
         String increasing = "";
         while ((line = buffRead.readLine()) != null){
@@ -85,7 +78,7 @@ public class Utils {
         }
     
         String result = "";
-        String[] splittedString;// = new String[300]; se ci fossero problemi rimetti questo
+        String[] splittedString;
         splittedString = increasing.split("\n");
         for(int i = 0; i < 300; i++){
             if(splittedString[i].equals(searchedWord)){
@@ -95,7 +88,6 @@ public class Utils {
             } 
         }
         return result;
-  
     }
 
 }

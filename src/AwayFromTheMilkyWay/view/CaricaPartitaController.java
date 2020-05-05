@@ -81,7 +81,6 @@ public class CaricaPartitaController implements Initializable {
             });
         }
         
-        //parte grafica
         
         carica.setLayoutX(47);
         carica.setLayoutY(410);
@@ -117,13 +116,16 @@ public class CaricaPartitaController implements Initializable {
 
     }    
     
+    
     public void back() throws IOException{
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
     }
     
+    
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();
     }
+    
     
     public void caricaPartita(){
         if(scelta != null)
@@ -136,6 +138,7 @@ public class CaricaPartitaController implements Initializable {
             alert.show();
         }
     }
+    
     
     public void cancellaProfilo(){
         if(scelta != null){
@@ -155,6 +158,5 @@ public class CaricaPartitaController implements Initializable {
             
         }
     }
-    
     
 }

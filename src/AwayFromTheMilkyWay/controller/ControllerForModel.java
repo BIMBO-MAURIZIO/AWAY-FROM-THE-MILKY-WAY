@@ -7,10 +7,7 @@ import AwayFromTheMilkyWay.view.View;
 
 public class ControllerForModel implements IControllerForModel {
     private static ControllerForModel instance;
-    
-    
-  
-    
+ 
     public ControllerForModel(){
         
     }
@@ -22,44 +19,49 @@ public class ControllerForModel implements IControllerForModel {
         return instance;
     }
     
-    
-    
+   
+   //metodi setter
    @Override
     public void setSpaceshipCenterX (double x){
         Model.getInstance().getSpaceship().setCenterX(x);
-    
     }
+    
     
     @Override
     public void setObs1CenterY (double y){
         Model.getInstance().getOstacoloMobile1().setCenterY(y);
-    
     }
 
+    
     @Override
     public void setSpaceshipCenterY (double y){
         Model.getInstance().getSpaceship().setCenterY(y);
-    
     }
+    
     
     @Override
     public void setObs2CenterX (double x){
         Model.getInstance().getOstacoloMobile2().setCenterX(x);
-    
     }
     
+      
+    @Override
+    public void setName(){
+        Model.getInstance().setName(View.getInstance().getNome());
+    }
+    
+    
+//metodi getter
     @Override
     public double getSpaceshipCenterX (){ 
-        return View.getInstance().getSpaceship().getCenterX();
-        
+        return View.getInstance().getSpaceship().getCenterX();   
     }
+    
     
     @Override
     public double getSpaceshipCenterY (){
-        return View.getInstance().getSpaceship().getCenterY();
-        
+        return View.getInstance().getSpaceship().getCenterY();       
     }
-    
     
     
      @Override
@@ -67,20 +69,15 @@ public class ControllerForModel implements IControllerForModel {
         return View.getInstance().getMilkyWay().getCenterX();
     }
     
+    
     @Override
     public double getMWCenterY(){
         return View.getInstance().getMilkyWay().getCenterY();
     }
     
+    
     @Override
     public double getMWRadius(){
         return View.getInstance().getMilkyWay().getRadius();
     }
-    
-    @Override
-    public void setName(){
-        Model.getInstance().setName(View.getInstance().getNome());
-    }
-    
-    
 }

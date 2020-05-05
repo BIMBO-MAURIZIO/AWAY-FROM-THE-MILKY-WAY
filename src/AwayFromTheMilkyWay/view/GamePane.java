@@ -360,29 +360,31 @@ public class GamePane extends AnchorPane {
                       
     }
     
+    
     public Circle getSpaceship(){
         return this.spaceship;
     }
+    
     
     public Circle getMO1(){
         return this.movingObstacle1;
     }
     
+    
     public Circle getMO2(){
         return this.movingObstacle2;
     }
+    
     
     public Circle getMilkyWay(){
         return this.milkyWay;
     }
     
-    public Circle getPlanet1(){
-        return this.planet1;
-    }
     
     public void setSpaceshipIm(Image i){
         this.spaceship.setFill(new ImagePattern(i));
     }
+    
     
     public Button getHelpButton(){
         return this.help;

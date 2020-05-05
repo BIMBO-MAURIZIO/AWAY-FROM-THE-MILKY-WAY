@@ -22,13 +22,10 @@ public class RestartLevelController implements Initializable {
     @FXML private Button esci;
     
  
-
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         ret.setGraphic(new ImageView(Resources.GeneralImages.RETRY.getImage()));
-        
         lose.setLayoutX(98);
         lose.setLayoutY(37);
         lose.setMinSize(114,35);
@@ -53,6 +50,7 @@ public class RestartLevelController implements Initializable {
         View.getInstance().getDataPane().enableButton();
     }
     
+    
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();
     }
@@ -62,8 +60,7 @@ public class RestartLevelController implements Initializable {
         View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
         Resources.Music.SOUNDINTRO.play();
         View.getInstance().getDataPane().enableButton();
-        ControllerForView.getInstance().setCurrentLevel(1);//ogni qualvolta l'utente cliccherà exit e poi nuova partita dovrà ripartire da livello 1
-        
+        ControllerForView.getInstance().setCurrentLevel(1);      
     }
     
 }

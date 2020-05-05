@@ -42,14 +42,14 @@ public class Resources {
 
         private Image img = null;
         
-        GeneralImages(String fileSrc)
-        {
+        GeneralImages(String fileSrc){
+        
             URL imgSrc = this.getClass().getResource(fileSrc);            
             img = new Image(imgSrc.toString());
         }
         
-        public Image getImage()
-        {
+        public Image getImage(){
+        
             return this.img;
         }        
         
@@ -57,8 +57,8 @@ public class Resources {
     
     
     
-    public enum Explosion
-    {
+    public enum Explosion{
+    
         EXP1("media/images/explosion1.png"),
         EXP2("media/images/explosion2.png"),
         EXP3("media/images/explosion3.png"),
@@ -95,37 +95,38 @@ public class Resources {
         EXP34("media/images/explosion34.png"),
         EXP35("media/images/explosion35.png"),
         EXP36("media/images/explosion36.png");
-         private Image img = null;
         
-        Explosion(String fileSrc)
-        {
+        private Image img = null;
+        
+        Explosion(String fileSrc){
+        
             URL imgSrc = this.getClass().getResource(fileSrc);
             img = new Image(imgSrc.toString());
         }
         
-        public Image getImage()
-        {
+        public Image getImage(){
+        
             return this.img;
         }
     } 
     
     
-    public enum Backwash
-    {
+    public enum Backwash{
+    
         BCK1("media/images/circle1.png"),
         BCK2("media/images/circle2.png"),
         BCK3("media/images/circle3.png"),
         BCK4("media/images/circle4.png");
         private Image img = null;
         
-        Backwash(String fileSrc)
-        {
+        Backwash(String fileSrc){
+        
             URL imgSrc = this.getClass().getResource(fileSrc);
             img = new Image(imgSrc.toString());
         }
         
-        public Image getImage()
-        {
+        public Image getImage(){
+        
             return this.img;
         }
     } 
@@ -144,24 +145,24 @@ public class Resources {
         private AudioClip media;
         private final static double MUSIC_VOLUME = 0.15;
         
-        SoundEffects(String fileSrc)
-        {
+        SoundEffects(String fileSrc){
+        
             URL url = this.getClass().getResource(fileSrc);
             media = new AudioClip(url.toString());
-            this.soundEnabled = true;
-            
+            this.soundEnabled = true; 
         }
         
-        public void play()
-        {
+        public void play(){
+        
             if(this.soundEnabled){
                 media.setVolume(MUSIC_VOLUME);
                 media.play();
             }
         }
         
-        public void toggleSoundEnabled()
-        {
+        
+        public void toggleSoundEnabled(){
+        
             this.soundEnabled = !soundEnabled;
         }
         public boolean getToggleEffect(){
@@ -197,36 +198,22 @@ public class Resources {
                 this.audioMedia.stop();
         }
         
+        
         public void stop(){
         
             this.audioMedia.stop();
         }
+        
         
         public void toggleMusicEnabled(){
         
             this.musicEnabled = !musicEnabled;
         }
         
+        
         public boolean getToggleMusic(){
             return this.musicEnabled;
         }
     }
-    
-    /*public enum Config
-    {
-        LV1("configuration/txtFiles/Level1.txt");
-        private String s = null;
-        
-        Config(String fileSrc)
-        {
-            URL sSrc = this.getClass().getResource(fileSrc);
-            s = sSrc.toString();
-        }
-        
-        public String getConfig()
-        {
-            return this.s;
-        }
-    } */
     
 }

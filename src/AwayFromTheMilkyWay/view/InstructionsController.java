@@ -27,8 +27,6 @@ public class InstructionsController implements Initializable {
     @FXML private AnchorPane ap;
    
 
- 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -64,6 +62,5 @@ public class InstructionsController implements Initializable {
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();
     }
-    
     
 }

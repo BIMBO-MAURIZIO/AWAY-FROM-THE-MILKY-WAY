@@ -44,7 +44,6 @@ public class OpzioniPausaController implements Initializable {
     private static int sceltaSong;
 
    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -152,7 +151,6 @@ public class OpzioniPausaController implements Initializable {
         });
         
     
-        
         salva.setLayoutX(47);
         salva.setLayoutY(400);
         salva.setMinSize(223,50);
@@ -199,7 +197,6 @@ public class OpzioniPausaController implements Initializable {
         songs.setMaxSize(157,37);
     }   
       
-    
     
     public void back(){
 
@@ -285,6 +282,7 @@ public class OpzioniPausaController implements Initializable {
         return OpzioniPausaController.sceltaImg;
     }
     
+    
     public static int getSong(){
         return OpzioniPausaController.sceltaSong;
     }
@@ -306,6 +304,7 @@ public class OpzioniPausaController implements Initializable {
         }
     }
     
+    
     public void updateCBI(){
         switch (sceltaImg) {
             case 0:
@@ -324,6 +323,7 @@ public class OpzioniPausaController implements Initializable {
                 break;
         }
     }
+    
     
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();

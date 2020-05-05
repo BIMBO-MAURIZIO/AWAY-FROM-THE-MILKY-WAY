@@ -14,23 +14,25 @@ import javafx.scene.shape.Circle;
  */
 public interface IModel {
     
-    public void incrementaRimbalziEffettuati();
-    public int getRimbalziEffettuati();
-    public Circle getSpaceship();
     public Circle[] scanPlanets(int level) throws IOException;
     public Circle[] scanFixObstacles(int level) throws IOException;
     public Circle[] scanMovingObstacles(int level) throws IOException;
+    
+    public String getName();
+    public Circle getOstacoloMobile1();
+    public Circle getOstacoloMobile2();
+    public int getRimbalziEffettuati();
+    public Circle getSpaceship();
     public int getCurrentLevel();
     public Circle getMilkyWay();
+    public int getRimbDesiderati();
+    
     public void increaseLevel();
     public void decreaseLevel();
     public void setLevel(int n);
     public void setRimbDesiderati(int i);
-    public int getRimbDesiderati();
     public void setRimbEffettuati(int i);
     public void setName(String s);
-    public String getName();
-    public Circle getOstacoloMobile1();
-    public Circle getOstacoloMobile2();
+    public void incrementaRimbalziEffettuati();
     
 }//end class

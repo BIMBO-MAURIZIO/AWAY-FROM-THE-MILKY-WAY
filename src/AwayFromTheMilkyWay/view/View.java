@@ -23,10 +23,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 
-/**
- *
- * @author giorg
- */
+
 public class View implements IView{
     
     private Stage stage;
@@ -58,7 +55,7 @@ public class View implements IView{
     }
     
    
-    //metodi per switchare le scene
+    //metodi per cambiare le scene
     
     @Override
     public void changeCurrentWindow(String window) throws IOException{
@@ -143,8 +140,47 @@ public class View implements IView{
     
     }
     
+    
+       @Override
+    public void createAlert(String window){
+        
+        getDataPane().disableButton();
+        alertStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(window));
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        scene = new Scene(root, 320, 240);
+        
+        alertStage.setScene(scene);
+        alertStage.setResizable(false);
+        alertStage.setTitle("Away From The Milky Way");
+        alertStage.initStyle(StageStyle.UNDECORATED);
+        alertStage.setAlwaysOnTop(true);
+        //stage.hide();
+        alertStage.show();
+        
+    }
+    
+    
+     @Override
+    public void handleExit(){
+        EventHandler handler = (EventHandler<WindowEvent>) (WindowEvent event) -> {
+            if(pauseStage != null)
+                pauseStage.close();
+            if(alertStage != null)
+                alertStage.close();
+        };
+        
+        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, handler);
+    }
+ 
+    
    
-    //metodi per restituire oggetti relativi alla finestra
+    //metodi getter
     
     @Override
     public GameWindow getGameWindow(){
@@ -152,6 +188,10 @@ public class View implements IView{
     }
     
     
+     @Override
+    public Stage getAlertStage(){
+        return this.alertStage;
+    }
     
     
     @Override
@@ -171,6 +211,7 @@ public class View implements IView{
         return this.scene;
     }
     
+    
     @Override
     public GamePane getGamePane(){
         return this.game.getSchermataGioco();
@@ -189,10 +230,13 @@ public class View implements IView{
                 
     }
     
+    
     @Override
     public Circle getMovingObstacle1(){
         return this.game.getSchermataGioco().getMO1();
     }
+    
+    
     @Override
     public Circle getMovingObstacle2(){
         return this.game.getSchermataGioco().getMO2();
@@ -204,36 +248,44 @@ public class View implements IView{
         return this.game.getSchermataGioco().getMilkyWay();
     }
     
+    
     @Override
     public int getRimbDes(){
         return this.getDataPane().getRimbDes();
     }
+    
     
     @Override 
     public String getNome(){
         return this.getDataPane().getNome();
     }
     
+    
     @Override
     public Button getHelpButton(){
        return this.getGamePane().getHelpButton();
     }
+    
     
     @Override
     public Timeline getT1(){
         return this.t1;
     }
     
+    
     @Override
     public Timeline getT2(){
         return this.t2;
     }
+    
     
     @Override
     public Timeline getT3(){
         return this.t3;
     }
     
+    
+    //metodi per visualizzare le animazioni
     @Override
     public void setTimelines(){
         this.t1 = null;
@@ -352,52 +404,5 @@ public class View implements IView{
 
         t3.play();
     }
-    
-    
-    
-    @Override
-    public void createAlert(String window){
-        
-        getDataPane().disableButton();
-        alertStage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(window));
-        } catch (IOException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-        scene = new Scene(root, 320, 240);
-        
-        alertStage.setScene(scene);
-        alertStage.setResizable(false);
-        alertStage.setTitle("Away From The Milky Way");
-        alertStage.initStyle(StageStyle.UNDECORATED);
-        alertStage.setAlwaysOnTop(true);
-        //stage.hide();
-        alertStage.show();
-        
-    }
-    
-    
-    @Override
-    public Stage getAlertStage(){
-        return this.alertStage;
-    }
-    
-    
-    @Override
-    public void handleExit(){//metodo che serve a chiudere tutte le ffinestre attive se quella principale viene chiusa
-        EventHandler handler = (EventHandler<WindowEvent>) (WindowEvent event) -> {
-            if(pauseStage != null)
-                pauseStage.close();
-            if(alertStage != null)
-                alertStage.close();
-        };
-        
-        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, handler);
-    }
- 
-    
     
 }//end class

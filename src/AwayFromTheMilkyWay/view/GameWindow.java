@@ -6,7 +6,6 @@ import java.io.IOException;
 import javafx.scene.layout.BorderPane;
 
 
-
 public class GameWindow extends BorderPane {
     
     private PlayerDataPane schermataDati = new PlayerDataPane();
@@ -42,6 +41,7 @@ public class GameWindow extends BorderPane {
        return this.schermataGioco;
    }
     
+   
    public PlayerDataPane getPDP(){
        return this.schermataDati;
    }

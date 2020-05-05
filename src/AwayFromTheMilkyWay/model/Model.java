@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.model;
 
 import AwayFromTheMilkyWay.controller.ControllerForModel;
 import java.io.IOException;
 import javafx.scene.shape.Circle;
 
-/**
- *
- * @author giorg
- */
+
 public class Model implements IModel {
     
-    private GameStatus gameStatus;
     private static Model instance;
+    private GameStatus gameStatus;
     private Circle spaceship,milkyWay,ostacoloMobile1,ostacoloMobile2; 
     private movingObstaclesModel ostacoliMobili;
     private PlanetsModel pianeti;
@@ -39,6 +32,7 @@ public class Model implements IModel {
     }
     
     
+    //metodi di scanning
     @Override
     public Circle[] scanPlanets(int level) throws IOException{
         pianeti  = new PlanetsModel();
@@ -60,7 +54,7 @@ public class Model implements IModel {
     }
     
     
-    //metodi getter di GameStatus
+    //metodi getter
     
     @Override
     public int getRimbalziEffettuati() {
@@ -70,10 +64,22 @@ public class Model implements IModel {
     
     
     @Override
-    public void incrementaRimbalziEffettuati() {
-        this.gameStatus.incrementaRimbEff();
-    
+    public String getName(){
+        return this.gameStatus.getName();
     }
+    
+  
+    @Override
+    public Circle getOstacoloMobile1(){
+        return this.ostacoloMobile1;
+    }
+    
+  
+    @Override
+    public Circle getOstacoloMobile2(){
+        return this.ostacoloMobile2;
+    }
+    
     
     @Override
     public int getCurrentLevel(){
@@ -81,7 +87,6 @@ public class Model implements IModel {
     
     }
     
-    //getter di spaceship model
     
     @Override
     public Circle getSpaceship(){
@@ -94,6 +99,14 @@ public class Model implements IModel {
         return this.milkyWay;
     }
     
+    
+    @Override
+    public int getRimbDesiderati(){
+        return this.gameStatus.getRimbDes();
+    }
+    
+    
+    //metodi setter
     @Override
     public void increaseLevel(){
         this.gameStatus.increaseLevel();
@@ -115,10 +128,6 @@ public class Model implements IModel {
          this.gameStatus.setRimbDesiderati(i);
      }
     
-    @Override
-    public int getRimbDesiderati(){
-        return this.gameStatus.getRimbDes();
-    }
     
     @Override
     public void setRimbEffettuati(int i){
@@ -130,23 +139,12 @@ public class Model implements IModel {
         this.gameStatus.setName(s);
     }
     
-    @Override
-    public String getName(){
-        return this.gameStatus.getName();
-    }
-    
-  
-    @Override
-    public Circle getOstacoloMobile1(){
-        return this.ostacoloMobile1;
-    }
-    
   
     
-    
     @Override
-    public Circle getOstacoloMobile2(){
-        return this.ostacoloMobile2;
+    public void incrementaRimbalziEffettuati() {
+        this.gameStatus.incrementaRimbEff();
+    
     }
     
 }//end class

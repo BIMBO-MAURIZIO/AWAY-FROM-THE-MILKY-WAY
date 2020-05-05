@@ -86,6 +86,7 @@ public class SchermataInizialeController implements Initializable {
     
     }    
     
+    
     public void nuovaPartita() throws IOException{
         View.getInstance().changeCurrentWindow("nuovaPartita.fxml");
     }
@@ -99,6 +100,7 @@ public class SchermataInizialeController implements Initializable {
     public void buttonSound(){
         Resources.SoundEffects.BUTTONCLICK.play();
     }
+    
     
     public void toggleMusic(){
         if(musica.getId().equals("volume")){
@@ -120,6 +122,7 @@ public class SchermataInizialeController implements Initializable {
         }
     }
     
+    
     public void toggleEffects(){
         if(effetti.getId().equals("eff")){
             effetti.setGraphic(new ImageView(Resources.GeneralImages.EFFETTIOFF.getImage()));
@@ -137,10 +140,10 @@ public class SchermataInizialeController implements Initializable {
         Resources.SoundEffects.VICTORY.toggleSoundEnabled();
     }
     
+    
     public void instructions() throws IOException{
         View.getInstance().changeCurrentWindow("instructions.fxml");
     }
-    
-      
+ 
 }
 

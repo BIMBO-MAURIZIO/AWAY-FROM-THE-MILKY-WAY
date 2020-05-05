@@ -14,16 +14,13 @@ import javafx.stage.Stage;
 
 public class AwayFromTheMilkyWay extends Application {
     
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         
        System.out.println(Font.loadFont(Resources.class.getResource("media/images/mistral.ttf").toExternalForm(), 10)); 
        View.getInstance().changeCurrentWindow("schermataIniziale.fxml");
        Resources.Music.SOUNDINTRO.play();
-       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-       int res = Toolkit.getDefaultToolkit().getScreenResolution();
-       System.out.println(screenSize.height+"  "+screenSize.width);
-       System.out.println(res);
     }
 
     

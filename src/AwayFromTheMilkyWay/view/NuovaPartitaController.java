@@ -76,6 +76,7 @@ public class NuovaPartitaController implements Initializable {
         start.setText(start.getText().toUpperCase());
        
     }   
+    
     @FXML
     private void keyPressed(KeyEvent keyEvent){
         if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -120,19 +121,9 @@ public class NuovaPartitaController implements Initializable {
             errorAlert.show();
         }else{   
             View.getInstance().openGameWindow(1);
-            ControllerForView.getInstance().setName(name);
-            
+            ControllerForView.getInstance().setName(name); 
         }   
-        
-        
+          
     }
-    
-     
-    
-    
-      
-    
-    
-    
    
 }

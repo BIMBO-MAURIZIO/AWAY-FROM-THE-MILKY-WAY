@@ -38,9 +38,6 @@ public class PlayerDataPane extends GridPane {
     
     public void populatePane(){
 
- 
-
-        
         rimbalziDesiderati = new Label("RIMBALZI DESIDERATI: " + rimbalziDes);
         rimbalziDesiderati.setPrefSize(426.7, 90);
         rimbalziDesiderati.setAlignment(Pos.CENTER);
@@ -51,9 +48,6 @@ public class PlayerDataPane extends GridPane {
         nome.setAlignment(Pos.CENTER);
         nome.setId("nome");
 
- 
-
-        
         pb = new ProgressBar();
         pb.setPrefSize(200, 40);//dimensioni della barra
         pb.setMaxWidth(200);
@@ -149,6 +143,7 @@ public class PlayerDataPane extends GridPane {
         }
     }
     
+    
     public void fillGrid(){
         this.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
     }
@@ -174,6 +169,33 @@ public class PlayerDataPane extends GridPane {
         this.level = l;
         update();
     }
+ 
+    
+    public double getProgressPB(){
+        return pb.getProgress();
+    }
+    
+    
+    public int getRimbDes(){
+        return this.rimbalziDes;
+    }
+    
+     
+    public String getNome(){
+        return this.originalName;
+    }    
+    
+    
+    
+    public void disableButton(){
+        this.opzioni.setDisable(true);
+    }
+    
+    
+    public void enableButton(){
+        this.opzioni.setDisable(false);
+    }
+   
     
     public void setPB(double progress){
         this.pb.setProgress(progress);
@@ -195,29 +217,6 @@ public class PlayerDataPane extends GridPane {
         t.stop();
     }
     
-    public double getProgressPB(){
-        return pb.getProgress();
-    }
-    
-    public void disableButton(){
-        this.opzioni.setDisable(true);
-    }
-    
-    
-    public void enableButton(){
-        this.opzioni.setDisable(false);
-    }
-    
-    public int getRimbDes(){
-        return this.rimbalziDes;
-    }
-    
-    public String getNome(){
-        return this.originalName;
-    }    
-    
-    
-    
     
     public void update(){
         nome.setText("NOME: " + name);
@@ -226,8 +225,5 @@ public class PlayerDataPane extends GridPane {
         numLivello.setText("LIVELLO NUMERO "+ level);
        
     }
-     
-   
-
     
 }

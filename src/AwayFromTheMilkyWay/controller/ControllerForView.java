@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AwayFromTheMilkyWay.controller;
 
 import AwayFromTheMilkyWay.model.Model;
@@ -28,10 +24,8 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/**
- *
- * @author giorg
- */
+
+
 public class ControllerForView implements IControllerForView {
     private static ControllerForView instance;
     private double startSpaceshipX,startSpaceshipY,mousePositionX,mousePositionY,angolo,orientation,orientation2;
@@ -50,6 +44,8 @@ public class ControllerForView implements IControllerForView {
     private final int WINHEIGHT = 717;
     private final int SPACESHIPRADIUS = 45;
     
+    
+    //costruttore
     public ControllerForView(){
         
     }
@@ -61,14 +57,8 @@ public class ControllerForView implements IControllerForView {
         return instance;
     }
     
-    
-    @Override
-    public void setName (String nome){
-        View.getInstance().getDataPane().setName(nome);
-    
-    }
-    
-    
+       
+    //metodi getter
     @Override
     public double getSpaceshipCenterX(){
         return Model.getInstance().getSpaceship().getCenterX();
@@ -92,6 +82,7 @@ public class ControllerForView implements IControllerForView {
         return Model.getInstance().getMilkyWay().getCenterY();
     }
     
+    
     @Override
     public double getMWRadius(){
         return Model.getInstance().getMilkyWay().getRadius();
@@ -105,18 +96,25 @@ public class ControllerForView implements IControllerForView {
     
     
     @Override
-    public void setCurrentLevel(int level){
-        Model.getInstance().setLevel(level);
-    }
-    
-    
-    @Override
     public Line getLine(){
         return this.line;
     }
     
     
-    //METODI PER IL MOVIMENTO
+    //metodi setter
+    @Override
+    public void setName (String nome){
+        View.getInstance().getDataPane().setName(nome);
+    }
+    
+    
+    @Override
+    public void setCurrentLevel(int level){
+        Model.getInstance().setLevel(level);
+    }
+    
+    
+    //metodi dedicati al movimento
     @Override
     public void movimento(double v){
         
@@ -219,6 +217,7 @@ public class ControllerForView implements IControllerForView {
                 bounce(dx,dy,distNum,v);
                 startSpaceshipX = Model.getInstance().getSpaceship().getCenterX();
                 startSpaceshipY = Model.getInstance().getSpaceship().getCenterY();
+                
             }else if((fOb1 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb1.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb1.getCenterY(), 2)) < SPACESHIPRADIUS+fOb1.getRadius()) ||
                      (fOb2 != null && Math.sqrt(Math.pow(variableSpaceshipX - fOb2.getCenterX(), 2) + Math.pow(variableSpaceshipY - fOb2.getCenterY(), 2)) < SPACESHIPRADIUS+fOb2.getRadius())){
                 //scontro ostacolo fisso
@@ -238,16 +237,14 @@ public class ControllerForView implements IControllerForView {
                 View.getInstance().explosion();
                 
                 
-            }else if(Math.sqrt((variableSpaceshipX - milkyWay.getCenterX())*(variableSpaceshipX - milkyWay.getCenterX())+(variableSpaceshipY - milkyWay.getCenterY())*(variableSpaceshipY - milkyWay.getCenterY())) < milkyWay.getRadius()){ //caso di vittoria del gioco   
-                  //la condizione nell'if impne che appena la distanza fra i due cerchi è minore del raggio della via lattea il giocatore ha vinto
-                
+            }else if(Math.sqrt((variableSpaceshipX - milkyWay.getCenterX())*(variableSpaceshipX - milkyWay.getCenterX())+(variableSpaceshipY - milkyWay.getCenterY())*(variableSpaceshipY - milkyWay.getCenterY())) < milkyWay.getRadius()){    
                 double differenceX = milkyWay.getCenterX()-variableSpaceshipX;
                 double differenceY = milkyWay.getCenterY()-variableSpaceshipY;
                 double diagonal = Math.sqrt((differenceX+differenceX)+(differenceY*differenceY));
                 double NdifferenceX = differenceX/diagonal;
                 double NdifferenceY = differenceY/diagonal;
                 
-                if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){//fino a quando l'astronave non si è allineata con il centro della milkyway
+                if((Math.abs(milkyWay.getCenterX() - variableSpaceshipX) > 1) && (Math.abs(milkyWay.getCenterY() - variableSpaceshipY) > 1)){
                     
                     spaceship.setTranslateX(NdifferenceX);
                     spaceship.setTranslateY(NdifferenceY);
@@ -263,8 +260,8 @@ public class ControllerForView implements IControllerForView {
                     else
                         View.getInstance().backwashLose();//entra nella milkyway ma perde
                 }
-            }else{//caso in cui non ci sono collisioni
-                
+            }else{
+                //caso in cui non ci sono collisioni
                 shipSpeed = new Point2D(vx * v,vy * v);
              
                 double trX = shipSpeed.getX()*t;
@@ -278,7 +275,7 @@ public class ControllerForView implements IControllerForView {
                 spaceship.setCenterX(Model.getInstance().getSpaceship().getCenterX());
                 spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());
                 
-                if (t > 0.1)//se t avesse dovuto raggiungere 0 la decellerazione sarebbe stata troppo lenta
+                if (t > 0.1)
                     t = t-0.001;
                 else{
                     timeline.stop();
@@ -289,43 +286,29 @@ public class ControllerForView implements IControllerForView {
                 }
             }
         
-        }else { 
-            System.out.println("centri astronave : "+spaceship.getCenterX()+" "+spaceship.getCenterY() );
+        }else {//caso collisione contro i bordi della pane 
             timeline.stop();
             View.getInstance().explosion();
-            
         }
   
     }
-    
-    
     
     
     @Override 
     public void bounce(double dx,double dy,double distNum,double v){
 
         Model.getInstance().incrementaRimbalziEffettuati();
-        System.out.println(Model.getInstance().getRimbalziEffettuati());
-        System.out.println("coordinate astronave : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
         View.getInstance().getGameWindow().getPDP().setRimbalziEff(Model.getInstance().getRimbalziEffettuati());
         
         double dxNorm = -dx / distNum;
         double dyNorm = -dy / distNum;//direzioni della retta che unisce i due centri
         Point2D normal = new Point2D(dxNorm,dyNorm);
-                
-                /*procedimento applicato per il rimbalzo:
-                si considerano due versori che indicano ciò che è descritto accanto a loro nella loro definizione(guarda sotto)
-                si fa ruotare il vettore 2 normalizzato attorno all 'origine di un angolo -B, e se questo vettore diventa congruente con il vettore 1 normalizzato allora
-                siaamo riusciti a capire che la pallina è  stata lanciata verso sinistra e quindi l' angolo A che rappresenza l'angolo di incidenza assume in modulo
-                lo stessp valore di prima ,ma cambia in segno.
-                */
+        
         Point2D center = new Point2D(spaceship.getCenterX(),spaceship.getCenterY());
         Point2D vect1 = new Point2D(center.getX() - startSpaceshipX, center.getY() - startSpaceshipY);
-        Point2D Nvect1 = vect1.normalize();/*unisce il centro dell'astro quando va a sbattere al centro iniziale*/
+        Point2D Nvect1 = vect1.normalize();//unisce il centro dell'astro quando va a sbattere al centro iniziale
         Point2D vect2 = new Point2D(varCir.getCenterX() - startSpaceshipX, varCir.getCenterY() - startSpaceshipY);
-        Point2D Nvect2 = vect2.normalize();/*unisce il piantea e l'astronave nella sua posizione iniziale*/
-        System.out.println("vettore 1 :"+Nvect1.toString());
-        //System.out.println("vettore 2 :"+vect2.toString());
+        Point2D Nvect2 = vect2.normalize();//unisce il piantea e l'astronave nella sua posizione iniziale
         double A = normal.angle(shipSpeed);
         double B = vect1.angle(vect2);
         
@@ -334,16 +317,12 @@ public class ControllerForView implements IControllerForView {
 
         if (truncate(s.getX()) == truncate(Nvect1.getX()) && truncate(s.getY()) == truncate(Nvect1.getY())){
             A=-A;
-            angolo = angolo - 2*(180 -2*Math.abs(A)); //il 2 sta per togliere il(180 -2 ec.) che avevamo sommato sopra
+            angolo = angolo - 2*(180 -2*Math.abs(A));
         }    
-               
-        //commento        
-        System.out.println("angolo A : "+ A);
+ 
         Point2D rN = new Rotate(-2*A,spaceship.getCenterX(),spaceship.getCenterY()).transform(startSpaceshipX, startSpaceshipY);
-        
-       
-        System.out.println("angolo C : "+ angolo);
-        View.getInstance().getSpaceship().setRotate(angolo);//secondo me il prob è che la rotazione viene fatta sempre considerando la navicella dritta
+
+        View.getInstance().getSpaceship().setRotate(angolo);
         double diffX = rN.getX()- spaceship.getCenterX();
         double diffY = rN.getY()- spaceship.getCenterY();
         double rad = Math.sqrt((diffX*diffX)+(diffY*diffY));
@@ -351,7 +330,7 @@ public class ControllerForView implements IControllerForView {
         System.out.println("NrotatedNormal : "+NrotatedNormal.toString());
         KeyFrame kf = new KeyFrame(Duration.seconds(0.025), x -> move(NrotatedNormal.getX(),NrotatedNormal.getY(),v));
         
-        for(int i=0;i<10;i++){//avvia la traslazione
+        for(int i=0;i<10;i++){
             spaceship.setTranslateX(NrotatedNormal.getX()*t);
             spaceship.setTranslateY(NrotatedNormal.getY()*t);
             if (t > 0.1)
@@ -369,13 +348,8 @@ public class ControllerForView implements IControllerForView {
             spaceship.setCenterY(Model.getInstance().getSpaceship().getCenterY());
        
         }
-        System.out.println("coordinate astronave dopo il for : " + spaceship.getCenterX()+" ; "+spaceship.getCenterY());
-        
         timeline.getKeyFrames().set(0,kf);      
-
         timeline.play();
-                
-      
     }
     
    
@@ -385,7 +359,7 @@ public class ControllerForView implements IControllerForView {
         View.getInstance().getHelpButton().setDisable(false);
         spaceship = View.getInstance().getSpaceship();
         handler = (MouseEvent event) -> {
-            if(!View.getInstance().getGamePane().getChildren().isEmpty())//controlla prima se la linea c'è
+            if(!View.getInstance().getGamePane().getChildren().isEmpty())
                 View.getInstance().getGamePane().getChildren().remove(line);
             double varMousePositionX = event.getX();
             double varMousePositionY = event.getY();
@@ -431,17 +405,16 @@ public class ControllerForView implements IControllerForView {
         ConfigurationMovingObstacles();
         moveObstacles();
         
-        handler4 = new EventHandler<MouseEvent>() {  
-            public void handle(MouseEvent event) {
-                View.getInstance().getDataPane().stopPB();
-                System.out.println("velocità :"+ View.getInstance().getDataPane().getProgressPB());
-                movimento((View.getInstance().getDataPane().getProgressPB()*3/1)+2);
-            }
+        handler4 = (MouseEvent event) -> {
+            View.getInstance().getDataPane().stopPB();
+            System.out.println("velocità :"+ View.getInstance().getDataPane().getProgressPB());
+            movimento((View.getInstance().getDataPane().getProgressPB()*3/1)+2);
         };
         View.getInstance().getGamePane().addEventHandler(MouseEvent.MOUSE_PRESSED, handler4);    
     }
     
     
+    //metodi per gesire l'animazione
     @Override
     public void pauseAnimations(){
         
@@ -476,17 +449,9 @@ public class ControllerForView implements IControllerForView {
         if(View.getInstance().getT3() != null)
             View.getInstance().getT3().play();
     }
-     
-        
-    @Override
-    public double truncate(double a){
-        
-        double mult = a*10000000;
-        double fl = Math.floor(mult);
-        double res = fl/10000000;
-        return res;
-    }
-
+    
+    
+    //metodi di configurazione del  livello
     @Override
     public void ConfigurationPlanets(){
         a = new Circle[4];
@@ -502,8 +467,8 @@ public class ControllerForView implements IControllerForView {
        pl2 = a[1];
        pl3 = a[2];
        pl4 =a[3];
-        
     }
+    
     
     @Override
     public void ConfigurationFixObstacles(){//cominica al controller quanti e quali ostacoli ci sono nel livello
@@ -532,43 +497,9 @@ public class ControllerForView implements IControllerForView {
         }
        mOb1 = c[0];
        mOb2 = c[1];
-      
     }
     
-
-    @Override    
-    public void restartLevel(){
-        
-        timeline = timelineObs1 = timelineObs2 = null;
-        View.getInstance().setTimelines();
-        
-        //Model.getInstance().setRimbEffettuati(0);
-        View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
-        View.getInstance().getDataPane().setName(Model.getInstance().getName());
-    }    
-    
-    @Override    
-    public void nextLevel(int livelloCorrente){
-        
-        timeline = timelineObs1 = timelineObs2 = null;
-        View.getInstance().setTimelines();
-        //Model.getInstance().setRimbEffettuati(0);
-        View.getInstance().openGameWindow(livelloCorrente+1);
-        View.getInstance().getDataPane().setName(Model.getInstance().getName());
-        if((livelloCorrente + 1) == 3 || (livelloCorrente + 1) == 5 || (livelloCorrente + 1) == 7 ){
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Away From The Milky Way");
-            alert.setHeaderText("complimenti!");
-            alert.setContentText("hai sbloccato una nuova astronave");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
-            alert.show();     
-        }
-       
-        Model.getInstance().increaseLevel();
-    } 
-    
-    
+     
     @Override
     public void moveObstacles(){
         
@@ -619,6 +550,40 @@ public class ControllerForView implements IControllerForView {
         movingObs2.setCenterX(Model.getInstance().getOstacoloMobile2().getCenterX());
     }
     
+
+    @Override    
+    public void restartLevel(){
+        
+        timeline = timelineObs1 = timelineObs2 = null;
+        View.getInstance().setTimelines();
+        
+        View.getInstance().openGameWindow(Model.getInstance().getCurrentLevel());
+        View.getInstance().getDataPane().setName(Model.getInstance().getName());
+    }    
+    
+    
+    @Override    
+    public void nextLevel(int livelloCorrente){
+        
+        timeline = timelineObs1 = timelineObs2 = null;
+        View.getInstance().setTimelines();
+        View.getInstance().openGameWindow(livelloCorrente+1);
+        View.getInstance().getDataPane().setName(Model.getInstance().getName());
+        if((livelloCorrente + 1) == 3 || (livelloCorrente + 1) == 5 || (livelloCorrente + 1) == 7 ){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Away From The Milky Way");
+            alert.setHeaderText("complimenti!");
+            alert.setContentText("hai sbloccato una nuova astronave");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(Resources.GeneralImages.SPACEMANICON.getImage());
+            alert.show();     
+        }
+       
+        Model.getInstance().increaseLevel();
+    } 
+    
+    
+    //metodi di utilità
     @Override
     public void hint(int level){
         
@@ -674,6 +639,16 @@ public class ControllerForView implements IControllerForView {
         lineH = new Line(parX,parY,solutionX,solutionY);
         View.getInstance().getGamePane().getChildren().add(lineH);
         lineH.setId("lineH");
+    }
+    
+    
+      @Override
+    public double truncate(double a){
+        
+        double mult = a*10000000;
+        double fl = Math.floor(mult);
+        double res = fl/10000000;
+        return res;
     }
     
     
@@ -735,11 +710,11 @@ public class ControllerForView implements IControllerForView {
             }
     }
     
+    
     @Override
     public boolean deleteLog(String nome){
         
         File f = new File("gameProfiles/"+nome);
-        //System.out.println(f.getPath());
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("ATTENZIONE");
         alert.setContentText("vuoi davvero cancellare la partita di "+ nome+ " ?");
@@ -752,4 +727,4 @@ public class ControllerForView implements IControllerForView {
             return false;
     }
       
-}//end class sss
+}
